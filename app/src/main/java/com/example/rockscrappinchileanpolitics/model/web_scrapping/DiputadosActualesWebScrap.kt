@@ -26,36 +26,43 @@ class DiputadosActualesWebScrap {
                 val webpage = articleElement.select("a").eachAttr("href")
                 val attrList = webpage.stream().collect(
                     Collectors.toList()
-                )
+                ) as ArrayList
                 val nameList = h4Elements.stream().collect(
                     Collectors.toList()
-                )
+                ) as ArrayList
 
-                var diputadoActual = DiputadoActualEntity()
-                var diputadosActualesList = ArrayList<DiputadoActualEntity>()
-                var countAttr = 3
+                var countAttr = 0
                 var countName = 0
 
-//                if (attrList.size == nameList.size) {
-                for (f in nameList) {
-                    diputadoActual.nombre = nameList[countName].toString()
-                    if (countAttr % 3 == 0) {
-                        /*   diputadoActual.paginaWeb =
-                               "https://www.camara.cl/diputados/${attrList.get(countAttr)}"*/
-                    }
-                    diputadosActualesList.add(diputadoActual)
+                if (attrList.size / 3 == nameList.size) {
+                    Log.d("Message ---->", "SIZE name list${nameList.size}")
+                    Log.d("Message ---->", "SIZE webpages list${attrList.size / 3}")
+                    var name: String
+                    var webpage: String
+                    for (f in nameList) {
+/*                        diputadoActual.nombre = nameList.get(countName).toString()
+                        diputadoActual.paginaWeb =
+                            "https://www.camara.cl/diputados/${attrList.get(countAttr)}"*/
 
-                    ++countAttr
-                    ++countName
+                        name = nameList.get(countName).toString()
+                        webpage = "https://www.camara.cl/diputados/${attrList.get(countAttr)}"
+                        diputadosActualesList.add(
+                            DiputadoActualEntity(
+                                nombre = name,
+                                paginaWeb = webpage
+                            )
+                        )
+                        countAttr = countAttr + 3
+                        ++countName
+                    }
+                } else {
+
                 }
-                Log.d(
-                    "OBJETO ---->",
-                    ":----> ${diputadosActualesList}"
-                )
-//}
+
             } catch (e: IOException) {
                 e.printStackTrace()
             }
+            Log.d("SALIDA ---->", "--->${diputadosActualesList.size}")
             return diputadosActualesList
         }
 

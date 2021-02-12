@@ -8,22 +8,22 @@ import com.example.rockscrappinchileanpolitics.model.managers.DiputadosActualesW
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
 import kotlinx.coroutines.launch
 
-class PoliticsViewModel(application : Application) : AndroidViewModel(application) {
-	
-	var diputadosActualesList : MutableLiveData<MutableList<DiputadoActualEntity>> =
-		MutableLiveData<MutableList<DiputadoActualEntity>>(mutableListOf())
-	
-	init {
-		if (diputadosActualesList.value.isNullOrEmpty()) {
-			getDiputadosActualesList()
-		}
-	}
-	
-	private fun getDiputadosActualesList() {
-		diputadosActualesList =
-			DiputadosActualesWebScrapManager(getApplication()).allDiputadosActuales
-		viewModelScope.launch {
-//			diputadosActualesList
-		}
-	}
+class PoliticsViewModel(application: Application) : AndroidViewModel(application) {
+
+    var diputadosActualesList: MutableLiveData<MutableList<DiputadoActualEntity>> =
+        MutableLiveData<MutableList<DiputadoActualEntity>>(mutableListOf())
+
+    init {
+        if (diputadosActualesList.value.isNullOrEmpty()) {
+            getDiputadosActualesList()
+        }
+    }
+
+    private fun getDiputadosActualesList() {
+        diputadosActualesList =
+            DiputadosActualesWebScrapManager(getApplication()).allDiputadosActuales
+        viewModelScope.launch {
+            diputadosActualesList
+        }
+    }
 }

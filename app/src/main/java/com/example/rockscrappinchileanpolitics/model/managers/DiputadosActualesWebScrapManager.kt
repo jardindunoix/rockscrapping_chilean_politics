@@ -25,10 +25,10 @@ class DiputadosActualesWebScrapManager(context: Context) {
     fun getDiputadosActuales(context: Context): MutableList<DiputadoActualEntity> {
         var list = mutableListOf<DiputadoActualEntity>()
         var loader: AsyncTask<Void, Void, ArrayList<DiputadoActualEntity>>? = null
-
+        list = mutableListOf(DiputadoActualEntity())
         loader = DiputadosActualesWebScrap.LoadInitNews(AppCompatActivity())
         loader!!.execute()
-        list = mutableListOf(DiputadoActualEntity())
+        list = loader.get()
         return list
     }
 }
