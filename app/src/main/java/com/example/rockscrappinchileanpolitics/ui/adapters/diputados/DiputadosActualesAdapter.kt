@@ -1,4 +1,4 @@
-package com.example.rockscrappinchileanpolitics.ui.adapters
+package com.example.rockscrappinchileanpolitics.ui.adapters.diputados
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class DiputadosActualesAdapter(private var list : MutableList<DiputadoActualEnti
 		override fun bind(item : DiputadoActualEntity) =
 			with(binding) {
 				textViewNombreDiputadoActual.text = item.nombre
-				textViewWebpage.text = item.paginaWeb
+				textViewWebpageDiputadoActual.text = item.paginaWeb
 			}
 	}
 	
@@ -35,8 +35,8 @@ class DiputadosActualesAdapter(private var list : MutableList<DiputadoActualEnti
 		return holder
 	}
 	
-	override fun onBindViewHolder(holder : BaseViewHolder<*> ,
-	                              position : Int) {
+	override fun onBindViewHolder(holder : BaseViewHolder<*>,
+                                  position : Int) {
 		when (holder) {
 			is MyOwnViewHolder -> holder.bind(list[position])
 		}

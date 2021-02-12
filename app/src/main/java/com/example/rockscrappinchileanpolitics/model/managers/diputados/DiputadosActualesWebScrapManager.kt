@@ -1,17 +1,11 @@
-package com.example.rockscrappinchileanpolitics.model.managers
+package com.example.rockscrappinchileanpolitics.model.managers.diputados
 
 import android.content.Context
 import android.os.AsyncTask
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.DiputadosActualesWebScrap
+import com.example.rockscrappinchileanpolitics.model.web_scrapping.diputados.DiputadosActualesWebScrap
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
-import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
-import java.io.IOException
 
 class DiputadosActualesWebScrapManager(context: Context) {
 

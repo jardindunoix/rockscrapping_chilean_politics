@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="4dp"
-    tools:context=".ui.fragments.diputados.DiputadosActualesFragment">
+    tools:context=".ui.fragments.senadores.SenadoresActualesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_diputados_actuales"
+        android:id="@+id/recycler_view_senadores_actuales"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 
     <Button
-        android:id="@+id/btnView_diputados_actuales"
+        android:id="@+id/btnView_senaodores_actuales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25sp"
-        android:text="RockScrap Diputados Actuales" />
+        android:text="RockScrap SENADORES Actuales" />
 </RelativeLayout>

@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/diputados_actuales_fragment">
+    app:startDestination="@id/senadores_actuales_fragment">
     <fragment
-        android:id="@+id/diputados_actuales_fragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.DiputadosActualesFragment"
-        android:label="DiputadosActualesFragment"></fragment>
+        android:id="@+id/senadores_actuales_fragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.senadores.SenadoresActualesFragment"
+        android:label="SenadoresActualesFragment"></fragment>
 </navigation>

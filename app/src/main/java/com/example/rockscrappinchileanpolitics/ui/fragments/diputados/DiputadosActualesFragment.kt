@@ -1,4 +1,4 @@
-package com.example.rockscrappinchileanpolitics.ui.fragments
+package com.example.rockscrappinchileanpolitics.ui.fragments.diputados
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rockscrappinchileanpolitics.databinding.FragmentDiputadosActualesBinding
-import com.example.rockscrappinchileanpolitics.ui.adapters.DiputadosActualesAdapter
+import com.example.rockscrappinchileanpolitics.ui.adapters.diputados.DiputadosActualesAdapter
 import com.example.rockscrappinchileanpolitics.viewmodel.PoliticsViewModel
 
 class DiputadosActualesFragment : Fragment() {

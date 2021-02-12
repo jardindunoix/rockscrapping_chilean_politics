@@ -1,8 +1,8 @@
 package com.example.rockscrappinchileanpolitics.utilities.objects.entities.alcaldes
 
-data class AlcaldeActualEntity(val nombre : String,
-                               val apellido : String,
-                               val distrito : String,
-                               val partido : String,
-                               val paginaWeb : String,
-                               val mail : String)
+data class AlcaldeActualEntity(    var nombre: String = "NOMBRE CHORRO",
+                                   var apellido: String = "",
+                                   var distrito: String = "",
+                                   var partido: String = "",
+                                   var paginaWeb: String = "WEB PAGE",
+                                   var mail: String = "")

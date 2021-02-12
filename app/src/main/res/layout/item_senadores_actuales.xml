@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/linear_layout_diputados_actuales"
+        android:id="@+id/linear_layout_senadores_actuales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -14,14 +14,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_view_nombre_diputado_actual"
+            android:id="@+id/text_view_nombre_senador_actual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre Chorro"
             android:textSize="@dimen/text_size" />
 
         <TextView
-            android:id="@+id/text_view_webpage_diputado_actual"
+            android:id="@+id/text_view_webpage_senador_actual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_size"

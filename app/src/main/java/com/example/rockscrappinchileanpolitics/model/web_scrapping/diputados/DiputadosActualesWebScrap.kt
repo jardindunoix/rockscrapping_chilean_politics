@@ -1,10 +1,11 @@
-package com.example.rockscrappinchileanpolitics.model.web_scrapping
+package com.example.rockscrappinchileanpolitics.model.web_scrapping.diputados
 
 import android.os.AsyncTask
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.CLASS_NAME_DIPUTADOS_ACTUAlES
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -21,7 +22,8 @@ class DiputadosActualesWebScrap {
             try {
                 val url = StaticStrigns.URL_DIPUTADOS_ACTUAlES
                 val document: Document = Jsoup.connect(url).get()
-                val articleElement: Elements = document.select("article.grid-2")
+                val articleElement: Elements =
+                    document.select("article.${CLASS_NAME_DIPUTADOS_ACTUAlES}")
                 val h4Elements = articleElement.select("h4").eachText()
                 val webpage = articleElement.select("a").eachAttr("href")
                 val attrList = webpage.stream().collect(
@@ -35,15 +37,11 @@ class DiputadosActualesWebScrap {
                 var countName = 0
 
                 if (attrList.size / 3 == nameList.size) {
-                    Log.d("Message ---->", "SIZE name list${nameList.size}")
-                    Log.d("Message ---->", "SIZE webpages list${attrList.size / 3}")
+                    /*  Log.d("Message ---->", "SIZE name list${nameList.size}")
+                      Log.d("Message ---->", "SIZE webpages list${attrList.size / 3}")*/
                     var name: String
                     var webpage: String
                     for (f in nameList) {
-/*                        diputadoActual.nombre = nameList.get(countName).toString()
-                        diputadoActual.paginaWeb =
-                            "https://www.camara.cl/diputados/${attrList.get(countAttr)}"*/
-
                         name = nameList.get(countName).toString()
                         webpage = "https://www.camara.cl/diputados/${attrList.get(countAttr)}"
                         diputadosActualesList.add(
@@ -62,7 +60,7 @@ class DiputadosActualesWebScrap {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-            Log.d("SALIDA ---->", "--->${diputadosActualesList.size}")
+          /*  Log.d("SALIDA ---->", "--->${diputadosActualesList.size}")*/
             return diputadosActualesList
         }
 
