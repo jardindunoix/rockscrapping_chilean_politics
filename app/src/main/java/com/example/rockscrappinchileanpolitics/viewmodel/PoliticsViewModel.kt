@@ -36,7 +36,6 @@ class PoliticsViewModel(application: Application) : AndroidViewModel(application
             DiputadosActualesWebScrapManager(getApplication()).allDiputadosActuales
         viewModelScope.launch {
             diputadosActualesList
-            Log.d("DIPUTADOS ---->", "${diputadosActualesList.value}")
         }
     }
 
@@ -45,7 +44,6 @@ class PoliticsViewModel(application: Application) : AndroidViewModel(application
             SenasoresActualesWebScrapManager(getApplication()).allSenadoresActuales
         viewModelScope.launch {
             senadoresActualesList
-            Log.d("SENADORES ---->", "${senadoresActualesList.value}")
         }
     }
 }

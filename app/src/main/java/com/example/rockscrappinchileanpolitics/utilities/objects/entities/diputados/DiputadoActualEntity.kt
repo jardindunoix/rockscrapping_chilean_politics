@@ -6,5 +6,6 @@ data class DiputadoActualEntity(
     var distrito: String = "",
     var partido: String = "",
     var paginaWeb: String = "WEB PAGE",
-    var mail: String = ""
+    var mail: String = "",
+    var picture: String = ""
 ) {}

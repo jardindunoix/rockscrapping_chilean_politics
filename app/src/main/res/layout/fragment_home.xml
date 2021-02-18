@@ -23,5 +23,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_ir_a_senadores_actuales" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_partidos_politicos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_ir_a_partidos_politicos" />
     </LinearLayout>
 </FrameLayout>

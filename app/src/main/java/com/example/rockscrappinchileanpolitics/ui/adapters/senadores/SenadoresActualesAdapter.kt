@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.databinding.ItemSenadoresActualesBinding
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.senadores.SenadorActualEntity
+import com.squareup.picasso.Picasso
 
 class SenadoresActualesAdapter(
     private var list: MutableList<SenadorActualEntity> = mutableListOf(),
@@ -24,8 +25,11 @@ class SenadoresActualesAdapter(
 
         override fun bind(item: SenadorActualEntity) =
             with(binding) {
+                Picasso.get()
+                        .load(item.picture)
+                        .into(imageViewSenadorActual)
                 textViewNombreSenadorActual.text = item.nombre
-                textViewWebpageSenadorActual.text = item.paginaWeb
+//                textViewWebpageSenadorActual.text = item.paginaWeb
             }
     }
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
+import com.squareup.picasso.Picasso
 
 class DiputadosActualesAdapter(private var list : MutableList<DiputadoActualEntity> = mutableListOf() ,
                                private val context : Context) : RecyclerView.Adapter<DiputadosActualesAdapter.BaseViewHolder<*>>() {
@@ -20,8 +21,11 @@ class DiputadosActualesAdapter(private var list : MutableList<DiputadoActualEnti
 		
 		override fun bind(item : DiputadoActualEntity) =
 			with(binding) {
+				Picasso.get()
+						.load(item.picture)
+						.into(imageViewDiputadoActual)
 				textViewNombreDiputadoActual.text = item.nombre
-				textViewWebpageDiputadoActual.text = item.paginaWeb
+//				textViewWebpageDiputadoActual.text = item.paginaWeb
 			}
 	}
 	
@@ -35,8 +39,8 @@ class DiputadosActualesAdapter(private var list : MutableList<DiputadoActualEnti
 		return holder
 	}
 	
-	override fun onBindViewHolder(holder : BaseViewHolder<*>,
-                                  position : Int) {
+	override fun onBindViewHolder(holder : BaseViewHolder<*> ,
+	                              position : Int) {
 		when (holder) {
 			is MyOwnViewHolder -> holder.bind(list[position])
 		}

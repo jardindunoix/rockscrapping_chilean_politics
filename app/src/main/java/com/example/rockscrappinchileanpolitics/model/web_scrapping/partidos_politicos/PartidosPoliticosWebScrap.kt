@@ -1,0 +1,3 @@
+package com.example.rockscrappinchileanpolitics.model.web_scrapping.partidos_politicos
+
+class PartidosPoliticosWebScrap {}

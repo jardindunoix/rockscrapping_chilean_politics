@@ -2,6 +2,7 @@
     <string name="app_name">RockScrappin Chilean Politics</string>
     <string name="title_diputados_actuales">Diputados Actuales</string>
     <string name="title_senadores_actuales">Senadores Actuales</string>
-    <string name="button_ir_a_diputados_actuales">Ir a Diputados Actuales</string>
-    <string name="button_ir_a_senadores_actuales">Ir a Senadores Actuales</string>
+    <string name="button_ir_a_diputados_actuales">Diputados Actuales</string>
+    <string name="button_ir_a_senadores_actuales">Senadores Actuales</string>
+    <string name="button_ir_a_partidos_politicos">Partidos Políticos</string>
 </resources>
