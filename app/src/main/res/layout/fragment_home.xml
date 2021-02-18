@@ -5,10 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/linear_layout_button_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_ir_a_dip_actuales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_ir_a_diputados_actuales" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_ir_a_sen_actuales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_ir_a_senadores_actuales" />
+    </LinearLayout>
 </FrameLayout>

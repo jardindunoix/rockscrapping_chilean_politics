@@ -14,41 +14,49 @@ import com.example.rockscrappinchileanpolitics.ui.adapters.diputados.DiputadosAc
 import com.example.rockscrappinchileanpolitics.viewmodel.PoliticsViewModel
 
 class DiputadosActualesFragment : Fragment() {
-	
-	private var _binding : FragmentDiputadosActualesBinding? = null
-	private val binding get() = _binding !!
-	private lateinit var navController : NavController
-	private lateinit var model : PoliticsViewModel
-	private lateinit var adapter : DiputadosActualesAdapter
-	override fun onCreateView(inflater : LayoutInflater ,
-	                          container : ViewGroup? ,
-	                          savedInstanceState : Bundle?) : View {
-		_binding = FragmentDiputadosActualesBinding.inflate(layoutInflater)
-		model = ViewModelProvider(this).get(PoliticsViewModel::class.java)
-		adapter = DiputadosActualesAdapter(mutableListOf() ,
-			requireContext())
-		
-		initRecyclerView()
-		
-		model.diputadosActualesList.observe(viewLifecycleOwner ,
-			{
-				adapter.setItemInTheView(it)
-			})
-		return binding.root
-	}
-	
-	private fun initRecyclerView() =
-		with(binding) {
-			recyclerViewDiputadosActuales.hasFixedSize()
-			recyclerViewDiputadosActuales.layoutManager =
-				LinearLayoutManager(requireContext())
-			recyclerViewDiputadosActuales.adapter = adapter
-		}
-	
-	override fun onViewCreated(view : View ,
-	                           savedInstanceState : Bundle?) {
-		super.onViewCreated(view ,
-			savedInstanceState)
-		navController = Navigation.findNavController(view)
-	}
+
+    private var _binding: FragmentDiputadosActualesBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var navController: NavController
+    private lateinit var model: PoliticsViewModel
+    private lateinit var adapter: DiputadosActualesAdapter
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentDiputadosActualesBinding.inflate(layoutInflater)
+        model = ViewModelProvider(this).get(PoliticsViewModel::class.java)
+        adapter = DiputadosActualesAdapter(
+            mutableListOf(),
+            requireContext()
+        )
+
+        initRecyclerView()
+
+        model.diputadosActualesList.observe(viewLifecycleOwner,
+            {
+                adapter.setItemInTheView(it)
+            })
+        return binding.root
+    }
+
+    private fun initRecyclerView() =
+        with(binding) {
+            recyclerViewDiputadosActuales.hasFixedSize()
+            recyclerViewDiputadosActuales.layoutManager =
+                LinearLayoutManager(requireContext())
+            recyclerViewDiputadosActuales.adapter = adapter
+        }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(
+            view,
+            savedInstanceState
+        )
+        navController = Navigation.findNavController(view)
+    }
 }
