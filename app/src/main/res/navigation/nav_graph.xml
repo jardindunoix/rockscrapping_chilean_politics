@@ -8,13 +8,16 @@
         android:id="@+id/homeFragment"
         android:name="com.example.rockscrappinchileanpolitics.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_senadoresActualesFragment2"
+            android:id="@+id/action_homeFragment_to_senadoresActualesFragment"
             app:destination="@id/senadoresActualesFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_diputadosActualesFragment4"
+            android:id="@+id/action_homeFragment_to_diputadosActualesFragment"
             app:destination="@id/diputadosActualesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_partidosActualesFragment"
+            app:destination="@id/partidosPoliticosActualesFragment" />
     </fragment>
     <fragment
         android:id="@+id/diputadosActualesFragment"
@@ -26,4 +29,9 @@
         android:name="com.example.rockscrappinchileanpolitics.ui.fragments.senadores.SenadoresActualesFragment"
         android:label="fragment_senadores_actuales"
         tools:layout="@layout/fragment_senadores_actuales" />
+    <fragment
+        android:id="@+id/partidosPoliticosActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.partidos_politicos.PartidosPoliticosActualesFragment"
+        android:label="fragment_partidos_politicos_actuales"
+        tools:layout="@layout/fragment_partidos_politicos_actuales" />
 </navigation>

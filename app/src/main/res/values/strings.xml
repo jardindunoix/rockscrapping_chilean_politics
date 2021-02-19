@@ -5,4 +5,6 @@
     <string name="button_ir_a_diputados_actuales">Diputados Actuales</string>
     <string name="button_ir_a_senadores_actuales">Senadores Actuales</string>
     <string name="button_ir_a_partidos_politicos">Partidos Políticos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

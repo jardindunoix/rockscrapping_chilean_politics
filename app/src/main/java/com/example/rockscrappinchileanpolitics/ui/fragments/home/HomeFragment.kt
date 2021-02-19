@@ -37,11 +37,15 @@ class HomeFragment : Fragment() {
         )
         navController = Navigation.findNavController(view)
         buttonIrADipActuales.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_diputadosActualesFragment4)
+            navController.navigate(R.id.action_homeFragment_to_diputadosActualesFragment)
         }
 
         buttonIrASenActuales.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_senadoresActualesFragment2)
+            navController.navigate(R.id.action_homeFragment_to_senadoresActualesFragment)
+        }
+
+        buttonPartidosPoliticos.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_partidosActualesFragment)
         }
     }
 }

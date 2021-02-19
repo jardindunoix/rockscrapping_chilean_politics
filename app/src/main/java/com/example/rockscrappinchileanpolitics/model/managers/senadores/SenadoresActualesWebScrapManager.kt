@@ -10,7 +10,7 @@ import com.example.rockscrappinchileanpolitics.model.web_scrapping.senadores.Sen
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.senadores.SenadorActualEntity
 
-class SenasoresActualesWebScrapManager(context : Context) {
+class SenadoresActualesWebScrapManager(context : Context) {
 	
 	var allSenadoresActuales =
 		MutableLiveData<MutableList<SenadorActualEntity>>(mutableListOf())
