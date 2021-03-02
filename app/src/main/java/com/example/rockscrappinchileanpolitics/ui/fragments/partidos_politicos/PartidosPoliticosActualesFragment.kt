@@ -38,9 +38,10 @@ class PartidosPoliticosActualesFragment:Fragment() {
 	}
 	
 	private fun initRecyclerView() = with(binding) {
-		recyclerViewPartidosActuales.hasFixedSize()
-		recyclerViewPartidosActuales.layoutManager = LinearLayoutManager(requireContext())
-		recyclerViewPartidosActuales.adapter = adapter
+		recyclerViewPartidosPoliticos.hasFixedSize()
+		recyclerViewPartidosPoliticos.layoutManager =
+			LinearLayoutManager(requireContext())
+		recyclerViewPartidosPoliticos.adapter = adapter
 	}
 	
 	override fun onViewCreated(view:View, savedInstanceState:Bundle?) {

@@ -2,8 +2,14 @@ package com.example.rockscrappinchileanpolitics.model.web_scrapping.diputados
 
 import android.os.AsyncTask
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
-import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
-import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.CLASS_NAME_DIPUTADOS_ACTUAlES
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.GRID
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.H4
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.HREF
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.IMG
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.SRC
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.URL_DIPUTADOS_ACTUALES_ROOT
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.DIPUTADOS_END_POINT
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.DIPUTADOS
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -17,14 +23,14 @@ class DiputadosActualesWebScrap { internal class LoadInitNews():
 	
 	override fun doInBackground(vararg params:Void?):ArrayList<DiputadoActualEntity> {
 		try {
-			val url = StaticStrigns.URL_DIPUTADOS_ACTUAlES
+			val url = "${URL_DIPUTADOS_ACTUALES_ROOT}${DIPUTADOS_END_POINT}"
 			val document:Document = Jsoup.connect(url).get()
-			val articleElement:Elements = document.select("article.${CLASS_NAME_DIPUTADOS_ACTUAlES}")
-			val h4Elements = articleElement.select("h4").eachText()
+			val articleElement:Elements = document.select("article.${GRID}")
+			val h4Elements = articleElement.select(H4).eachText()
 			val nameList = h4Elements.stream().collect(Collectors.toList()) as ArrayList
-			val webpage = articleElement.select("a").eachAttr("href").stream()
+			val webpage = articleElement.select("a").eachAttr(HREF).stream()
 				.collect(Collectors.toList()) as ArrayList
-			val imagesList = articleElement.select("img").eachAttr("src").stream()
+			val imagesList = articleElement.select(IMG).eachAttr(SRC).stream()
 				.collect(Collectors.toList()) as ArrayList
 			var countAttr = 0
 			var countName = 0
@@ -35,9 +41,9 @@ class DiputadosActualesWebScrap { internal class LoadInitNews():
 				var image:String
 				
 				for (f in imagesList) {
-					name = nameList.get(countName).toString()
-					pagina = "https://www.camara.cl/diputados/${webpage.get(countAttr)}"
-					image = "https://www.camara.cl${f}"
+					name = nameList[countName].toString()
+					pagina = "${URL_DIPUTADOS_ACTUALES_ROOT}${DIPUTADOS}${webpage[countAttr]}"
+					image = "${URL_DIPUTADOS_ACTUALES_ROOT}${f}"
 					diputadosActualesList.add(
 						DiputadoActualEntity(nombre = name, paginaWeb = pagina, picture = image))
 					countAttr += 3

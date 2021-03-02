@@ -2,6 +2,8 @@ package com.example.rockscrappinchileanpolitics.model.web_scrapping.partidos_pol
 
 import android.os.AsyncTask
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.TD_PARTIDOS_POLITICOS_CLASS
+import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.TH_TITULO_PARTIDOS_POLITICOS_CLASS
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.URL_PARTIDOS_POLITICOS_1
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns.Companion.URL_PARTIDOS_POLITICOS_2
 import org.jsoup.Jsoup
@@ -19,8 +21,12 @@ class PartidosPoliticosWebScrap { internal class LoadInitNews():
 			val url_2 = URL_PARTIDOS_POLITICOS_2
 			val pagina1Document:Document = Jsoup.connect(url_1).get()
 			val pagina2Document:Document = Jsoup.connect(url_2).get()
-			val element1 = pagina1Document.select("td.th-titulo").eachText() as ArrayList
-			val element2 = pagina2Document.select("td.th-titulo").eachText() as ArrayList
+			val element1 = pagina1Document.select(
+				"${TD_PARTIDOS_POLITICOS_CLASS}.${TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+				.eachText() as ArrayList
+			val element2 = pagina2Document.select(
+				"${TD_PARTIDOS_POLITICOS_CLASS}.${TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+				.eachText() as ArrayList
 			var countName = 0
 			for (r in element1) {
 				if (countName > 0) {
