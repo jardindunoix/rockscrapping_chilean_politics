@@ -21,8 +21,6 @@ class ConselajesActualesWebScrap { internal class LoadInitNews():
 			val document:Document = Jsoup.connect(url).get()
 			val divElement = document.select("div.col-md-12")
 			val h3Elements = divElement.select("li").eachText() as ArrayList
-			var countAttr = 0
-			var countName = 0
 			
 			for (element in h3Elements) {
 				consejalesActualesList.add(ConsejalActualEntity(nombre = element))
