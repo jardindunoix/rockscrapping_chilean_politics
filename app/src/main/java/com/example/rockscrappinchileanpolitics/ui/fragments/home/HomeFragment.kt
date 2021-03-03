@@ -10,6 +10,9 @@ import androidx.navigation.Navigation
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.databinding.FragmentHomeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeFragment:Fragment() {
 	
@@ -44,7 +47,7 @@ class HomeFragment:Fragment() {
 			navController.navigate(R.id.action_homeFragment_to_partidosActualesFragment)
 		}
 		buttonIrAConsejActuales.setOnClickListener {
-			navController.navigate(R.id.action_homeFragment_to_consejalesActualesFragment)
+				navController.navigate(R.id.action_homeFragment_to_consejalesActualesFragment)
 		}
 	}
 }

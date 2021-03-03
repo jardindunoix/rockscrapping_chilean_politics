@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.model.managers.comunal.consejales.ConsejalesActualesWebScrapManager
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ConsejalesActualesViewModel(application:Application):AndroidViewModel(application) {
@@ -14,7 +16,9 @@ class ConsejalesActualesViewModel(application:Application):AndroidViewModel(appl
 	
 	init {
 		if (consejalesActualesList.value.isNullOrEmpty()) {
-			getConsejalesActualesList()
+			CoroutineScope(Dispatchers.IO).launch {
+				getConsejalesActualesList()
+			}
 			
 		}
 	}

@@ -26,7 +26,7 @@ class ConsejalesActualesFragment:Fragment() {
 	private lateinit var adapter:ConsejalesActualesAdapter
 	
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
-		savedInstanceState:Bundle?):View? {
+		savedInstanceState:Bundle?):View {
 		_binding = FragmentConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ConsejalesActualesViewModel::class.java)
 		adapter = ConsejalesActualesAdapter(mutableListOf(), requireContext())

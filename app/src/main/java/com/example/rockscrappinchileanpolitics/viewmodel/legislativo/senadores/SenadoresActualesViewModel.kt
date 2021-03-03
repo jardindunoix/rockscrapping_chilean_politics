@@ -6,14 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.model.managers.legislativo.senadores.SenadoresActualesWebScrapManager
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SenadoresActualesViewModel(application:Application):AndroidViewModel(application) {
+	
 	var senadoresActualesList = MutableLiveData<MutableList<SenadorActualEntity>>(mutableListOf())
 	
 	init {
 		if (senadoresActualesList.value.isNullOrEmpty()) {
-			getSenadoresActualesList()
+			CoroutineScope(Dispatchers.IO).launch {
+				getSenadoresActualesList()
+			}
 		}
 	}
 	

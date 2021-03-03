@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.model.managers.partidos_politicos.PartidosPolitcosActualesWebScrapManager
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PartidosPoliticosViewModel(application:Application):AndroidViewModel(application) {
@@ -14,10 +16,12 @@ class PartidosPoliticosViewModel(application:Application):AndroidViewModel(appli
 	
 	init {
 		if (partidosActualesList.value.isNullOrEmpty()) {
-			getPartidosActualesList()
+			CoroutineScope(Dispatchers.IO).launch {
+				getPartidosActualesList()
+			}
 		}
 	}
-	
+
 	private fun getPartidosActualesList() {
 		partidosActualesList = PartidosPolitcosActualesWebScrapManager().allPartidosActuales
 		viewModelScope.launch {

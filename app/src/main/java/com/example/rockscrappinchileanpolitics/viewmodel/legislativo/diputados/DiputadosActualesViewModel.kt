@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.model.managers.legislativo.diputados.DiputadosActualesWebScrapManager
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DiputadosActualesViewModel(application:Application):AndroidViewModel(application) {
@@ -14,7 +16,9 @@ class DiputadosActualesViewModel(application:Application):AndroidViewModel(appli
 	
 	init {
 		if (diputadosActualesList.value.isNullOrEmpty()) {
-			getDiputadosActualesList()
+			CoroutineScope(Dispatchers.IO).launch {
+				getDiputadosActualesList()
+			}
 			
 		}
 	}
