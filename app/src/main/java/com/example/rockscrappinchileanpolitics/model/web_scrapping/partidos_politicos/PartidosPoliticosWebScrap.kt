@@ -15,7 +15,7 @@ class PartidosPoliticosWebScrap {
 		
 		private var partidosActualesList:ArrayList<PartidoPoliticoEntity> = ArrayList()
 		
-		fun loadInitNews(vararg params:Void?):ArrayList<PartidoPoliticoEntity> {
+		fun loadInitNews():ArrayList<PartidoPoliticoEntity> {
 			try {
 				val url_1 = URL_PARTIDOS_POLITICOS_1
 				val url_2 = URL_PARTIDOS_POLITICOS_2

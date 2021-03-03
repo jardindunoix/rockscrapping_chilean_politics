@@ -18,7 +18,7 @@ class SenadoresActualesWebScrap {
 		
 		private var senadoresActualesList:ArrayList<SenadorActualEntity> = ArrayList()
 		
-		fun loadInitNews(vararg params:Void?):ArrayList<SenadorActualEntity> {
+		fun loadInitNews():ArrayList<SenadorActualEntity> {
 			try {
 				val url = URL_SENADORES_ACTUALES
 				val document:Document = Jsoup.connect(url).get()

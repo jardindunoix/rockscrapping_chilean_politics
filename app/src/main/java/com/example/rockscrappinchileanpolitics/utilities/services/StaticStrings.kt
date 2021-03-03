@@ -2,6 +2,20 @@ package com.example.rockscrappinchileanpolitics.utilities.services
 
 class StaticStrigns { companion object {
 	
+	/*database name*/
+	const val DATABASE_NAME = "rockscrap_chilean_politics"
+	
+	/*table names*/
+	const val PARTIDO_POLITICO = "partido_politico"
+	const val CONSEJAL_ACTUAL = "consejal_actual"
+	const val CONSEJAL_CANDIDATO = "consejal_candidato"
+	const val DIPUTADO_ACTUAL = "diputado_actual"
+	const val DIPUTADO_CANDIDATO = "diputado_candidato"
+	const val SENADOR_ACTUAL = "senador_actual"
+	const val SENADOR_CANDIDATO = "senador_candidato"
+	const val ALCALDE_ACTUAL = "alcalde_actual"
+	const val ALCALDE_CANDIDATO = "alcalde_candidato"
+	
 	/*constantes diputados actuales*/
 	const val URL_DIPUTADOS_ACTUALES_ROOT = "https://www.camara.cl/"
 	const val DIPUTADOS_END_POINT = "diputados/diputados.aspx#mostrarDiputados"
@@ -28,10 +42,10 @@ class StaticStrigns { companion object {
 	const val TD_PARTIDOS_POLITICOS_CLASS = "td"
 	const val TH_TITULO_PARTIDOS_POLITICOS_CLASS = "th-titulo"
 	
-	/*xconstantes alcaldes actuales*/
+	/*url alcaldes actuales*/
 	const val URL_ALCALDES_ACTUALES = ""
 	
-	/*constantes consejales*/
+	/*url consejales*/
 	const val URL_CONSEJALES_ACTUALES = "https://www.cdch.cl/concejales-de-chile.aspx"
 }
 }

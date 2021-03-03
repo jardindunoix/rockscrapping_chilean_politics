@@ -19,7 +19,7 @@ class DiputadosActualesWebScrap { companion object {
 	
 	private var diputadosActualesList:ArrayList<DiputadoActualEntity> = ArrayList()
 	
-	fun loadInitNews(vararg params:Void?):ArrayList<DiputadoActualEntity> {
+	fun loadInitNews():ArrayList<DiputadoActualEntity> {
 		try {
 			val url = "${URL_DIPUTADOS_ACTUALES_ROOT}${DIPUTADOS_END_POINT}"
 			val document:Document = Jsoup.connect(url).get()

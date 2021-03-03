@@ -1,10 +1,10 @@
-package com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores
+package com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "senador_candidato")
-data class SenadorCandidatoEntity(@PrimaryKey(autoGenerate = true)
+@Entity(tableName = "consejal_candidato")
+data class ConsejalCandidatoEntity(@PrimaryKey(autoGenerate = true)
 var id:Int = 0, var nombre:String = "NOMBRE CHORRO", var apellido:String = "",
 	var distrito:String = "", var partido:String = "", var paginaWeb:String = "WEB PAGE",
 	var mail:String = "", var picture:String = "")

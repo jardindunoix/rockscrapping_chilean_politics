@@ -1,5 +1,10 @@
 package com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales
 
-data class ConsejalActualEntity(var nombre:String = "NOMBRE CHORRO", var apellido:String = "",
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "consejal_actual")
+data class ConsejalActualEntity(@PrimaryKey(autoGenerate = true)
+var id:Int = 0, var nombre:String = "NOMBRE CHORRO", var apellido:String = "",
 	var distrito:String = "", var partido:String = "", var paginaWeb:String = "WEB PAGE",
-	var mail:String = "", var picture:String = "") {}
+	var mail:String = "", var picture:String = "")

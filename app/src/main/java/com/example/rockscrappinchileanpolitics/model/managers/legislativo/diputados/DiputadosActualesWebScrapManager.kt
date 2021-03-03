@@ -1,8 +1,6 @@
 package com.example.rockscrappinchileanpolitics.model.managers.legislativo.diputados
 
-import android.os.AsyncTask
 import androidx.lifecycle.MutableLiveData
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ConselajesActualesWebScrap
 import com.example.rockscrappinchileanpolitics.model.web_scrapping.legislativo.diputados.DiputadosActualesWebScrap
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
 import kotlinx.coroutines.GlobalScope
