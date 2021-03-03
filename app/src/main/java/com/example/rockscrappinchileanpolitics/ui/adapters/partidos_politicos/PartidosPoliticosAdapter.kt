@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemPartidosPoliticosBinding
-import com.example.rockscrappinchileanpolitics.utilities.objects.entities.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
 
 class PartidosPoliticosAdapter(

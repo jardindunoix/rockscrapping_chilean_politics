@@ -18,15 +18,18 @@
         <action
             android:id="@+id/action_homeFragment_to_partidosActualesFragment"
             app:destination="@id/partidosPoliticosActualesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_consejalesActualesFragment"
+            app:destination="@id/consejalesActualesFragment" />
     </fragment>
     <fragment
         android:id="@+id/diputadosActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.diputados.DiputadosActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.legislativo.diputados.DiputadosActualesFragment"
         android:label="fragment_diputados_actuales"
         tools:layout="@layout/fragment_diputados_actuales" />
     <fragment
         android:id="@+id/senadoresActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.senadores.SenadoresActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.legislativo.senadores.SenadoresActualesFragment"
         android:label="fragment_senadores_actuales"
         tools:layout="@layout/fragment_senadores_actuales" />
     <fragment
@@ -34,4 +37,9 @@
         android:name="com.example.rockscrappinchileanpolitics.ui.fragments.partidos_politicos.PartidosPoliticosActualesFragment"
         android:label="fragment_partidos_politicos_actuales"
         tools:layout="@layout/fragment_partidos_politicos_actuales" />
+    <fragment
+        android:id="@+id/consejalesActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales.ConsejalesActualesFragment"
+        android:label="fragment_consejales_actuales"
+        tools:layout="@layout/fragment_consejales_actuales" />
 </navigation>

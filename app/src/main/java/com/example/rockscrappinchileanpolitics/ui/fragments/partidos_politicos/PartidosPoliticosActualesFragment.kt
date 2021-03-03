@@ -11,7 +11,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rockscrappinchileanpolitics.databinding.FragmentPartidosPoliticosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.partidos_politicos.PartidosPoliticosAdapter
-import com.example.rockscrappinchileanpolitics.viewmodel.diputados.DiputadosActualesViewModel
 import com.example.rockscrappinchileanpolitics.viewmodel.partidos_politicos.PartidosPoliticosViewModel
 
 class PartidosPoliticosActualesFragment:Fragment() {

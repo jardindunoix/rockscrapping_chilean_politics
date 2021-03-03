@@ -13,8 +13,7 @@ class StaticStrigns { companion object {
 	const val SRC = "src"
 	
 	/*constantes senadores actuales*/
-	const val URL_SENADORES_ACTUALES =
-		"https://senado.cl/senado/site/edic/base/port/senadores.html"
+	const val URL_SENADORES_ACTUALES = "https://senado.cl/senado/site/edic/base/port/senadores.html"
 	const val URL_SENADORES_ACTUALES_ROOT = "https://senado.cl/"
 	const val HREF_WEB_PAGE_SENADORES = "href"
 	const val CLASS_NAME_SENADORES_ACTUALES = "s0"
@@ -31,5 +30,8 @@ class StaticStrigns { companion object {
 	
 	/*xconstantes alcaldes actuales*/
 	const val URL_ALCALDES_ACTUALES = ""
+	
+	/*constantes consejales*/
+	const val URL_CONSEJALES_ACTUALES = "https://www.cdch.cl/concejales-de-chile.aspx"
 }
 }
