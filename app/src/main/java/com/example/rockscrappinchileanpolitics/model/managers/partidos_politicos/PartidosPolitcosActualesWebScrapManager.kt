@@ -6,7 +6,7 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partid
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PartidosPolitcosActualesWebScrapManager() {
+class PartidosPolitcosActualesWebScrapManager {
 	
 	var allPartidosActuales = MutableLiveData<MutableList<PartidoPoliticoEntity>>(mutableListOf())
 	
@@ -16,7 +16,7 @@ class PartidosPolitcosActualesWebScrapManager() {
 		}
 	}
 	
-	fun getPartidosActuales():MutableList<PartidoPoliticoEntity> {
+	private fun getPartidosActuales():MutableList<PartidoPoliticoEntity> {
 		val list:MutableList<PartidoPoliticoEntity>
 		list = PartidosPoliticosWebScrap.loadInitNews()
 		return list

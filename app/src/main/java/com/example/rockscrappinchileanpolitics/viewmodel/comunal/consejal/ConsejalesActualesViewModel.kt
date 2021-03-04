@@ -18,7 +18,7 @@ class ConsejalesActualesViewModel(application:Application):AndroidViewModel(appl
 	
 	var consejalesActualesList = MutableLiveData<MutableList<ConsejalActualEntity>>(mutableListOf())
 	private val database = PoliticsDatabase.getDatabase(getApplication())
-	private var dao:PoliticsDao = database.getDao()
+	// private var dao:PoliticsDao = database.getDao()
 	
 	init {
 		if (consejalesActualesList.value.isNullOrEmpty()) {
@@ -30,16 +30,8 @@ class ConsejalesActualesViewModel(application:Application):AndroidViewModel(appl
 	}
 	
 	private fun getConsejalesActualesList() {
-		val listDDBB = PoliticsDatabaseManager(dao).allConsejalesActuales
-		if (listDDBB.value == null) {
-			consejalesActualesList = ConsejalesActualesWebScrapManager().allConsejales
-			// Log.d("LISTAenCOROUTINE ---->", consejalesActualesList.value.toString())
-		} else {
-			consejalesActualesList.value = listDDBB.value
-		}
-		// CoroutineScope(Dispatchers.IO).launch {
-		// 	dao.insertListConsejalActual(consejalesActualesList.value !!)
-		// }
+		consejalesActualesList = ConsejalesActualesWebScrapManager().allConsejales
+		
 		viewModelScope.launch {
 			consejalesActualesList
 		}

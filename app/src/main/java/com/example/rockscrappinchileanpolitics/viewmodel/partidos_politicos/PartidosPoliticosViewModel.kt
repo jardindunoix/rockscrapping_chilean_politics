@@ -21,7 +21,7 @@ class PartidosPoliticosViewModel(application:Application):AndroidViewModel(appli
 			}
 		}
 	}
-
+	
 	private fun getPartidosActualesList() {
 		partidosActualesList = PartidosPolitcosActualesWebScrapManager().allPartidosActuales
 		viewModelScope.launch {

@@ -8,5 +8,4 @@ class PoliticsDatabaseManager(dao:PoliticsDao) {
 	
 	val allConsejalesActuales:LiveData<MutableList<ConsejalActualEntity>> =
 		dao.getAllConsejalesDDBB()
-	
 }
