@@ -3,17 +3,15 @@ package com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.cons
 import android.os.AsyncTask
 import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualEntity
-import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
 import java.io.IOException
 
 class ConselajesActualesWebScrap { internal class LoadInitNews():
 	AsyncTask<Void, Void, ArrayList<ConsejalActualEntity>>() {
 	
 	private var consejalesActualesList:ArrayList<ConsejalActualEntity> = ArrayList()
+	private var comunasList:ArrayList<String> = ArrayList()
 	
 	override fun doInBackground(vararg params:Void?):ArrayList<ConsejalActualEntity> {
 		//trae lista de consejales
@@ -36,19 +34,28 @@ class ConselajesActualesWebScrap { internal class LoadInitNews():
 			val h3Elements = divElement.select("a").eachText() as ArrayList
 			
 			for (element in h3Elements) {
-				when (element != h3Elements[0] && element.isNotEmpty()) {
-					true -> consejalesActualesList.add(ConsejalActualEntity(nombre = element))
+				if (element != h3Elements[0] && element.isNotEmpty()) {
+					consejalesActualesList.add(ConsejalActualEntity(nombre = element))
+					if (isAllCaps(element)) {
+						comunasList.add(element)
+					}
 				}
 			}
 			
 		} catch (e:IOException) {
 			e.printStackTrace()
 		}
+		Log.d("Message ---->", comunasList.toString())
 		return consejalesActualesList
 	}
 	
-	override fun onPostExecute(result:ArrayList<ConsejalActualEntity>?) {
+	private fun isAllCaps(element:String?):Boolean {
+		val regex = """[abcdefghijklmnñopqrstuvwxyz]""".toRegex()
+		return regex.containsMatchIn(input = element.toString()).not()
+	}
 	
+	override fun onPostExecute(result:ArrayList<ConsejalActualEntity>?) {
+		
 	}
 }
 }
