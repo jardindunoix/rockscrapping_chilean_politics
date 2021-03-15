@@ -16,7 +16,8 @@ class ConselajesActualesWebScrap { internal class LoadInitNews():
 	private var consejalesActualesList:ArrayList<ConsejalActualEntity> = ArrayList()
 	
 	override fun doInBackground(vararg params:Void?):ArrayList<ConsejalActualEntity> {
-		try {
+		//trae lista de consejales
+		/*try {
 			val url = StaticStrigns.URL_CONSEJALES_ACTUALES
 			val document:Document = Jsoup.connect(url).get()
 			val divElement = document.select("div.col-md-12")
@@ -25,6 +26,21 @@ class ConselajesActualesWebScrap { internal class LoadInitNews():
 			for (element in h3Elements) {
 				consejalesActualesList.add(ConsejalActualEntity(nombre = element))
 			}
+		} catch (e:IOException) {
+			e.printStackTrace()
+		}*/
+		try {
+			val url = StaticStrigns.URL_CONSEJALES_ACTUALES
+			val document = Jsoup.connect(url).get()
+			val divElement = document.select("div.col-md-12")
+			val h3Elements = divElement.select("a").eachText() as ArrayList
+			
+			for (element in h3Elements) {
+				when (element != h3Elements[0] && element.isNotEmpty()) {
+					true -> consejalesActualesList.add(ConsejalActualEntity(nombre = element))
+				}
+			}
+			
 		} catch (e:IOException) {
 			e.printStackTrace()
 		}
