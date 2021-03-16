@@ -2,16 +2,17 @@ package com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.cons
 
 import android.os.AsyncTask
 import android.util.Log
+import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
 import org.jsoup.Jsoup
 import java.io.IOException
 
-class ConselajesActualesWebScrap { internal class LoadInitNews:
-	AsyncTask<Void, Void, ArrayList<String>>() {
+class ComunasConselajesActualesWebScrap { internal class LoadInitNews:
+	AsyncTask<Void, Void, ArrayList<ComunaConsejalActualEntity>>() {
 	
-	private var comunasList:ArrayList<String> = ArrayList()
+	private var comunasList:ArrayList<ComunaConsejalActualEntity> = ArrayList()
 	
-	override fun doInBackground(vararg params:Void?):ArrayList<String> {
+	override fun doInBackground(vararg params:Void?):ArrayList<ComunaConsejalActualEntity> {
 		try {
 			val url = StaticStrigns.URL_CONSEJALES_ACTUALES
 			val document = Jsoup.connect(url).get()
@@ -19,23 +20,18 @@ class ConselajesActualesWebScrap { internal class LoadInitNews:
 			
 			for (element in h3Elements) {
 				if (element != h3Elements[0] && element.isNotEmpty() && isAllCaps(element)) {
-					comunasList.add(
-						(element)
-					)
+					comunasList.add(ComunaConsejalActualEntity(nombre = element,
+						paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${element}"))
 				}
 			}
 			
 		} catch (e:IOException) {
 			e.printStackTrace()
 		}
-		Log.d("Message ---->", comunasList.toString())
-		Log.d("Message ---->", comunasList.size.toString())
-		return comunasList.sorted().toMutableList() as ArrayList<String>
+		return comunasList
 	}
 	
-	override fun onPostExecute(
-		result:ArrayList<String>?
-	) {
+	override fun onPostExecute(result:ArrayList<ComunaConsejalActualEntity>?) {
 		
 	}
 	

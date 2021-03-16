@@ -33,5 +33,8 @@ class StaticStrigns { companion object {
 	
 	/*constantes consejales*/
 	const val URL_CONSEJALES_ACTUALES = "https://www.cdch.cl/concejales-de-chile.aspx"
+	
+	/*comunas consejales actuales*/
+	const val URL_COMUNA_DETALLE = "https://www.cdch.cl/Comuna/"
 }
 }

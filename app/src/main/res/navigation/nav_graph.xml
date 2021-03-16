@@ -39,7 +39,15 @@
         tools:layout="@layout/fragment_partidos_politicos_actuales" />
     <fragment
         android:id="@+id/consejalesActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales.ConsejalesActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales.ComunasConsejalesActualesFragment"
         android:label="fragment_consejales_actuales"
-        tools:layout="@layout/fragment_consejales_actuales" />
+        tools:layout="@layout/fragment_comunas_consejales_actuales" >
+        <action
+            android:id="@+id/action_consejalesActualesFragment_to_consejalesActualesDetalleFragment"
+            app:destination="@id/consejalesActualesDetalleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/consejalesActualesDetalleFragment"
+        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales.ConsejalesActualesDetalleFragment"
+        android:label="ConsejalesActualesDetalleFragment" />
 </navigation>
