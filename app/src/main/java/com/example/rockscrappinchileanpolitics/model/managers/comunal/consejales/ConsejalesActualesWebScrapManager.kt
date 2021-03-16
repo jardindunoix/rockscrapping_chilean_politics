@@ -7,18 +7,18 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comuna
 
 class ConsejalesActualesWebScrapManager {
 	
-	var allConsejales = MutableLiveData<MutableList<ConsejalActualEntity>>()
+	var allConsejales = MutableLiveData<MutableList<String>>()
 	
 	init {
 		allConsejales.value = getAllConsejalesActuales()
 	}
 	
-	private fun getAllConsejalesActuales():MutableList<ConsejalActualEntity> {
-		var list = mutableListOf<ConsejalActualEntity>()
-		var loader:AsyncTask<Void, Void, ArrayList<ConsejalActualEntity>>? = null
-		loader = ConselajesActualesWebScrap.LoadInitNews()
+	private fun getAllConsejalesActuales():MutableList<String> {
+		val list:MutableList<String>
+		val loader = ConselajesActualesWebScrap.LoadInitNews()
 		loader.execute()
-		list = loader.get()
+		list = loader.get().sorted().toMutableList()
 		return list
 	}
 }
+

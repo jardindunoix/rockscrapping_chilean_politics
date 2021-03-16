@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemConsejalesActualesBinding
-import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualEntity
+import com.example.rockscrappinchileanpolitics.ui.adapters.comunal.consejales.ConsejalesActualesAdapter.MyOwnViewHolder
 
 class ConsejalesActualesAdapter(
-	private var list:MutableList<ConsejalActualEntity> = mutableListOf(), private val context:Context
+	private var list:MutableList<String> = mutableListOf(), private val context:Context
 ):RecyclerView.Adapter<ConsejalesActualesAdapter.BaseViewHolder<*>>() {
 	
 	abstract class BaseViewHolder<T>(item:View):RecyclerView.ViewHolder(item) {
@@ -18,19 +18,18 @@ class ConsejalesActualesAdapter(
 	}
 	
 	inner class MyOwnViewHolder(val binding:ItemConsejalesActualesBinding):
-		BaseViewHolder<ConsejalActualEntity>(binding.root) {
+		BaseViewHolder<String>(binding.root) {
 		
-		override fun bind(item:ConsejalActualEntity) = with(binding) {
-			textViewNombreConsejalActual.text = item.nombre
+		override fun bind(item:String) = with(binding) {
+			textViewNombreConsejalActual.text = item
 		}
 	}
 	
 	override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):BaseViewHolder<*> {
 		val binding =
 			ItemConsejalesActualesBinding.inflate(LayoutInflater.from(context), parent, false)
-		val holder = MyOwnViewHolder(binding)
 		
-		return holder
+		return MyOwnViewHolder(binding)
 	}
 	
 	override fun onBindViewHolder(holder:BaseViewHolder<*>, position:Int) {
@@ -43,11 +42,9 @@ class ConsejalesActualesAdapter(
 		return list.size
 	}
 	
-	fun setItemInTheView(consejalesActuales:MutableList<ConsejalActualEntity>?) {
-		if (consejalesActuales != null) {
-			this.list = consejalesActuales
-			notifyDataSetChanged()
-		}
+	fun setItemInTheView(comunaConsejalesActuales:MutableList<String>) {
+		this.list = comunaConsejalesActuales
+		notifyDataSetChanged()
 	}
 	
 }

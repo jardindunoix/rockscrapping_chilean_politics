@@ -9,13 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentConsejalesActualesBinding
-import com.example.rockscrappinchileanpolitics.databinding.FragmentDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.comunal.consejales.ConsejalesActualesAdapter
-import com.example.rockscrappinchileanpolitics.ui.adapters.legislativo.diputados.DiputadosActualesAdapter
 import com.example.rockscrappinchileanpolitics.viewmodel.comunal.consejal.ConsejalesActualesViewModel
-import com.example.rockscrappinchileanpolitics.viewmodel.legislativo.diputados.DiputadosActualesViewModel
 
 class ConsejalesActualesFragment:Fragment() {
 	

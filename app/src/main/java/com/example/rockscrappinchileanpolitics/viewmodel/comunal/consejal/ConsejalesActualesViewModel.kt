@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class ConsejalesActualesViewModel(application:Application):AndroidViewModel(application) {
 	
-	var consejalesActualesList = MutableLiveData<MutableList<ConsejalActualEntity>>(mutableListOf())
+	var consejalesActualesList = MutableLiveData<MutableList<String>>(mutableListOf())
 	
 	init {
 		if (consejalesActualesList.value.isNullOrEmpty()) {
