@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemConsejalesActualesDetalleBinding
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
+import com.squareup.picasso.Picasso
 
 class ConsejalesActualesDetalleAdapter(
 	private var list:MutableList<ConsejalActualDetalleEntity> = mutableListOf(),
@@ -23,6 +24,7 @@ class ConsejalesActualesDetalleAdapter(
 		
 		override fun bind(item:ConsejalActualDetalleEntity) = with(binding) {
 			textViewNombreConsejalActualDetalle.text = item.nombre
+			Picasso.get().load(item.picture).into(imageViewConsejalActualDetalle)
 		}
 	}
 	

@@ -2,4 +2,5 @@ package com.example.rockscrappinchileanpolitics.utilities.objects.entities.comun
 
 data class ConsejalActualDetalleEntity(var nombre:String = "NOMBRE CHORRO",
 	var apellido:String = "", var distrito:String = "", var partido:String = "",
-	var paginaWeb:String = "WEB PAGE", var mail:String = "", var picture:String = "")
+	var paginaWeb:String = "WEB PAGE", var mail:String = "", var picture:String = "",
+	var comuna:String = "CAMARONES")

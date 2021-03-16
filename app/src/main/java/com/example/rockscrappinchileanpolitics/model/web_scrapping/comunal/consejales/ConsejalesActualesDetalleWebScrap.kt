@@ -14,12 +14,17 @@ class ConsejalesActualesDetalleWebScrap { internal class LoadInitNews:
 	
 	override fun doInBackground(vararg params:Void?):ArrayList<ConsejalActualDetalleEntity> {
 		try {
-			val url = StaticStrigns.URL_COMUNA_DETALLE + "CAMARONES"
+			val url = StaticStrigns.URL_COMUNA_DETALLE + "Vitacura"
 			val document = Jsoup.connect(url).get()
 			val h3Elements = document.select("div.img-thumbnail").eachAttr("alt")
+			val pic = document.select("img").eachAttr("src")
+			
 			Log.d("CONSEJALES ---->", h3Elements.toString())
+			var counter = 1
 			for (element in h3Elements) {
-				consejalesList.add(ConsejalActualDetalleEntity(nombre = element))
+				consejalesList.add(ConsejalActualDetalleEntity(nombre = element,
+					picture = "https://www.cdch" + ".cl${pic[counter]}"))
+				counter ++
 			}
 			
 		} catch (e:IOException) {

@@ -1,0 +1,35 @@
+nav graph to consejal detail successful
+falta mandar el nombre de la comuna hacia el fragment detalle
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 3 commits.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .idea/codeStyles/Project.xml
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/model/managers/comunal/consejales/ComunasConsejalesActualesWebScrapManager.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/model/managers/comunal/consejales/ConsejalesActualesDetalleWebScrapManager.kt
+#	deleted:    app/src/main/java/com/example/rockscrappinchileanpolitics/model/managers/comunal/consejales/ConsejalesActualesWebScrapManager.kt
+#	renamed:    app/src/main/java/com/example/rockscrappinchileanpolitics/model/web_scrapping/comunal/consejales/ConselajesActualesWebScrap.kt -> app/src/main/java/com/example/rockscrappinchileanpolitics/model/web_scrapping/comunal/consejales/ComunasConselajesActualesWebScrap.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/model/web_scrapping/comunal/consejales/ConsejalesActualesDetalleWebScrap.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/ui/adapters/comunal/consejales/ComunasConsejalesActualesAdapter.kt
+#	deleted:    app/src/main/java/com/example/rockscrappinchileanpolitics/ui/adapters/comunal/consejales/ConsejalesActualesAdapter.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/ui/adapters/comunal/consejales/ConsejalesActualesDetalleAdapter.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/ui/fragments/comunal/consejales/ComunasConsejalesActualesFragment.kt
+#	renamed:    app/src/main/java/com/example/rockscrappinchileanpolitics/ui/fragments/comunal/consejales/ConsejalesActualesFragment.kt -> app/src/main/java/com/example/rockscrappinchileanpolitics/ui/fragments/comunal/consejales/ConsejalesActualesDetalleFragment.kt
+#	modified:   app/src/main/java/com/example/rockscrappinchileanpolitics/ui/fragments/home/HomeFragment.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/utilities/objects/entities/comunal/consejales/ComunaConsejalActualEntity.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/utilities/objects/entities/comunal/consejales/ConsejalActualDetalleEntity.kt
+#	deleted:    app/src/main/java/com/example/rockscrappinchileanpolitics/utilities/objects/entities/comunal/consejales/ConsejalActualEntity.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/utilities/services/interfaces_listeners/ListenerConsejalComunas.kt
+#	modified:   app/src/main/java/com/example/rockscrappinchileanpolitics/utilities/services/static_strings.kt
+#	renamed:    app/src/main/java/com/example/rockscrappinchileanpolitics/viewmodel/comunal/consejal/ConsejalesActualesViewModel.kt -> app/src/main/java/com/example/rockscrappinchileanpolitics/viewmodel/comunal/consejal/ComunasConsejalesActualesViewModel.kt
+#	new file:   app/src/main/java/com/example/rockscrappinchileanpolitics/viewmodel/comunal/consejal/ConsejalesActualesDetalleViewModel.kt
+#	renamed:    app/src/main/res/layout/fragment_consejales_actuales.xml -> app/src/main/res/layout/fragment_comunas_consejales_actuales.xml
+#	new file:   app/src/main/res/layout/fragment_consejales_actuales_detalle.xml
+#	new file:   app/src/main/res/layout/item_consejales_actuales_detalle.xml
+#	renamed:    app/src/main/res/layout/item_consejales_actuales.xml -> app/src/main/res/layout/item_consejales_comunas_actuales.xml
+#	modified:   app/src/main/res/navigation/nav_graph.xml
+#
