@@ -1,11 +1,13 @@
 package com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales
 
+import android.R.attr.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -51,8 +53,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	}
 	
 	override fun viewTouchedShort(
-		position:Int,
-		comunaObjeto:ComunaConsejalActualEntity,
+		position:Int, comunaObjeto:ComunaConsejalActualEntity,
 	) {
 	}
 	
@@ -60,5 +61,8 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		navController.navigate(
 			R.id.action_consejalesActualesFragment_to_consejalesActualesDetalleFragment)
 		Toast.makeText(requireContext(), comunaObjeto.nombre, Toast.LENGTH_LONG).show()
+		val args =Bundle()
+		args.putString("comuna", comunaObjeto.nombre)
+		setFragmentResult("key", args)
 	}
 }
