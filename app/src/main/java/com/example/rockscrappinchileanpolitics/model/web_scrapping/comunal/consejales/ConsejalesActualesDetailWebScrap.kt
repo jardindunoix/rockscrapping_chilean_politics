@@ -15,16 +15,15 @@ class ConsejalesActualesDetailWebScrap { internal class LoadInitNews:
 		try {
 			val url = StaticStrigns.URL_COMUNA_DETALLE + "vitacura"
 			val document = Jsoup.connect(url).get()
-			val h3Elements = document.select("div.col-md-12").select("a").eachText()
+			val h3Elements = document.select("div.img-thumbnail").eachAttr("alt")
+			val pic = document.select("img").eachAttr("src")
 			var counter = 1
 			for (element in h3Elements) {
-				if (element != h3Elements[0] && element.isNotEmpty() && isAllCaps(element)) {
-					comunasList.add(
-						ConsejalActualDetalleEntity(
-							nombre = element, picture = "${StaticStrigns.URL_COMUNA_DETALLE}${element}"
-						)
+				comunasList.add(
+					ConsejalActualDetalleEntity(
+						nombre = element, picture = "https://www.cdch" + ".cl${pic[counter]}"
 					)
-				}
+				)
 				counter ++
 			}
 			
