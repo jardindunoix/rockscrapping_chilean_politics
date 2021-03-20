@@ -1,8 +1,7 @@
 package com.example.rockscrappinchileanpolitics.model.managers.comunal.consejales
 
 import androidx.lifecycle.MutableLiveData
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ComunasConselajesActualesWebScrap
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ConsejalesActualesDetalleWebScrap
+import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ConsejalesActualesDetailWebScrap
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 
 class ConsejalesActualesDetalleWebScrapManager {
@@ -15,9 +14,9 @@ class ConsejalesActualesDetalleWebScrapManager {
 	
 	private fun getAllConsejalesActuales():MutableList<ConsejalActualDetalleEntity> {
 		val list:MutableList<ConsejalActualDetalleEntity>
-		val loader = ConsejalesActualesDetalleWebScrap.LoadInitNews()
+		val loader = ConsejalesActualesDetailWebScrap.LoadInitNews()
 		loader.execute()
-		list = loader.get()
+		list = loader.get() !!
 		return list
 	}
 }
