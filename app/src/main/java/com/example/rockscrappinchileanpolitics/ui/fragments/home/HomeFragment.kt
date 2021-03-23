@@ -41,4 +41,8 @@ class HomeFragment:Fragment() {
 			navController.navigate(R.id.action_homeFragment_to_consejalesActualesFragment)
 		}
 	}
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

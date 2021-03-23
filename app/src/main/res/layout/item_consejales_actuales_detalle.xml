@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/abel_regular"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/text_size_consejal"
             tools:text="Nombre Chorro" />
 
     </LinearLayout>

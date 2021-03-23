@@ -8,23 +8,23 @@ import com.example.rockscrappinchileanpolitics.model.managers.comunal.consejales
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 import kotlinx.coroutines.launch
 
-class ConsejalesActualesDetalleViewModel(application:Application):AndroidViewModel(application) {
-	
-	var consejalesActualesDetalleListList =
-		MutableLiveData<MutableList<ConsejalActualDetalleEntity>>(mutableListOf())
-	
-	init {
-		if (consejalesActualesDetalleListList.value.isNullOrEmpty()) {
-			getConsejalesActualesList()
-			
-		}
-	}
-	
-	private fun getConsejalesActualesList() {
-		consejalesActualesDetalleListList = ConsejalesActualesDetalleWebScrapManager().allConsejales
-		viewModelScope.launch {
-			consejalesActualesDetalleListList
-		}
-	}
-	
+class ConsejalesActualesDetalleViewModel(application: Application, private val comuna: String) :
+    AndroidViewModel(application) {
+
+    var consejalesActualesDetalleList =
+        MutableLiveData<MutableList<ConsejalActualDetalleEntity>>(mutableListOf())
+
+    init {
+        if (consejalesActualesDetalleList.value.isNullOrEmpty()) {
+            getConsejalesActualesList()
+        }
+    }
+
+    private fun getConsejalesActualesList() {
+        consejalesActualesDetalleList =
+            ConsejalesActualesDetalleWebScrapManager(comuna).allConsejales
+        viewModelScope.launch {
+            consejalesActualesDetalleList
+        }
+    }
 }

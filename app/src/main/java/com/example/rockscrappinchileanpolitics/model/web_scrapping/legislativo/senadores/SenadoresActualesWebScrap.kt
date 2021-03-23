@@ -1,7 +1,7 @@
 package com.example.rockscrappinchileanpolitics.model.web_scrapping.legislativo.senadores
 
 import android.os.AsyncTask
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.RepositorioWebScrapCalls.Companion.getSenadoresActuales
+import com.example.rockscrappinchileanpolitics.model.repositorio.RepositorioWebScrapCallss.Companion.getSenadoresActuales
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
 import java.io.IOException
 

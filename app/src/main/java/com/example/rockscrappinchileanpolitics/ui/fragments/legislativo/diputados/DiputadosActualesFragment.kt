@@ -44,4 +44,9 @@ class DiputadosActualesFragment:Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 		navController = Navigation.findNavController(view)
 	}
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

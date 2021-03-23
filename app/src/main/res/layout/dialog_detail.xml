@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/padding_normal_4dp"
-    tools:context=".ui.fragments.comunal.consejales.ComunasConsejalesActualesFragment">
+    android:padding="@dimen/padding_normal_4dp">
 
     <LinearLayout
-        android:id="@+id/linear_layout__"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_normal_4dp"
@@ -19,7 +17,8 @@
             android:id="@+id/linear_layout___"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/text_view_"
@@ -30,20 +29,11 @@
                 android:textSize="@dimen/text_size"
                 tools:text="---------" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:background="@drawable/custom_button_fuentes"
-                android:text="Fuentes"
-                android:textAllCaps="false" />
-
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_layout_"
+        android:id="@+id/linear_layout__"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -54,4 +44,30 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear_layout_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_go_back_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Volver"
+            android:textAllCaps="false"
+            android:textColor="#000" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_go_to_send_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Enviar Mail"
+            android:textAllCaps="false"
+            android:textColor="#000" />
+    </LinearLayout>
 </LinearLayout>

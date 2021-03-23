@@ -6,10 +6,10 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comuna
 
 class ComunasConsejalesActualesWebScrapManager {
 	
-	var allConsejales = MutableLiveData<MutableList<ComunaConsejalActualEntity>>()
+	var allComunasConsejales = MutableLiveData<MutableList<ComunaConsejalActualEntity>>()
 	
 	init {
-		allConsejales.value = getAllConsejalesActuales()
+		allComunasConsejales.value = getAllConsejalesActuales()
 	}
 	
 	private fun getAllConsejalesActuales():MutableList<ComunaConsejalActualEntity> {
