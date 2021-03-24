@@ -13,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.daimajia.androidanimations.library.Techniques
-import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.DialogDetailBinding
 import com.example.rockscrappinchileanpolitics.databinding.FragmentComunasConsejalesActualesBinding
@@ -78,30 +76,29 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
         dialog.requestWindowFeature(Window.FEATURE_LEFT_ICON)
         dialog.setCancelable(true)
         dialog.setContentView(bindingDialog!!.root)
-        val width = resources.getDimensionPixelSize(R.dimen.popup_width)
-        val height = resources.getDimensionPixelSize(R.dimen.popup_height)
-        dialog.window!!.setLayout(width, height)
+//        val width = resources.getDimensionPixelSize(R.dimen.popup_width)
+//        val height = resources.getDimensionPixelSize(R.dimen.popup_height)
+//        dialog.window!!.setLayout(width, height)
         val adapter =
             ConsejalesActualesDetalleAdapter(mutableListOf(), requireContext())
         bindingDialog!!.recyclerViewConsejalesActualesDetalle.hasFixedSize()
         bindingDialog!!.recyclerViewConsejalesActualesDetalle.layoutManager =
             LinearLayoutManager(requireContext())
         bindingDialog!!.recyclerViewConsejalesActualesDetalle.adapter = adapter
-        model.getConsejalesDetailUsingViewModel(comuna)
+
+        val oldValue1 = " "
+        val oldValue2 = "Ñ"
+        val newValue1 = "-"
+        val newValue2 = "N"
+        val comunaM = comuna.trim().replace(oldValue1, newValue1).replace(oldValue2, newValue2)
+        model.getConsejalesDetailUsingViewModel(comunaM)
         bindingDialog!!.textView.text = comuna
-        Log.d("Message ---->", comuna)
         model.detailConsejales.observe(this, {
             adapter.setItemInTheView(it)
         })
 
         bindingDialog!!.btnGoBackDetail.setOnClickListener {
             dialog.dismiss()
-        }
-
-        bindingDialog!!.btnGoToSendMail.setOnClickListener {
-            YoYo.with(Techniques.Shake)
-                .duration(400)
-                .playOn(bindingDialog!!.textView)
         }
 
         dialog.show()

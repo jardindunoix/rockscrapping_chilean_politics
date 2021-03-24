@@ -8,6 +8,6 @@
     <dimen name="text_size">24sp</dimen>
     <dimen name="text_size_consejal">20sp</dimen>
     <dimen name="size_zero">0dp</dimen>
-    <dimen name="popup_width">400dp</dimen>
+    <dimen name="popup_width">380dp</dimen>
     <dimen name="popup_height">600dp</dimen>
 </resources>

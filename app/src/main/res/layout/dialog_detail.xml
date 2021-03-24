@@ -2,72 +2,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/padding_normal_4dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_normal_4dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linear_layout___"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
-
-            <TextView
-                android:id="@+id/text_view_"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/config_navAnimTime"
-                android:fontFamily="@font/abel_regular"
-                android:textSize="@dimen/text_size"
-                tools:text="---------" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout__"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_consejales_actuales_detalle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout_"
+        android:id="@+id/linear_layout___"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_go_back_detail"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/text_view_"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Volver"
-            android:textAllCaps="false"
-            android:textColor="#000" />
+            android:layout_weight="@integer/config_navAnimTime"
+            android:fontFamily="@font/abel_regular"
+            android:textSize="@dimen/text_size"
+            tools:text="---------" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_go_to_send_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Enviar Mail"
-            android:textAllCaps="false"
-            android:textColor="#000" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:id="@+id/linear_layout__"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_consejales_actuales_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_go_back_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/text_button_volver"
+                    android:textAllCaps="false"
+                    android:textColor="#000" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
