@@ -19,7 +19,6 @@ class ComunasConsejalesActualesAdapter(
 ) : RecyclerView.Adapter<ComunasConsejalesActualesAdapter.BaseViewHolder<*>>() {
 
     abstract class BaseViewHolder<T>(item: View) : RecyclerView.ViewHolder(item) {
-
         abstract fun bind(item: T)
     }
 
@@ -34,18 +33,14 @@ class ComunasConsejalesActualesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val binding =
             ItemComunasConsejalesActualesBinding.inflate(
-                LayoutInflater.from(context),
-                parent,
-                false
+                LayoutInflater.from(context), parent, false
             )
         val holder = MyOwnViewHolder(binding)
 
         binding.root.setOnClickListener {
-            val position = holder.adapterPosition.takeIf { it == RecyclerView.NO_POSITION }
+            val position = holder.adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
                 ?: return@setOnClickListener
-            YoYo.with(Techniques.Pulse)
-                .duration(450)
-                .playOn(binding.textViewNombreConsejalActual)
+
             this.listenerImgViewShort.viewTouchedShort(position, list[position])
         }
 

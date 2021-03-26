@@ -2,7 +2,6 @@ package com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rockscrappinchileanpolitics.R
-import com.example.rockscrappinchileanpolitics.databinding.DialogDetailBinding
+import com.example.rockscrappinchileanpolitics.databinding.DialogConsejalesDetailBinding
 import com.example.rockscrappinchileanpolitics.databinding.FragmentComunasConsejalesActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.comunal.consejales.ComunasConsejalesActualesAdapter
 import com.example.rockscrappinchileanpolitics.ui.adapters.comunal.consejales.ConsejalesActualesDetalleAdapter
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.services.interfaces_listeners.ListenerConsejalComunas
 import com.example.rockscrappinchileanpolitics.viewmodel.comunal.consejal.ComunasConsejalesActualesViewModel
-
 
 class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
 
@@ -30,7 +27,7 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
     private lateinit var navController: NavController
     private lateinit var model: ComunasConsejalesActualesViewModel
     private lateinit var adapter: ComunasConsejalesActualesAdapter
-    private var bindingDialog: DialogDetailBinding? = null
+    private var bindingDialog: DialogConsejalesDetailBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,23 +59,24 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
     override fun viewTouchedShort(
         position: Int, comunaObjeto: ComunaConsejalActualEntity,
     ) {
-        Toast.makeText(requireContext(), position.toString(), Toast.LENGTH_LONG).show()
-    }
-
-    override fun viewTouchedLong(position: Int, comunaObjeto: ComunaConsejalActualEntity) {
-        Toast.makeText(requireContext(), comunaObjeto.nombre, Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            requireContext(),
+            "Consejales de \n\r${comunaObjeto.nombre}",
+            Toast.LENGTH_LONG
+        ).show()
         displayDetailDialog(comunaObjeto.nombre)
     }
 
+    override fun viewTouchedLong(position: Int, comunaObjeto: ComunaConsejalActualEntity) {
+
+    }
+
     private fun displayDetailDialog(comuna: String) {
-        bindingDialog = DialogDetailBinding.inflate(layoutInflater)
+        bindingDialog = DialogConsejalesDetailBinding.inflate(layoutInflater)
         val dialog = Dialog(bindingDialog!!.root.context)
         dialog.requestWindowFeature(Window.FEATURE_LEFT_ICON)
         dialog.setCancelable(true)
         dialog.setContentView(bindingDialog!!.root)
-//        val width = resources.getDimensionPixelSize(R.dimen.popup_width)
-//        val height = resources.getDimensionPixelSize(R.dimen.popup_height)
-//        dialog.window!!.setLayout(width, height)
         val adapter =
             ConsejalesActualesDetalleAdapter(mutableListOf(), requireContext())
         bindingDialog!!.recyclerViewConsejalesActualesDetalle.hasFixedSize()

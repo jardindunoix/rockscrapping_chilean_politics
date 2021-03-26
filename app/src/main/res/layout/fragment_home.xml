@@ -19,45 +19,41 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_ir_a_dip_actuales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal_8dp"
-                android:background="@drawable/custom_button"
                 android:fontFamily="@font/abel_regular"
                 android:text="@string/button_ir_a_diputados_actuales"
-                android:textColor="@color/blue" />
+                android:textColor="@color/white" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_ir_a_sen_actuales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal_8dp"
-                android:background="@drawable/custom_button"
                 android:fontFamily="@font/abel_regular"
                 android:text="@string/button_ir_a_senadores_actuales"
-                android:textColor="@color/blue" />
+                android:textColor="@color/white" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_part_politicos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal_8dp"
-                android:background="@drawable/custom_button"
                 android:fontFamily="@font/abel_regular"
                 android:text="@string/button_ir_a_partidos_politicos"
-                android:textColor="@color/blue" />
+                android:textColor="@color/white" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_ir_a_consej_actuales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal_8dp"
-                android:background="@drawable/custom_button"
                 android:fontFamily="@font/abel_regular"
                 android:text="@string/button_ir_a_consejales_actuales"
-                android:textColor="@color/blue" />
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

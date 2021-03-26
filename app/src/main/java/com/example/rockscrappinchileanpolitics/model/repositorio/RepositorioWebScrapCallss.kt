@@ -1,5 +1,6 @@
 package com.example.rockscrappinchileanpolitics.model.repositorio
 
+import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
@@ -15,33 +16,15 @@ class RepositorioWebScrapCallss {
     companion object {
 
         /*COMUNAL*/
-        fun getConsejalesActualesDetail(comuna:String): MutableList<ConsejalActualDetalleEntity> {
-            val consejalesList: MutableList<ConsejalActualDetalleEntity> = mutableListOf()
-            val url = StaticStrigns.URL_COMUNA_DETALLE + comuna
-            val document = Jsoup.connect(url).get()
-            val h3Elements = document.select("div.img-thumbnail").eachAttr("alt")
-            val pic = document.select("img").eachAttr("src")
-            var counter = 1
-            for (element in h3Elements) {
-                consejalesList.add(
-                    ConsejalActualDetalleEntity(
-                        nombre = element,
-                        picture = "https://www.cdch" + ".cl${pic[counter]}"
-                    )
-                )
-                counter++
-            }
-            return consejalesList
-        }
-
         fun getComunasConsejalesActuales(): MutableList<ComunaConsejalActualEntity> {
             val comunasList = mutableListOf<ComunaConsejalActualEntity>()
             val url = StaticStrigns.URL_CONSEJALES_ACTUALES
             val document = Jsoup.connect(url).get()
-            val h3Elements = document.select("div.col-md-12").select("a").eachText()
+            val listComunasElements = document.select("div.col-md-12").select("a").eachText()
+            val listRegionesElements = document.select("div.text-center").select("h3").eachText()
 
-            for (element in h3Elements) {
-                if (element != h3Elements[0] && element.isNotEmpty() && isAllCaps(element)) {
+            for (element in listComunasElements) {
+                if (element != listComunasElements[0] && element.isNotEmpty() && isAllCaps(element)) {
                     comunasList.add(
                         ComunaConsejalActualEntity(
                             nombre = element,
@@ -50,7 +33,27 @@ class RepositorioWebScrapCallss {
                     )
                 }
             }
+            Log.d("LISTA REGIONES ---->", listRegionesElements.toString())
             return comunasList
+        }
+
+        fun getConsejalesActualesDetail(comuna: String): MutableList<ConsejalActualDetalleEntity> {
+            val consejalesList: MutableList<ConsejalActualDetalleEntity> = mutableListOf()
+            val url = StaticStrigns.URL_COMUNA_DETALLE + comuna
+            val document = Jsoup.connect(url).get()
+            val listComunasElements = document.select("div.img-thumbnail").eachAttr("alt")
+            val listPictureConsejales = document.select("img").eachAttr("src")
+            var counter = 1
+            for (element in listComunasElements) {
+                consejalesList.add(
+                    ConsejalActualDetalleEntity(
+                        nombre = element,
+                        picture = "https://www.cdch" + ".cl${listPictureConsejales[counter]}"
+                    )
+                )
+                counter++
+            }
+            return consejalesList
         }
 
         /*LEGISLATIVO*/
