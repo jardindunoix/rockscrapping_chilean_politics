@@ -19,37 +19,45 @@ class RepositorioWebScrapCallss { companion object {
 		val comunasList = mutableListOf<ComunaConsejalActualEntity>()
 		val url = StaticStrigns.URL_CONSEJALES_ACTUALES
 		val document = Jsoup.connect(url).get()
-		val container = document.select("div.containerCDC")
-		val listComunasElements = document.select("div.col-md-12").select("a").eachText()
+		/*trae el cuerpo del documento*/
+		// val container = document.select("div.containerCDC")
+		val listComunasElementsPRE = document.select("div.col-md-12").select("a").eachText()
 		val listRegionesElements = document.select("div.text-center").select("h3").eachText()
-		val oldValue1 = "Región"
-		val newValue1 = ""
-		val oldValue2 = "DE"
-		val newValue2 = ""
+		val listComunasElementsPOST = mutableListOf<String>()
 		
-		for ((i, element) in listRegionesElements.withIndex()) {
-			// if (element != listComunasElements[0] && element.isNotEmpty() && isAllCapsUp(element)) {
-			element.replace(oldValue1, newValue1).replace(oldValue2, newValue2)
-			// comunasList.add(ComunaConsejalActualEntity(nombre = element,
-			// 	// region = listRegionesElements[i].toString(),
-			// 	paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${element}"))
-			// }
+		for (comu in listComunasElementsPRE) {
+			if (comu != listComunasElementsPRE[0] && comu.isNotEmpty() && isAllCapsUp(comu)) {
+				listComunasElementsPOST.add(comu)
+			}
 		}
-		
-		for ((i, reg) in listRegionesElements.withIndex()) {
-			comunasList.add(ComunaConsejalActualEntity(nombre = reg))
-			// for ((i, element) in listComunasElements.withIndex()) {
-			// 	if (element != listComunasElements[0] && element.isNotEmpty() && isAllCapsUp(
-			// 			element)) {
-			// 		// element.replace(oldValue1, newValue1).replace(oldValue2, newValue2)
-			// 		comunasList.add(ComunaConsejalActualEntity(nombre = element,
-			// 			region = listRegionesElements[i].toString(),
-			// 			paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${element}"))
-			// 	}
-			// }
+		var indiceRegiones = 0
+		// var indiceComunas = 0
+		var counterParaPrueba = 1
+		val floor = 344
+		for ((i, _) in listComunasElementsPOST.withIndex()) {
+			if (counterParaPrueba <= floor) {
+				val a = firstLetter(listComunasElementsPOST[i])
+				val b = firstLetter(listComunasElementsPOST[counterParaPrueba])
+				++ counterParaPrueba
+				Log.e("LETTERS NUM ---->", "indice: $i - a$a... b:$b")
+				Log.e("INDICE regiones ---->", listRegionesElements[indiceRegiones])
+				if (a <= b) {
+					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
+						region = listRegionesElements[indiceRegiones],
+						paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"))
+				} else {
+					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
+						region = listRegionesElements[indiceRegiones],
+						paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"))
+					++ indiceRegiones
+				}
+			}
 		}
+		comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[floor],
+			region = listRegionesElements[indiceRegiones],
+			paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[floor]}"))
 		
-		
+		Log.e("COUNTER ---->", "$counterParaPrueba")
 		Log.e("LISTA COMUNAS ---->", comunasList.toString())
 		return comunasList
 	}
@@ -160,14 +168,29 @@ class RepositorioWebScrapCallss { companion object {
 		return partidosActualesList
 	}
 	
-	/*GOBIERNO*/
-	/*intendente*/
-	/*gobernador*/
-	/**/
-	/*METODO PARA LA LISTA DE COMUNAS DE CONSEJALES*/
+	/**************************************************************************************************/
+	/*METODOS*/
 	private fun isAllCapsUp(element:String?):Boolean {
 		val regex = """[abcdefghijklmnñopqrstuvwxyz]""".toRegex()
 		return regex.containsMatchIn(input = element.toString()).not()
+	}
+	
+	private fun firstLetter(word:String):Int {
+		val letters = word.trim().split("")
+		val letterOne = letters[1]
+		return letterToNumber(letterOne)
+	}
+	
+	private fun letterToNumber(letter:String):Int {
+		val oldValue = " "
+		val newValue = ""
+		val listChar = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".replace(oldValue, newValue).split("")
+		for ((i, char) in listChar.withIndex()) {
+			when (char == letter.trim()) {
+				true -> return i
+			}
+		}
+		return 0
 	}
 }
 }
