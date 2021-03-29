@@ -6,7 +6,8 @@
     <dimen name="image_view_width">50dp</dimen>
     <dimen name="image_view_height">50dp</dimen>
     <dimen name="text_size">24sp</dimen>
-    <dimen name="text_size_consejal">20sp</dimen>
+    <dimen name="text_size_consejal_20dp">20sp</dimen>
+    <dimen name="text_size_regio_consejal_15dp">15sp</dimen>
     <dimen name="size_zero">0dp</dimen>
     <dimen name="popup_width">380dp</dimen>
     <dimen name="popup_height">600dp</dimen>

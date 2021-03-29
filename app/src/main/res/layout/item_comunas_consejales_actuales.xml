@@ -3,32 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_normal_8dp">
 
     <LinearLayout
         android:id="@+id/linear_layout_diputados_actuales"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_consejal_actual"
-            android:layout_width="@dimen/image_view_width"
-            android:layout_height="@dimen/image_view_height"
-            android:layout_margin="@dimen/padding_normal_8dp" />
-
-        <TextView
-            android:id="@+id/text_view_nombre_consejal_actual"
+        <LinearLayout
+            android:id="@+id/linear_layout_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/abel_regular"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size"
-            tools:text="Nombre Chorro" />
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/text_view_comuna_consejal_actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abel_regular"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                tools:text="Nombre Chorro" />
+
+            <TextView
+                android:id="@+id/text_view_region_consejal_actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/abel_regular"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_size_regio_consejal_15dp"
+                tools:text="Nombre Chorro" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

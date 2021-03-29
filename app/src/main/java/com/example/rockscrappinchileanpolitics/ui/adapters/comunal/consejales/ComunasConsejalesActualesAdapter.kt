@@ -26,15 +26,15 @@ class ComunasConsejalesActualesAdapter(
         BaseViewHolder<ComunaConsejalActualEntity>(binding.root) {
 
         override fun bind(item: ComunaConsejalActualEntity) = with(binding) {
-            textViewNombreConsejalActual.text = item.nombre
+            textViewComunaConsejalActual.text = item.nombre
+            textViewRegionConsejalActual.text = item.region
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
-        val binding =
-            ItemComunasConsejalesActualesBinding.inflate(
-                LayoutInflater.from(context), parent, false
-            )
+        val binding = ItemComunasConsejalesActualesBinding.inflate(LayoutInflater.from(context),
+            parent,
+            false)
         val holder = MyOwnViewHolder(binding)
 
         binding.root.setOnClickListener {
