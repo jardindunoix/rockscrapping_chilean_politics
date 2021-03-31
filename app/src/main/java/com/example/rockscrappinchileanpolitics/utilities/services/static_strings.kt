@@ -40,7 +40,8 @@ class StaticStrigns {
         const val URL_COMUNA_DETALLE = "https://www.cdch.cl/Comuna/"
 
         /*Database name*/
-        const val DATABASE_NAME ="politics_database"
+        const val DATABASE_NAME = "politics_database"
+
         /*table names*/
         const val COMUNAS_CONSEJALES_TABLE = "comunas_consejales_table"
         const val CONSEJALES_ACTUALES_DETALLE_TABLE = "consejales_actuales_detalle_table"
@@ -50,5 +51,39 @@ class StaticStrigns {
         const val SENADORES_ACTUALES_TABLE = "senadores_actuales_table"
         const val SENADORES_CANDIDATOS_TABLE = "senadores_candidatos_table"
         const val PARTIDOS_POLITICOS_TABLE = "partidos_politicos_table"
+
+        /*WEBpages partidos politicos*/
+        const val PARTIDO_REGIONALISTA_INDEPENDIENTE_DEMOCRATA = "https://www.pridemocrata.cl/"
+        const val PARTIDO_POR_LA_DEMOCRACIA = "https://www.ppd.cl"
+        const val PARTIDO_RENOVACION_NACIONAL = "https://www.rn.cl"
+        const val PARTIDO_COMUNISTA_DE_CHILE = "https://pcchile.cl"
+        const val PARTIDO_REVOLUCION_DEMOCRATICA = "https://revoluciondemocratica.cl"
+        const val PARIDO_REPUBLICANO_DE_CHILE = "https://partidorepublicanodechile.cl"
+        const val PARTIDO_CONVERGENCIA_SOCIAL = "https://convergenciasocial.cl"
+        const val PARTIDO_FEDERACION_REGIONALISTA_VERDE_SOCIAL =
+            "https://www.federacionregionalistaverdesocial.cl"
+        const val PARITIDO_UNION_DEMOCRATA_INDEPENDIENTE = ""
+        const val PARTIDO_CONSERVADOR_CRISTRIANO = "https://partidoconservadorcristiano.cl"
+        const val PARTIDO_RADICAL_DE_CHILE = "https://www.radicalismochileno.cl"
+        const val PARTIDO_EVOLUCION_POLITICA = "https://www.evopoli.cl"
+        const val PARTIDO_ECOLOGISTA_VERDE = "https://www.ecologistas.cl"
+        const val PARTIDO_COMUNES = "https://www.partidocomunes.cl"
+        const val PARTIDO_SOCIALISTA_DE_CHILE = "https://portal.pschile.cl"
+        const val PARTIDO_NUEVA_CLASE_MEDIA = "http://www.nuevaclasemedia.cl"
+        const val PARTIDO_NACIONAL_CIUDADANO = "https://partidonacionalciudadano.cl"
+        const val PARTIDO_IGUALDAD = "https://partidohumanista.cl"
+        const val PARTIDO_HUMANISTA = "https://partidohumanista.cl"
+        const val PARTIDO_UNION_PATRIOTICA = "https://unionpatriotica.cl"
+        const val PARTIDO_NUEVO_TIEMPO = "http://www.partidonuevotiempo.cl"
+        const val PARTIDO_CIUDADANOS = "https://partidociudadanos.cl"
+        const val PARTIDO_LIBERAL_DE_CHILE = "https://www.losliberales.cl"
+        const val PARTIDO_IZQUIERDA_ANTICAPITALISTA_DE_LOS_TRABAJADORES =
+            "https://iatchile.wordpress.com"
+        const val PARTIDO_PROGRESISTA_DE_CHILE = "https://www.progresistas.cl"
+        const val PARTIDO_DEMOCRATA_CRISTIANO = "https://www.pdc.cl"
+
+        /*estadisticas*/
+        const val INE = "https://www.ine.cl/estadisticas/"
+        const val SERVEL = "https://servel.cl/estadisticas-2"
     }
 }

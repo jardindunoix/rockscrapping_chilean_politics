@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.legislativo.diputados.DiputadosActualesAdapter
+import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.viewmodel.legislativo.diputados.DiputadosActualesViewModel
 
 class DiputadosActualesFragment:Fragment() {
@@ -25,11 +27,14 @@ class DiputadosActualesFragment:Fragment() {
 		_binding = FragmentDiputadosActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(DiputadosActualesViewModel::class.java)
 		adapter = DiputadosActualesAdapter(mutableListOf(), requireContext())
-		
-		initRecyclerView()
-		
+		binding.recyclerViewDiputadosActuales.initRecyclerView(recycler = binding.recyclerViewDiputadosActuales,
+			requireContext(), adapter)
 		model.diputadosActualesList.observe(viewLifecycleOwner, {
-			adapter.setItemInTheView(it)
+			if (it.isNotEmpty()) {
+				adapter.setItemInTheView(it)
+			} else {
+				binding.textView.text = getString(R.string.text_for_header_without_connection)
+			}
 		})
 		return binding.root
 	}

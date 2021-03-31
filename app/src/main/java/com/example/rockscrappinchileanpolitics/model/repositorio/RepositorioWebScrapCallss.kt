@@ -1,6 +1,5 @@
 package com.example.rockscrappinchileanpolitics.model.repositorio
 
-import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
@@ -31,6 +30,7 @@ class RepositorioWebScrapCallss {
                     listComunasElementsPOST.add(comu)
                 }
             }
+
             var indiceRegiones = 0
             var counterParaPrueba = 1
             val floor = 344
@@ -59,8 +59,12 @@ class RepositorioWebScrapCallss {
                     }
                 }
             }
+            val oldValueOne = "Región DE"
+            val newValue = ""
+            val regionCorregida =
+                listRegionesElements[indiceRegiones].replace(oldValueOne, newValue)
             comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[floor],
-                region = listRegionesElements[indiceRegiones],
+                region = regionCorregida,
                 paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[floor]}"))
 
             return comunasList
@@ -99,17 +103,18 @@ class RepositorioWebScrapCallss {
             var countName = 0
 
             if (webpage.size / 3 == nameList.size) {
-                var name: String
-                var pagina: String
-                var image: String
-
+                val oldValueOne = "Sr. "
+                val oldValueTwo = "Sra. "
+                val newValue = ""
+                var nombreCorregido: String
+                var nombre: String
                 for (f in imagesList) {
-                    name = nameList[countName].toString()
-                    pagina =
-                        "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${StaticStrigns.DIPUTADOS}${webpage[countAttr]}"
-                    image = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${f}"
+                    nombre = nameList[countName].replace(oldValueOne, newValue)
+                    nombreCorregido = nombre.replace(oldValueTwo, newValue)
                     diputadosActualesList.add(
-                        DiputadoActualEntity(nombre = name, paginaWeb = pagina, picture = image))
+                        DiputadoActualEntity(nombre = nombreCorregido,
+                            paginaWeb = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${StaticStrigns.DIPUTADOS}${webpage[countAttr]}",
+                            picture = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${f}"))
                     countAttr += 3
                     ++countName
                 }
@@ -147,29 +152,36 @@ class RepositorioWebScrapCallss {
         /*PARTIDOS POLITICOS*/
         fun getPartidosPoliticos(): MutableList<PartidoPoliticoEntity> {
             val partidosActualesList = mutableListOf<PartidoPoliticoEntity>()
-            val url_1 = StaticStrigns.URL_PARTIDOS_POLITICOS_1
-            val url_2 = StaticStrigns.URL_PARTIDOS_POLITICOS_2
-            val pagina1Document: Document = Jsoup.connect(url_1).get()
-            val pagina2Document: Document = Jsoup.connect(url_2).get()
+            val urlOne = StaticStrigns.URL_PARTIDOS_POLITICOS_1
+            val urlTwo = StaticStrigns.URL_PARTIDOS_POLITICOS_2
+            val pagina1Document: Document = Jsoup.connect(urlOne).get()
+            val pagina2Document: Document = Jsoup.connect(urlTwo).get()
+            /*cambiar por fuente*/
+            val pictureSpecial =
+                "https://partidorepublicanodechile.cl/wp-content/uploads/2020/03/ESCUDO-PR-PROTECCION-WHITE.png"
+            val pictureSpecialTwo =
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Partido_Comunista_de_Chile-2.svg/739px-Partido_Comunista_de_Chile-2.svg.png"
+            val excluyeFila = "Fecha constitución Partidos Políticos por región"
+
+            /*****************************/
             val element1 = pagina1Document.select(
                 "${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
                 .eachText() as ArrayList
             val element2 = pagina2Document.select(
                 "${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
                 .eachText() as ArrayList
-            var countName = 0
+
             for (r in element1) {
-                if (countName > 0) {
-                    partidosActualesList.add(PartidoPoliticoEntity(nombre = r))
+                if (!r.equals(excluyeFila, true)) {
+                    partidosActualesList.add(PartidoPoliticoEntity(nombre = r,
+                        picture = pictureSpecial))
                 }
-                countName++
             }
 
             for (r in element2) {
-                partidosActualesList.add(PartidoPoliticoEntity(nombre = r))
+                partidosActualesList.add(PartidoPoliticoEntity(nombre = r,
+                    picture = pictureSpecialTwo))
             }
-
-
             return partidosActualesList
         }
 
