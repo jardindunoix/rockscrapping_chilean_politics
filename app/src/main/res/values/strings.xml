@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RockScrappin Chilean Politics</string>
+    <string name="app_name">Panorama de la politica chilena</string>
     <string name="title_diputados_actuales">Diputados Actuales</string>
     <string name="title_senadores_actuales">Senadores Actuales</string>
     <string name="button_ir_a_diputados_actuales">Diputados Actuales</string>
@@ -7,5 +7,5 @@
     <string name="button_ir_a_partidos_politicos">Partidos Políticos</string>
     <string name="button_ir_a_consejales_actuales">Consejales Actuales</string>
     <string name="text_button_volver">Volver</string>
-    <string name="text_for_header_without_connection">No tienes conexión</string>
+    <string name="text_for_header_without_connection">No tienes conexión\nIntenta nuevamente, por favor.</string>
 </resources>

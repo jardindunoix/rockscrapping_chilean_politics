@@ -1,16 +1,13 @@
 package com.example.rockscrappinchileanpolitics.ui.fragments.partidos_politicos
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentPartidosPoliticosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.partidos_politicos.PartidosPoliticosAdapter
@@ -29,7 +26,7 @@ class PartidosPoliticosActualesFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         _binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
         adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
-        binding.recyclerViewPartidosPoliticos.initRecyclerView(recycler = binding.recyclerViewPartidosPoliticos,
+        binding.recyclerViewPartidosPoliticos.initRecyclerView(binding.recyclerViewPartidosPoliticos,
             requireContext(), adapter)
         model = ViewModelProvider(this).get(PartidosPoliticosViewModel::class.java)
 
@@ -41,13 +38,6 @@ class PartidosPoliticosActualesFragment : Fragment() {
             }
         })
         return binding.root
-    }
-
-    private fun initRecyclerView() = with(binding) {
-        recyclerViewPartidosPoliticos.hasFixedSize()
-        recyclerViewPartidosPoliticos.layoutManager =
-            LinearLayoutManager(requireContext())
-        recyclerViewPartidosPoliticos.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

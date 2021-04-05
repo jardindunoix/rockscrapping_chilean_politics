@@ -1,14 +1,13 @@
 package com.example.rockscrappinchileanpolitics.ui.fragments.legislativo.senadores
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentSenadoresActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.legislativo.senadores.SenadoresActualesAdapter
@@ -27,7 +26,7 @@ class SenadoresActualesFragment : Fragment() {
         _binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
         model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
         adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
-        binding.recyclerViewSenadoresActuales.initRecyclerView(recycler = binding.recyclerViewSenadoresActuales,
+        binding.recyclerViewSenadoresActuales.initRecyclerView(binding.recyclerViewSenadoresActuales,
             requireContext(), adapter)
         model.senadoresActualesList.observe(viewLifecycleOwner, {
             if (it.isNotEmpty()) {
@@ -37,12 +36,6 @@ class SenadoresActualesFragment : Fragment() {
             }
         })
         return binding.root
-    }
-
-    private fun initRecyclerView() = with(binding) {
-        recyclerViewSenadoresActuales.hasFixedSize()
-        recyclerViewSenadoresActuales.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewSenadoresActuales.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

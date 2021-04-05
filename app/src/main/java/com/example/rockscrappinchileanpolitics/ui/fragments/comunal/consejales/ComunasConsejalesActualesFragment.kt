@@ -36,7 +36,7 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
         _binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
         model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
         adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
-        binding.recyclerViewConsejalesActuales.initRecyclerView(recycler = binding.recyclerViewConsejalesActuales,
+        binding.recyclerViewConsejalesActuales.initRecyclerView(binding.recyclerViewConsejalesActuales,
             requireContext(), adapter)
         model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
             if (it.isNotEmpty()) {
@@ -46,12 +46,6 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
             }
         })
         return binding.root
-    }
-
-    private fun initRecyclerView() = with(binding) {
-        recyclerViewConsejalesActuales.hasFixedSize()
-        recyclerViewConsejalesActuales.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewConsejalesActuales.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,7 +60,7 @@ class ComunasConsejalesActualesFragment : Fragment(), ListenerConsejalComunas {
     }
 
     override fun viewTouchedLong(position: Int, comunaObjeto: ComunaConsejalActualEntity) {
-
+        Toast.makeText(requireContext(), comunaObjeto.paginaWeb, Toast.LENGTH_SHORT).show()
     }
 
     private fun displayDetailDialog(comuna: String) {
