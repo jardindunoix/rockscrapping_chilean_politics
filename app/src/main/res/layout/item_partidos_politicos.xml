@@ -9,26 +9,28 @@
         android:id="@+id/linear_layout_diputados_actuales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_partido_actual"
-            android:layout_width="@dimen/image_view_width"
-            android:layout_height="@dimen/image_view_height"
-            android:layout_margin="@dimen/padding_normal_8dp" />
-
         <TextView
             android:id="@+id/text_view_nombre_partido_actual"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/abel_regular"
+            android:layout_margin="@dimen/margin_normal_8dp"
+            android:fontFamily="@font/architect_daughter_regular"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/text_size_consejal_20dp"
             tools:text="Nombre Chorro" />
 
+        <TextView
+            android:id="@+id/text_view_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="________________________"
+            android:textAlignment="center" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
