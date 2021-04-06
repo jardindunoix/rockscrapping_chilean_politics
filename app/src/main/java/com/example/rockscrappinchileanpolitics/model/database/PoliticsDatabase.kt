@@ -9,6 +9,7 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comuna
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.alcaldes.AlcaldeCandidatoEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
+import com.example.rockscrappinchileanpolitics.utilities.objects.entities.header_home.HeaderHomeEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoCandidatoEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
@@ -17,6 +18,7 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partid
 import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
 
 @Database(entities = [
+	HeaderHomeEntity::class,
 	AlcaldeActualEntity::class,
 	AlcaldeCandidatoEntity::class,
 	ComunaConsejalActualEntity::class,

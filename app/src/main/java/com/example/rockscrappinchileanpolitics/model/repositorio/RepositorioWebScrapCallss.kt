@@ -1,7 +1,9 @@
 package com.example.rockscrappinchileanpolitics.model.repositorio
 
+import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
+import com.example.rockscrappinchileanpolitics.utilities.objects.entities.header_home.HeaderHomeEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
@@ -13,6 +15,22 @@ import java.util.stream.Collectors
 
 class RepositorioWebScrapCallss {
 	companion object {
+		
+		fun getHeaderBadges():MutableList<HeaderHomeEntity> {
+			val headerBadgesList = mutableListOf<HeaderHomeEntity>()
+			val url = StaticStrigns.HEADER_BADGES_URL
+			val document = Jsoup.connect(url).get()
+			val result = document.select("img.img-responsive").eachAttr("src")
+			
+			for (badge in result) {
+				headerBadgesList.add(HeaderHomeEntity(webPictureSite = badge.toString()))
+			}
+			
+			
+			Log.e("DOCUMENTO LISTA ---->", headerBadgesList.toString())
+			
+			return headerBadgesList
+		}
 		
 		/*COMUNAL*/
 		fun getComunasConsejalesActuales():MutableList<ComunaConsejalActualEntity> {
@@ -48,14 +66,20 @@ class RepositorioWebScrapCallss {
 					++ counterParaPrueba
 					if (a <= b) {
 						comunasList.add(
-							ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
+							ComunaConsejalActualEntity(
+								nombre = listComunasElementsPOST[i],
 								region = regionCorregidaThree,
-								paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"))
+								paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"
+							)
+						)
 					} else {
 						comunasList.add(
-							ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
+							ComunaConsejalActualEntity(
+								nombre = listComunasElementsPOST[i],
 								region = regionCorregidaThree,
-								paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"))
+								paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"
+							)
+						)
 						++ indiceRegiones
 					}
 				}
@@ -64,9 +88,13 @@ class RepositorioWebScrapCallss {
 			val newValue = ""
 			val regionCorregida =
 				listRegionesElements[indiceRegiones].replace(oldValueOne, newValue)
-			comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[floor],
-				region = regionCorregida,
-				paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[floor]}"))
+			comunasList.add(
+				ComunaConsejalActualEntity(
+					nombre = listComunasElementsPOST[floor],
+					region = regionCorregida,
+					paginaWeb = "${StaticStrigns.URL_COMUNA_DETALLE}${listComunasElementsPOST[floor]}"
+				)
+			)
 			
 			return comunasList
 		}
@@ -79,8 +107,12 @@ class RepositorioWebScrapCallss {
 			val listPictureConsejales = document.select("img").eachAttr("src")
 			var counter = 1
 			for (element in listComunasElements) {
-				consejalesList.add(ConsejalActualDetalleEntity(nombre = element,
-					picture = "https://www.cdch" + ".cl${listPictureConsejales[counter]}"))
+				consejalesList.add(
+					ConsejalActualDetalleEntity(
+						nombre = element,
+						picture = "https://www.cdch" + ".cl${listPictureConsejales[counter]}"
+					)
+				)
 				counter ++
 			}
 			return consejalesList
@@ -113,9 +145,12 @@ class RepositorioWebScrapCallss {
 					nombre = nameList[countName].replace(oldValueOne, newValue)
 					nombreCorregido = nombre.replace(oldValueTwo, newValue)
 					diputadosActualesList.add(
-						DiputadoActualEntity(nombre = nombreCorregido,
+						DiputadoActualEntity(
+							nombre = nombreCorregido,
 							paginaWeb = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${StaticStrigns.DIPUTADOS}${webpage[countAttr]}",
-							picture = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${f}"))
+							picture = "${StaticStrigns.URL_DIPUTADOS_ACTUALES_ROOT}${f}"
+						)
+					)
 					countAttr += 3
 					++ countName
 				}
@@ -143,7 +178,8 @@ class RepositorioWebScrapCallss {
 				webpage = "${StaticStrigns.URL_SENADORES_ACTUALES_ROOT}${webpageList[countAttr]}"
 				image = "${StaticStrigns.URL_SENADORES_ACTUALES_ROOT}${f}"
 				senadoresActualesList.add(
-					SenadorActualEntity(nombre = name, paginaWeb = webpage, picture = image))
+					SenadorActualEntity(nombre = name, paginaWeb = webpage, picture = image)
+				)
 				++ countAttr
 				++ countName
 			}
@@ -166,22 +202,32 @@ class RepositorioWebScrapCallss {
 			
 			/*****************************/
 			val element1 = pagina1Document.select(
-				"${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+				"${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
+			)
 				.eachText() as ArrayList
 			val element2 = pagina2Document.select(
-				"${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+				"${StaticStrigns.TD_PARTIDOS_POLITICOS_CLASS}.${StaticStrigns.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
+			)
 				.eachText() as ArrayList
 			
 			for (r in element1) {
 				if (! r.equals(excluyeFila, true)) {
-					partidosActualesList.add(PartidoPoliticoEntity(nombre = r,
-						picture = pictureSpecial))
+					partidosActualesList.add(
+						PartidoPoliticoEntity(
+							nombre = r,
+							picture = pictureSpecial
+						)
+					)
 				}
 			}
 			
 			for (r in element2) {
-				partidosActualesList.add(PartidoPoliticoEntity(nombre = r,
-					picture = pictureSpecialTwo))
+				partidosActualesList.add(
+					PartidoPoliticoEntity(
+						nombre = r,
+						picture = pictureSpecialTwo
+					)
+				)
 			}
 			return partidosActualesList
 		}

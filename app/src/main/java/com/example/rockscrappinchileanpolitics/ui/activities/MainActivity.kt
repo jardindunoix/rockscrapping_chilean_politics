@@ -1,6 +1,6 @@
 package com.example.rockscrappinchileanpolitics.ui.activities
 
-import android.os.*
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rockscrappinchileanpolitics.databinding.ActivityMainBinding
 

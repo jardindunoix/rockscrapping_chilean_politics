@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemPartidosPoliticosBinding
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
-import com.squareup.picasso.Picasso
 
 class PartidosPoliticosAdapter(
 	private var list:MutableList<PartidoPoliticoEntity> = mutableListOf(),
@@ -33,9 +32,8 @@ class PartidosPoliticosAdapter(
 		val binding =
 			ItemPartidosPoliticosBinding.inflate(LayoutInflater.from(context), parent,
 				false)
-		val holder = MyOwnViewHolder(binding)
 		
-		return holder
+		return MyOwnViewHolder(binding)
 	}
 	
 	override fun onBindViewHolder(holder:BaseViewHolder<*>, position:Int) {

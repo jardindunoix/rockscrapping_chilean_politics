@@ -8,4 +8,6 @@
     <string name="button_ir_a_consejales_actuales">Consejales Actuales</string>
     <string name="text_button_volver">Volver</string>
     <string name="text_for_header_without_connection">No tienes conexión\nIntenta nuevamente, por favor.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

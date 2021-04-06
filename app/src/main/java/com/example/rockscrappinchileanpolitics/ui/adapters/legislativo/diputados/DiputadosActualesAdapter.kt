@@ -10,7 +10,8 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legisl
 import com.squareup.picasso.Picasso
 
 class DiputadosActualesAdapter(private var list:MutableList<DiputadoActualEntity> = mutableListOf(),
-	private val context:Context):RecyclerView.Adapter<DiputadosActualesAdapter.BaseViewHolder<*>>() {
+	private val context:Context):
+	RecyclerView.Adapter<DiputadosActualesAdapter.BaseViewHolder<*>>() {
 	
 	abstract class BaseViewHolder<T>(item:View):RecyclerView.ViewHolder(item) {
 		
@@ -27,10 +28,10 @@ class DiputadosActualesAdapter(private var list:MutableList<DiputadoActualEntity
 	}
 	
 	override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):BaseViewHolder<*> {
-		val binding = ItemDiputadosActualesBinding.inflate(LayoutInflater.from(context), parent, false)
-		val holder = MyOwnViewHolder(binding)
+		val binding =
+			ItemDiputadosActualesBinding.inflate(LayoutInflater.from(context), parent, false)
 		
-		return holder
+		return MyOwnViewHolder(binding)
 	}
 	
 	override fun onBindViewHolder(holder:BaseViewHolder<*>, position:Int) {
