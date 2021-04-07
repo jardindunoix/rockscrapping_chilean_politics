@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_normal_8dp">
+    android:layout_margin="@dimen/margin_normal_8dp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linear_layout_diputados_actuales"
@@ -21,7 +21,7 @@
             android:id="@+id/linear_layout_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             tools:ignore="UselessParent">
 
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/abel_regular"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text_size_consejal_20dp"
                 tools:text="Nombre Chorro" />
 
             <TextView
@@ -39,10 +39,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_normal_8dp"
                 android:fontFamily="@font/abel_regular"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/text_size_regio_consejal_15dp"
-                tools:text="Nombre Chorro" />
+                tools:text="region del chorro" />
         </LinearLayout>
 
     </LinearLayout>

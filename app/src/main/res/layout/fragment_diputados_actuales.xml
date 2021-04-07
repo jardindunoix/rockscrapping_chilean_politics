@@ -10,17 +10,18 @@
     <LinearLayout
         android:id="@+id/linear_layout__"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/heigt_header_diputados_actuales"
         android:layout_marginBottom="@dimen/padding_normal_4dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/margin_top_header">
 
         <TextView
             android:id="@+id/text_view_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abel_regular"
-            android:text="DIPUTADOS"
+            android:fontFamily="@font/angeline_vintage_demo"
+            android:text="@string/diputados_actuales"
             android:textSize="@dimen/text_size" />
     </LinearLayout>
 

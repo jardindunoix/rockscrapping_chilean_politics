@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rockscrappinchileanpolitics.databinding.ItemDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.diputados.DiputadoActualEntity
+import com.google.android.material.shape.RoundedCornerTreatment
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
 
-class DiputadosActualesAdapter(private var list:MutableList<DiputadoActualEntity> = mutableListOf(),
-	private val context:Context):
+class DiputadosActualesAdapter(
+	private var list:MutableList<DiputadoActualEntity> = mutableListOf(),
+	private val context:Context
+):
 	RecyclerView.Adapter<DiputadosActualesAdapter.BaseViewHolder<*>>() {
 	
 	abstract class BaseViewHolder<T>(item:View):RecyclerView.ViewHolder(item) {

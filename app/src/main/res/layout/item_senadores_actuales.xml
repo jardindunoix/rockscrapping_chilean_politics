@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_left_diputados_actuales">
 
     <LinearLayout
         android:id="@+id/linear_layout_senadores_actuales"
@@ -26,9 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/black"
             android:fontFamily="@font/abel_regular"
-            android:textSize="@dimen/text_size"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_consejal_20dp"
             tools:text="Nombre Chorro" />
 
     </LinearLayout>
