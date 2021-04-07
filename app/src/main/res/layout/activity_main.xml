@@ -11,6 +11,8 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="@dimen/size_zero"
         android:layout_height="@dimen/size_zero"
+        android:layout_margin="@dimen/padding_normal_4dp"
+        android:background="@drawable/lib"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
