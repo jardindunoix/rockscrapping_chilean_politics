@@ -2,9 +2,9 @@ package com.example.rockscrappinchileanpolitics.utilities.objects.entities.comun
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
+import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
 
-@Entity(tableName = StaticStrigns.CONSEJALES_ACTUALES_DETALLE_TABLE)
+@Entity(tableName = StaticUtils.CONSEJALES_ACTUALES_DETALLE_TABLE)
 data class ConsejalActualDetalleEntity(
     @PrimaryKey(autoGenerate = true)
     var idConsejalActual: Int = 0,

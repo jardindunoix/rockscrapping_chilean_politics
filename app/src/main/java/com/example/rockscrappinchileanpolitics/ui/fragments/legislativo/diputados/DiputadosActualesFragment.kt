@@ -8,43 +8,51 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentDiputadosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.legislativo.diputados.DiputadosActualesAdapter
 import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerView
+import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.viewmodel.legislativo.diputados.DiputadosActualesViewModel
 
-class DiputadosActualesFragment : Fragment() {
-
-    private var _binding: FragmentDiputadosActualesBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var navController: NavController
-    private lateinit var model: DiputadosActualesViewModel
-    private lateinit var adapter: DiputadosActualesAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentDiputadosActualesBinding.inflate(layoutInflater)
-        model = ViewModelProvider(this).get(DiputadosActualesViewModel::class.java)
-        adapter = DiputadosActualesAdapter(mutableListOf(), requireContext())
-        binding.recyclerViewDiputadosActuales.initRecyclerView(binding.recyclerViewDiputadosActuales,
-            requireContext(), adapter)
-        model.diputadosActualesList.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()) {
-                adapter.setItemInTheView(it)
-            } else {
-                binding.textView.text = getString(R.string.text_for_header_without_connection)
-            }
-        })
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+class DiputadosActualesFragment:Fragment() {
+	
+	private var _binding:FragmentDiputadosActualesBinding? = null
+	private val binding get() = _binding !!
+	private lateinit var navController:NavController
+	private lateinit var model:DiputadosActualesViewModel
+	private lateinit var adapter:DiputadosActualesAdapter
+	override fun onCreateView(
+		inflater:LayoutInflater, container:ViewGroup?,
+		savedInstanceState:Bundle?
+	):View {
+		_binding = FragmentDiputadosActualesBinding.inflate(layoutInflater)
+		model = ViewModelProvider(this).get(DiputadosActualesViewModel::class.java)
+		adapter = DiputadosActualesAdapter(mutableListOf(), requireContext())
+		binding.recyclerViewDiputadosActuales.initRecyclerView(
+			binding.recyclerViewDiputadosActuales,
+			requireContext(), adapter
+		)
+		model.diputadosActualesList.observe(viewLifecycleOwner, {
+			if (it.isNotEmpty()) {
+				adapter.setItemInTheView(it)
+			} else {
+				binding.textView.text = getString(R.string.text_for_header_without_connection)
+			}
+		})
+		return binding.root
+	}
+	
+	override fun onViewCreated(view:View, savedInstanceState:Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
+		navController = Navigation.findNavController(view)
+	}
+	
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

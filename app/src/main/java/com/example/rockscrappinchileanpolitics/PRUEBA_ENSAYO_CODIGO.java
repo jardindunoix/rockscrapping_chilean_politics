@@ -1,22 +1,102 @@
 package com.example.rockscrappinchileanpolitics;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.animation.LinearInterpolator;
+import android.widget.Scroller;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+/**
+ * Created by riteshb on 5/17/2017.
+ */
+@SuppressLint( "AppCompatCustomView" ) class ScrollImageView extends TextView {
+    public float DEFAULT_SPEED = 29.0f;
+    public Scroller scroller;
+    public float speed = DEFAULT_SPEED;
+    public boolean continuousScrolling = true;
 
-public class PRUEBA_ENSAYO_CODIGO extends Fragment {
+    public ScrollImageView( Context context ) {
 
+        super( context );
+        scrollerInstance( context );
+    }
 
-    @Nullable @Override
-    public View onCreateView( @NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState ) {
+    public ScrollImageView( Context context, AttributeSet attributes ) {
 
-        return super.onCreateView( inflater, container, savedInstanceState );
+        super( context, attributes );
+        scrollerInstance( context );
+    }
+
+    public void scrollerInstance( Context context ) {
+
+        scroller = new Scroller( context, new LinearInterpolator( ) );
+        setScroller( scroller );
+    }
+
+    @Override
+    protected void onLayout( boolean changed, int left, int top, int right, int bottom ) {
+
+        super.onLayout( changed, left, top, right, bottom );
+        if( scroller.isFinished( ) ) {
+            scroll( );
+        }
+    }
+
+    public void scroll( ) {
+
+        int viewHeight = getHeight( );
+        int visibleHeight = viewHeight - getPaddingBottom( ) - getPaddingTop( );
+        int lineHeight = getLineHeight( );
+        int offset = -1 * visibleHeight;
+        int distance = visibleHeight + getLineCount( ) * lineHeight;
+        int duration = ( int ) ( distance * speed );
+        scroller.startScroll( 0, offset, 0, distance, duration );
+    }
+
+    public float getSpeed( ) {
+
+        return speed;
+    }
+
+    public void setSpeed( float speed ) {
+
+        this.speed = speed;
+    }
+
+    public boolean isContinuousScrolling( ) {
+
+        return continuousScrolling;
+    }
+
+    public void setContinuousScrolling( boolean continuousScrolling ) {
+
+        this.continuousScrolling = continuousScrolling;
+    }
+
+    @Override
+    public void computeScroll( ) {
+
+        super.computeScroll( );
+        if( null == scroller ) {
+            return;
+        }
+        if( scroller.isFinished( ) && continuousScrolling ) {
+            scroll( );
+        }
+    }
+
+    @Override
+    protected void onDraw( Canvas canvas ) {
+
+        super.onDraw( canvas );
+        if( null == scroller ) {
+            return;
+        }
+        if( scroller.isFinished( ) && continuousScrolling ) {
+            scroll( );
+        }
     }
 
 }

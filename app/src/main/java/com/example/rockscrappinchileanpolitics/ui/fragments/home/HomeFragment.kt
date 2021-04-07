@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentHomeBinding
-import com.example.rockscrappinchileanpolitics.ui.adapters.heade_home.HeaderHomeAdapter
-import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerView
-import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerViewHorizontal
 import com.example.rockscrappinchileanpolitics.viewmodel.header_home.HeaderHomeViewModel
+import org.imaginativeworld.whynotimagecarousel.CarouselItem
 
 class HomeFragment:Fragment() {
 	
@@ -22,29 +22,25 @@ class HomeFragment:Fragment() {
 	private val binding get() = _binding !!
 	private lateinit var navController:NavController
 	private lateinit var model:HeaderHomeViewModel
-	private lateinit var adapter:HeaderHomeAdapter
-	
+	val list = mutableListOf<CarouselItem>()
 	override fun onCreateView(
 		inflater:LayoutInflater, container:ViewGroup?,
 		savedInstanceState:Bundle?
 	):View {
 		_binding = FragmentHomeBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(HeaderHomeViewModel::class.java)
-		adapter = HeaderHomeAdapter(mutableListOf(), requireContext())
 		
-		binding.recyclerViewHeaderHome.initRecyclerViewHorizontal(
-			binding.recyclerViewHeaderHome,
-			requireContext(), adapter
-		)
 		model.headerHomeList.observe(viewLifecycleOwner, {
 			if (it.isNotEmpty()) {
-				adapter.setItemInTheView(it)
+				for ((i, _) in it.withIndex()) {
+					list.add(CarouselItem(it[i].webPictureSite))
+				}
+				binding.carousel.addData(list)
 			} else {
 				Toast.makeText(
 					requireContext(), getString(R.string.text_for_header_without_connection), Toast
 						.LENGTH_LONG
 				).show()
-				// binding.textView.text = getString(R.string.text_for_header_without_connection)
 			}
 		})
 		
@@ -72,6 +68,7 @@ class HomeFragment:Fragment() {
 	
 	override fun onDestroyView() {
 		super.onDestroyView()
+		list.clear()
 		_binding = null
 	}
 }

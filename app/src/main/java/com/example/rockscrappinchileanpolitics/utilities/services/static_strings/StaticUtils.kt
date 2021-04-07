@@ -1,7 +1,10 @@
-package com.example.rockscrappinchileanpolitics.utilities.services
+package com.example.rockscrappinchileanpolitics.utilities.services.static_strings
 
-class StaticStrigns {
+class StaticUtils {
 	companion object {
+		
+		/*Constantes enteras*/
+		const val YOYO_DURATION = 2000L
 		
 		/*constantes senadores actuales*/
 		const val URL_SENADORES_ACTUALES =
@@ -54,7 +57,8 @@ class StaticStrigns {
 		const val PARTIDOS_POLITICOS_TABLE = "partidos_politicos_table"
 		
 		/*Haeader Badges URL*/
-		const val HEADER_BADGES_URL ="https://www.bcn.cl/historiapolitica/partidos_politicos/index.html"
+		const val HEADER_BADGES_URL =
+			"https://www.bcn.cl/historiapolitica/partidos_politicos/index.html"
 		
 		/*WEBpages partidos politicos*/
 		const val PARTIDO_REGIONALISTA_INDEPENDIENTE_DEMOCRATA = "https://www.pridemocrata.cl/"

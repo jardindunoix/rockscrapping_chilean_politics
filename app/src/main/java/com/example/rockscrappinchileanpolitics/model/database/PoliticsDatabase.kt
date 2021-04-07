@@ -15,7 +15,7 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legisl
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorCandidatoEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
-import com.example.rockscrappinchileanpolitics.utilities.services.StaticStrigns
+import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
 
 @Database(entities = [
 	HeaderHomeEntity::class,
@@ -41,7 +41,7 @@ abstract class PoliticsDatabase:RoomDatabase() {
 			if (databaseInstance == null) {
 				synchronized(this) {
 					databaseInstance = Room.databaseBuilder(context, PoliticsDatabase::class.java,
-						StaticStrigns.DATABASE_NAME).build()
+						StaticUtils.DATABASE_NAME).build()
 					//                        .fallbackToDestructiveMigration()
 				}
 			}
