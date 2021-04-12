@@ -57,7 +57,7 @@ class StaticUtils {
 		const val PARTIDOS_POLITICOS_TABLE = "partidos_politicos_table"
 		
 		/*Haeader Badges URL*/
-		const val HEADER_BADGES_URL =
+		const val GALLERY_URL =
 			"https://www.bcn.cl/historiapolitica/partidos_politicos/index.html"
 		
 		/*WEBpages partidos politicos*/

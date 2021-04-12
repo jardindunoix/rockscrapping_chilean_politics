@@ -13,7 +13,7 @@ class HeaderHomeWebScrap { internal class LoadInitNews:
 	override fun doInBackground(vararg params:Void?):ArrayList<HeaderHomeEntity> {
 		try {
 			comunasList =
-				RepositorioWebScrapCallss.getHeaderBadges() as ArrayList<HeaderHomeEntity>
+				RepositorioWebScrapCallss.getGallery() as ArrayList<HeaderHomeEntity>
 		} catch (e:IOException) {
 			e.printStackTrace()
 		}

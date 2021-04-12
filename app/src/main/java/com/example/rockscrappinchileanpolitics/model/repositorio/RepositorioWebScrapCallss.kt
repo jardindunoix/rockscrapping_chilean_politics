@@ -1,6 +1,5 @@
 package com.example.rockscrappinchileanpolitics.model.repositorio
 
-import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.header_home.HeaderHomeEntity
@@ -16,20 +15,16 @@ import java.util.stream.Collectors
 class RepositorioWebScrapCallss {
 	companion object {
 		
-		fun getHeaderBadges():MutableList<HeaderHomeEntity> {
-			val headerBadgesList = mutableListOf<HeaderHomeEntity>()
-			val url = StaticUtils.HEADER_BADGES_URL
+		fun getGallery():MutableList<HeaderHomeEntity> {
+			val galleryList = mutableListOf<HeaderHomeEntity>()
+			val url = StaticUtils.GALLERY_URL
 			val document = Jsoup.connect(url).get()
 			val result = document.select("img.img-responsive").eachAttr("src")
 			
 			for (badge in result) {
-				headerBadgesList.add(HeaderHomeEntity(webPictureSite = badge.toString()))
+				galleryList.add(HeaderHomeEntity(webPictureSite = badge.toString()))
 			}
-			
-			
-			Log.e("DOCUMENTO LISTA ---->", headerBadgesList.toString())
-			
-			return headerBadgesList
+			return galleryList
 		}
 		
 		/*COMUNAL*/
@@ -204,11 +199,11 @@ class RepositorioWebScrapCallss {
 			val element1 = pagina1Document.select(
 				"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
 			)
-				.eachText() as ArrayList
+				.eachText()
 			val element2 = pagina2Document.select(
 				"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
 			)
-				.eachText() as ArrayList
+				.eachText()
 			
 			for (r in element1) {
 				if (! r.equals(excluyeFila, true)) {
@@ -229,6 +224,7 @@ class RepositorioWebScrapCallss {
 					)
 				)
 			}
+			
 			return partidosActualesList
 		}
 		
