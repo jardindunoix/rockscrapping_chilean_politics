@@ -1,28 +1,23 @@
 package com.example.rockscrappinchileanpolitics.model.web_scrapping.legislativo.senadores
 
-import android.os.AsyncTask
 import com.example.rockscrappinchileanpolitics.model.repositorio.RepositorioWebScrapCallss.Companion.getSenadoresActuales
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
 import java.io.IOException
 
 class SenadoresActualesWebScrap {
 	
-	internal class LoadInitNews():AsyncTask<Void, Void, ArrayList<SenadorActualEntity>>() {
+	companion object {
 		
-		private var senadoresActualesList:ArrayList<SenadorActualEntity> = ArrayList()
+		private var senadoresActualesList:MutableList<SenadorActualEntity> = mutableListOf()
 		
-		override fun doInBackground(vararg params:Void?):ArrayList<SenadorActualEntity> {
+		fun doInBackground():MutableList<SenadorActualEntity> {
 			try {
-				senadoresActualesList = getSenadoresActuales() as ArrayList<SenadorActualEntity>
+				senadoresActualesList = getSenadoresActuales()
 				
 			} catch (e:IOException) {
 				e.printStackTrace()
 			}
 			return senadoresActualesList
-		}
-		
-		override fun onPostExecute(result:ArrayList<SenadorActualEntity>?) {
-		
 		}
 	}
 }

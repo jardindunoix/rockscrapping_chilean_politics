@@ -17,40 +17,40 @@ import com.example.rockscrappinchileanpolitics.utilities.services.extension_func
 import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.viewmodel.partidos_politicos.PartidosPoliticosViewModel
 
-class PartidosPoliticosActualesFragment : Fragment() {
-
-    private var _binding: FragmentPartidosPoliticosActualesBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var navController: NavController
-    private lateinit var model: PartidosPoliticosViewModel
-    private lateinit var adapter: PartidosPoliticosAdapter
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
-        adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
-        binding.recyclerViewPartidosPoliticos.initRecyclerView(binding.recyclerViewPartidosPoliticos,
-            requireContext(), adapter)
-        model = ViewModelProvider(this).get(PartidosPoliticosViewModel::class.java)
-
-        model.partidosActualesList.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()) {
-                adapter.setItemInTheView(it)
-            } else {
-                binding.textView.text = getString(R.string.text_for_header_without_connection)
-            }
-        })
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-	    YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
-        navController = Navigation.findNavController(view)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+class PartidosPoliticosActualesFragment:Fragment() {
+	
+	private var _binding:FragmentPartidosPoliticosActualesBinding? = null
+	private val binding get() = _binding !!
+	private lateinit var navController:NavController
+	private lateinit var model:PartidosPoliticosViewModel
+	private lateinit var adapter:PartidosPoliticosAdapter
+	
+	override fun onCreateView(
+		inflater:LayoutInflater, container:ViewGroup?,
+		savedInstanceState:Bundle?
+	):View {
+		_binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
+		adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
+		binding.recyclerViewPartidosPoliticos.initRecyclerView(
+			binding.recyclerViewPartidosPoliticos,
+			requireContext(), adapter
+		)
+		model = ViewModelProvider(this).get(PartidosPoliticosViewModel::class.java)
+		
+		model.partidosActualesList.observe(viewLifecycleOwner, {
+			adapter.setItemInTheView(it)
+		})
+		return binding.root
+	}
+	
+	override fun onViewCreated(view:View, savedInstanceState:Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
+		navController = Navigation.findNavController(view)
+	}
+	
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

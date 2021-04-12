@@ -17,38 +17,38 @@ import com.example.rockscrappinchileanpolitics.utilities.services.extension_func
 import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.viewmodel.legislativo.senadores.SenadoresActualesViewModel
 
-class SenadoresActualesFragment : Fragment() {
-
-    private var _binding: FragmentSenadoresActualesBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var navController: NavController
-    private lateinit var model: SenadoresActualesViewModel
-    private lateinit var adapter: SenadoresActualesAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        _binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
-        model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
-        adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
-        binding.recyclerViewSenadoresActuales.initRecyclerView(binding.recyclerViewSenadoresActuales,
-            requireContext(), adapter)
-        model.senadoresActualesList.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()) {
-                adapter.setItemInTheView(it)
-            } else {
-                binding.textView.text = getString(R.string.text_for_header_without_connection)
-            }
-        })
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-	    YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
-        navController = Navigation.findNavController(view)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+class SenadoresActualesFragment:Fragment() {
+	
+	private var _binding:FragmentSenadoresActualesBinding? = null
+	private val binding get() = _binding !!
+	private lateinit var navController:NavController
+	private lateinit var model:SenadoresActualesViewModel
+	private lateinit var adapter:SenadoresActualesAdapter
+	override fun onCreateView(
+		inflater:LayoutInflater, container:ViewGroup?,
+		savedInstanceState:Bundle?
+	):View {
+		_binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
+		model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
+		adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
+		binding.recyclerViewSenadoresActuales.initRecyclerView(
+			binding.recyclerViewSenadoresActuales,
+			requireContext(), adapter
+		)
+		model.senadoresActualesList.observe(viewLifecycleOwner, {
+			adapter.setItemInTheView(it)
+		})
+		return binding.root
+	}
+	
+	override fun onViewCreated(view:View, savedInstanceState:Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
+		navController = Navigation.findNavController(view)
+	}
+	
+	override fun onDestroyView() {
+		super.onDestroyView()
+		_binding = null
+	}
 }

@@ -3,21 +3,22 @@ package com.example.rockscrappinchileanpolitics.model.managers.comunal.consejale
 import androidx.lifecycle.MutableLiveData
 import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ComunasConselajesActualesWebScrap
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ComunasConsejalesActualesWebScrapManager {
 	
 	var allComunasConsejales = MutableLiveData<MutableList<ComunaConsejalActualEntity>>()
 	
 	init {
-		allComunasConsejales.value = getAllConsejalesActuales()
+		CoroutineScope(Dispatchers.IO).launch {
+			allComunasConsejales.postValue(getAllConsejalesActuales())
+		}
 	}
 	
 	private fun getAllConsejalesActuales():MutableList<ComunaConsejalActualEntity> {
-		val list:MutableList<ComunaConsejalActualEntity>
-		val loader = ComunasConselajesActualesWebScrap.LoadInitNews()
-		loader.execute()
-		list = loader.get()
-		return list
+		return ComunasConselajesActualesWebScrap.doInBackground()
 	}
 }
 

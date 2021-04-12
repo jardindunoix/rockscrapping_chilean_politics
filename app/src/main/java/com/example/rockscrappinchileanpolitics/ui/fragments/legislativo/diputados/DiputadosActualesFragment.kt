@@ -36,11 +36,7 @@ class DiputadosActualesFragment:Fragment() {
 			requireContext(), adapter
 		)
 		model.diputadosActualesList.observe(viewLifecycleOwner, {
-			if (it.isNotEmpty()) {
-				adapter.setItemInTheView(it)
-			} else {
-				binding.textView.text = getString(R.string.text_for_header_without_connection)
-			}
+			adapter.setItemInTheView(it)
 		})
 		return binding.root
 	}

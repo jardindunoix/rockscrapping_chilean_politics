@@ -34,17 +34,10 @@ class GalleryFragment:Fragment() {
 		model = ViewModelProvider(this).get(HeaderHomeViewModel::class.java)
 		
 		model.headerHomeList.observe(viewLifecycleOwner, {
-			if (it.isNotEmpty()) {
-				for ((i, _) in it.withIndex()) {
-					list.add(CarouselItem(it[i].webPictureSite))
-				}
-				binding.carousel.addData(list)
-			} else {
-				Toast.makeText(
-					requireContext(), getString(R.string.text_for_header_without_connection), Toast
-						.LENGTH_LONG
-				).show()
+			for ((i, _) in it.withIndex()) {
+				list.add(CarouselItem(it[i].webPictureSite))
 			}
+			binding.carousel.addData(list)
 		})
 		
 		return binding.root
