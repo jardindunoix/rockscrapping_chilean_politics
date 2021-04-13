@@ -22,7 +22,7 @@ import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.E
 import com.example.rockscrappinchileanpolitics.d_utilities.interfaces_listeners.ListenerConsejalComunas
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.b_viewmodel.ComunasConsejalesActualesViewModel
-import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.comunaConvertForWebPage
+import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.convertComunaForWebPage
 
 class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	
@@ -51,7 +51,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	
 	override fun onViewCreated(view:View, savedInstanceState:Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		YoYo.with(Techniques.Tada).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
+		YoYo.with(Techniques.Pulse).duration(StaticUtils.YOYO_DURATION).playOn(binding.textView)
 		navController = Navigation.findNavController(view)
 	}
 	
@@ -76,7 +76,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		bindingDialog !!.recyclerViewConsejalesActualesDetalle.layoutManager =
 			LinearLayoutManager(requireContext())
 		bindingDialog !!.recyclerViewConsejalesActualesDetalle.adapter = adapter
-		val comunaM = comunaConvertForWebPage(comuna)
+		val comunaM = convertComunaForWebPage(comuna)
 		model.getConsejalesDetailUsingViewModel(comunaM)
 		bindingDialog !!.textView.text = comuna
 		model.detailConsejales.observe(this, {

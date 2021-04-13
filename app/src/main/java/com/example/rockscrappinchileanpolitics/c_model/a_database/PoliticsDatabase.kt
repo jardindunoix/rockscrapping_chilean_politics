@@ -31,7 +31,7 @@ abstract class PoliticsDatabase:RoomDatabase() {
 			if (databaseInstance == null) {
 				synchronized(this) {
 					databaseInstance = Room.databaseBuilder(context, PoliticsDatabase::class.java,
-						StaticUtils.DATABASE_NAME).build()
+						StaticUtils.POLITICS_DDBB_NAME).build()
 					//                        .fallbackToDestructiveMigration()
 				}
 			}

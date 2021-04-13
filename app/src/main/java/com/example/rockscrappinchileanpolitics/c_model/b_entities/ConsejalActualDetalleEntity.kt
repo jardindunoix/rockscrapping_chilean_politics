@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
 
-@Entity(tableName = StaticUtils.CONSEJALES_ACTUALES_DETALLE_TABLE)
+@Entity(tableName = StaticUtils.CONS_ACT_DET_TABLE)
 data class ConsejalActualDetalleEntity(
     @PrimaryKey(autoGenerate = true)
     var idConsejalActual: Int = 0,

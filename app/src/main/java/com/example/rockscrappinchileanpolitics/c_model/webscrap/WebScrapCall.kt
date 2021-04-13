@@ -1,9 +1,8 @@
 package com.example.rockscrappinchileanpolitics.c_model.webscrap
 
-import android.util.Log
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.*
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
-import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.comunaConvertForWebPage
+import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.convertComunaForWebPage
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.firstLetter
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.isAllCapsUp
 import org.jsoup.Jsoup
@@ -15,7 +14,7 @@ class WebScrapCall { companion object {
 	
 	fun getGallery():MutableList<GalleryEntity> {
 		val galleryList = mutableListOf<GalleryEntity>()
-		val url = StaticUtils.HEADER_BADGES_URL
+		val url = StaticUtils.GALLERY_URL
 		val document = Jsoup.connect(url).get()
 		val result = document.select("img.img-responsive").eachAttr("src")
 		
@@ -28,7 +27,7 @@ class WebScrapCall { companion object {
 	/*COMUNAL*/
 	fun getComunasConsejalesActuales():MutableList<ComunaConsejalActualEntity> {
 		val comunasList = mutableListOf<ComunaConsejalActualEntity>()
-		val url = StaticUtils.URL_CONSEJALES_ACTUALES
+		val url = StaticUtils.PPAL_URL_CONS_ACT
 		val document = Jsoup.connect(url).get()
 		/*trae el cuerpo del documento*/
 		// val container = document.select("div.containerCDC")
@@ -56,14 +55,14 @@ class WebScrapCall { companion object {
 					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
 						region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
 							.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
-						paginaWeb = "${StaticUtils.URL_COMUNA_DETALLE}${
-							comunaConvertForWebPage(listComunasElementsPOST[i])
+						paginaWeb = "${StaticUtils.URL_COM_DET}${
+							convertComunaForWebPage(listComunasElementsPOST[i])
 						}"))
 				} else {
 					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
 						region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
 							.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
-						paginaWeb = "${StaticUtils.URL_COMUNA_DETALLE}${listComunasElementsPOST[i]}"))
+						paginaWeb = "${StaticUtils.URL_COM_DET}${listComunasElementsPOST[i]}"))
 					++ indiceRegiones
 				}
 			}
@@ -72,23 +71,22 @@ class WebScrapCall { companion object {
 		val newValue = ""
 		comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[floor],
 			region = listRegiones[listRegiones.size - 1].replace(oldValueOne, newValue),
-			paginaWeb = "${StaticUtils.URL_COMUNA_DETALLE}${
-				comunaConvertForWebPage(listComunasElementsPOST[floor])
+			paginaWeb = "${StaticUtils.URL_COM_DET}${
+				convertComunaForWebPage(listComunasElementsPOST[floor])
 			}"))
-		Log.e("Message ---->", comunasList.toString())
 		return comunasList
 	}
 	
 	fun getConsejalesActualesDetail(comuna:String):MutableList<ConsejalActualDetalleEntity> {
 		val consejalesList:MutableList<ConsejalActualDetalleEntity> = mutableListOf()
-		val url = StaticUtils.URL_COMUNA_DETALLE + comuna
+		val url = StaticUtils.URL_COM_DET + comuna
 		val document = Jsoup.connect(url).get()
 		val listComunasElements = document.select("div.img-thumbnail").eachAttr("alt")
 		val listPictureConsejales = document.select("img").eachAttr("src")
 		// var counter = 1
 		for ((i, element) in listComunasElements.withIndex()) {
 			consejalesList.add(ConsejalActualDetalleEntity(nombre = element, picture = "${
-				StaticUtils.URL_BASE_CONSEJALES_ACTUALES
+				StaticUtils.BASE_URL_CONS_ACT
 			}${listPictureConsejales[i + 1]}"))
 		}
 		return consejalesList
@@ -97,15 +95,15 @@ class WebScrapCall { companion object {
 	/*LEGISLATIVO*/
 	fun getDiputadosActuales():MutableList<DiputadoActualEntity> {
 		val diputadosActualesList = mutableListOf<DiputadoActualEntity>()
-		val url = "${StaticUtils.URL_DIPUTADOS_ACTUALES_ROOT}${StaticUtils.DIPUTADOS_END_POINT}"
+		val url = "${StaticUtils.BASE_URL_DIP_ACT}${StaticUtils.END_POINT_DIP_ACT}"
 		val document:Document = Jsoup.connect(url).get()
-		val articleElement:Elements = document.select("article.${StaticUtils.GRID}")
-		val h4Elements = articleElement.select(StaticUtils.H4).eachText()
-		val nameList = h4Elements.stream().collect(Collectors.toList()) as ArrayList
-		val webpage = articleElement.select("a").eachAttr(StaticUtils.HREF).stream()
-			.collect(Collectors.toList()) as ArrayList
-		val imagesList = articleElement.select(StaticUtils.IMG).eachAttr(StaticUtils.SRC).stream()
-			.collect(Collectors.toList()) as ArrayList
+		val articleElement:Elements = document.select("article.${StaticUtils.GRID_DIP_ACT}")
+		val h4Elements = articleElement.select(StaticUtils.H4_DIP_ACT).eachText()
+		val nameList = h4Elements.stream().collect(Collectors.toList())
+		val webpage = articleElement.select("a").eachAttr(StaticUtils.HREF_DIP_ACT).stream()
+			.collect(Collectors.toList())
+		val imagesList = articleElement.select(StaticUtils.IMG_DIP_ACT).eachAttr(StaticUtils.SRC_DIP_ACT).stream()
+			.collect(Collectors.toList())
 		var countAttr = 0
 		if (webpage.size / 3 == nameList.size) {
 			val oldValueOne = "Sr. "
@@ -116,8 +114,8 @@ class WebScrapCall { companion object {
 				diputadosActualesList.add(DiputadoActualEntity(
 					nombre = nameList[i].replace(oldValueOne, newValue)
 						.replace(oldValueTwo, newValue),
-					paginaWeb = "${StaticUtils.URL_DIPUTADOS_ACTUALES_ROOT}${StaticUtils.DIPUTADOS}${webpage[countAttr]}",
-					picture = "${StaticUtils.URL_DIPUTADOS_ACTUALES_ROOT}${f}"))
+					paginaWeb = "${StaticUtils.BASE_URL_DIP_ACT}${StaticUtils.DIPUTADOS_DIP_ACT}${webpage[countAttr]}",
+					picture = "${StaticUtils.BASE_URL_DIP_ACT}${f}"))
 				countAttr += 3
 			}
 		}
@@ -126,34 +124,34 @@ class WebScrapCall { companion object {
 	
 	fun getSenadoresActuales():MutableList<SenadorActualEntity> {
 		val senadoresActualesList = mutableListOf<SenadorActualEntity>()
-		val url = StaticUtils.URL_SENADORES_ACTUALES
+		val url = StaticUtils.PPAL_URL_SEN_ACT
 		val document:Document = Jsoup.connect(url).get()
 		val divElement:Elements =
-			document.select("div.${StaticUtils.CLASS_NAME_SENADORES_ACTUALES}")
-		val webpageList = divElement.select("a").eachAttr(StaticUtils.HREF_WEB_PAGE_SENADORES)
-		val nameList = divElement.select("img").eachAttr(StaticUtils.NAME_SENADORES_ALT_LIST)
-		val imagesList = divElement.select("img").eachAttr(StaticUtils.IMAGES_LIST_SRC)
+			document.select("div.${StaticUtils.CLASS_SEN_ACT}")
+		val webpageList = divElement.select("a").eachAttr(StaticUtils.HREF_SEN_ACT)
+		val nameList = divElement.select("img").eachAttr(StaticUtils.ALT_SEN_ACT)
+		val imagesList = divElement.select("img").eachAttr(StaticUtils.SRC_SEN_ACT)
 		
 		imagesList.withIndex().forEach { (index, f) ->
 			senadoresActualesList.add(SenadorActualEntity(nombre = nameList[index].toString(),
-				paginaWeb = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${webpageList[index]}",
-				picture = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${f}"))
+				paginaWeb = "${StaticUtils.BASE_URL_SEN_ACT}${webpageList[index]}",
+				picture = "${StaticUtils.BASE_URL_SEN_ACT}${f}"))
 		}
 		return senadoresActualesList
 	}
 	
 	fun getPartidosPoliticos():MutableList<PartidoPoliticoEntity> {
 		val partidosActualesList = mutableListOf<PartidoPoliticoEntity>()
-		val urlOne = StaticUtils.URL_PARTIDOS_POLITICOS_1
-		val urlTwo = StaticUtils.URL_PARTIDOS_POLITICOS_2
+		val urlOne = StaticUtils.URL_PART_POL_1
+		val urlTwo = StaticUtils.URL_PART_POL_2
 		val pagina1Document:Document = Jsoup.connect(urlOne).get()
 		val pagina2Document:Document = Jsoup.connect(urlTwo).get()
 		val excluyeFila = "Fecha constitución Partidos Políticos por región"
 		val element1 = pagina1Document.select(
-			"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+			"${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
 			.eachText()
 		val element2 = pagina2Document.select(
-			"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}")
+			"${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
 			.eachText()
 		
 		for (r in element1) {

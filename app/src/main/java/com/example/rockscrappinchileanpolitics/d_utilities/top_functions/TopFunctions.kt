@@ -23,12 +23,11 @@ fun letterToNumber(letter:String):Int {
 	return 0
 }
 
-fun comunaConvertForWebPage(comuna:String):String {
+fun convertComunaForWebPage(comuna:String):String {
 	val oldValue1 = " "
 	val oldValue2 = "Ñ"
 	val newValue1 = "-"
 	val newValue2 = "N"
 	
 	return comuna.trim().replace(oldValue1, newValue1).replace(oldValue2, newValue2)
-	
 }
