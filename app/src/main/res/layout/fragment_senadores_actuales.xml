@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_normal_4dp"
-    tools:context=".ui.fragments.legislativo.senadores.SenadoresActualesFragment">
+    tools:context=".a_ui.fragments.legislativo.senadores.SenadoresActualesFragment">
 
 
     <LinearLayout

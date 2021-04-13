@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.home.HomeFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -27,27 +27,27 @@
     </fragment>
     <fragment
         android:id="@+id/diputadosActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.legislativo.diputados.DiputadosActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.legislativo.diputados.DiputadosActualesFragment"
         android:label="fragment_diputados_actuales"
         tools:layout="@layout/fragment_diputados_actuales" />
     <fragment
         android:id="@+id/senadoresActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.legislativo.senadores.SenadoresActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.legislativo.senadores.SenadoresActualesFragment"
         android:label="fragment_senadores_actuales"
         tools:layout="@layout/fragment_senadores_actuales" />
     <fragment
         android:id="@+id/partidosPoliticosActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.partidos_politicos.PartidosPoliticosActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.partidos_politicos.PartidosPoliticosActualesFragment"
         android:label="fragment_partidos_politicos_actuales"
         tools:layout="@layout/fragment_partidos_politicos_actuales" />
     <fragment
         android:id="@+id/consejalesActualesFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.comunal.consejales.ComunasConsejalesActualesFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.comunal.ComunasConsejalesActualesFragment"
         android:label="fragment_consejales_actuales"
         tools:layout="@layout/fragment_comunas_consejales_actuales" />
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.example.rockscrappinchileanpolitics.ui.fragments.gallery.GalleryFragment"
+        android:name="com.example.rockscrappinchileanpolitics.a_ui.fragments.gallery.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" />
 </navigation>
