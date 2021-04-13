@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.rockscrappinchileanpolitics.databinding.FragmentGalleryBinding
-import com.example.rockscrappinchileanpolitics.b_viewmodel.gallery.GalleryViewModel
+import com.example.rockscrappinchileanpolitics.b_viewmodel.GalleryViewModel
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 
 class GalleryFragment:Fragment() {
@@ -27,7 +27,7 @@ class GalleryFragment:Fragment() {
 		_binding = FragmentGalleryBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(GalleryViewModel::class.java)
 		
-		model.headerHomeList.observe(viewLifecycleOwner, {
+		model.galleryList.observe(viewLifecycleOwner, {
 			for ((i, _) in it.withIndex()) {
 				list.add(CarouselItem(it[i].webPictureSite))
 			}

@@ -11,10 +11,9 @@ import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.databinding.FragmentPartidosPoliticosActualesBinding
-import com.example.rockscrappinchileanpolitics.a_ui.adapters.partidos_politicos.PartidosPoliticosAdapter
 import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
-import com.example.rockscrappinchileanpolitics.b_viewmodel.partidos_politicos.PartidosPoliticosViewModel
+import com.example.rockscrappinchileanpolitics.b_viewmodel.PartidosPoliticosViewModel
 
 class PartidosPoliticosActualesFragment:Fragment() {
 	

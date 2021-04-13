@@ -17,13 +17,12 @@ import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.DialogConsejalesDetailBinding
 import com.example.rockscrappinchileanpolitics.databinding.FragmentComunasConsejalesActualesBinding
-import com.example.rockscrappinchileanpolitics.a_ui.adapters.comunal.consejales.ComunasConsejalesActualesAdapter
-import com.example.rockscrappinchileanpolitics.a_ui.adapters.comunal.consejales.ConsejalesActualesDetalleAdapter
-import com.example.rockscrappinchileanpolitics.c_model.entities.comunal.consejales.ComunaConsejalActualEntity
+import com.example.rockscrappinchileanpolitics.c_model.b_entities.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.d_utilities.interfaces_listeners.ListenerConsejalComunas
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
-import com.example.rockscrappinchileanpolitics.b_viewmodel.comunal.ComunasConsejalesActualesViewModel
+import com.example.rockscrappinchileanpolitics.b_viewmodel.ComunasConsejalesActualesViewModel
+import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.comunaConvertForWebPage
 
 class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	
@@ -34,17 +33,12 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	private lateinit var adapter:ComunasConsejalesActualesAdapter
 	private var bindingDialog:DialogConsejalesDetailBinding? = null
 	
-	override fun onCreateView(
-		inflater:LayoutInflater, container:ViewGroup?,
-		savedInstanceState:Bundle?
-	):View {
+	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
+		savedInstanceState:Bundle?):View {
 		_binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
-		initRecyclerView(
-			binding.recyclerViewConsejalesActuales,
-			requireContext(), adapter
-		)
+		initRecyclerView(binding.recyclerViewConsejalesActuales, requireContext(), adapter)
 		model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
 			if (it.isNotEmpty()) {
 				adapter.setItemInTheView(it)
@@ -62,10 +56,8 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	}
 	
 	override fun viewTouchedShort(position:Int, comunaObjeto:ComunaConsejalActualEntity) {
-		Toast.makeText(
-			requireContext(), "Consejales de \n\r${comunaObjeto.nombre}",
-			Toast.LENGTH_LONG
-		).show()
+		Toast.makeText(requireContext(), "Consejales de \n\r${comunaObjeto.nombre}",
+			Toast.LENGTH_LONG).show()
 		displayDetailDialog(comunaObjeto.nombre)
 	}
 	
@@ -84,11 +76,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		bindingDialog !!.recyclerViewConsejalesActualesDetalle.layoutManager =
 			LinearLayoutManager(requireContext())
 		bindingDialog !!.recyclerViewConsejalesActualesDetalle.adapter = adapter
-		val oldValue1 = " "
-		val oldValue2 = "Ñ"
-		val newValue1 = "-"
-		val newValue2 = "N"
-		val comunaM = comuna.trim().replace(oldValue1, newValue1).replace(oldValue2, newValue2)
+		val comunaM = comunaConvertForWebPage(comuna)
 		model.getConsejalesDetailUsingViewModel(comunaM)
 		bindingDialog !!.textView.text = comuna
 		model.detailConsejales.observe(this, {

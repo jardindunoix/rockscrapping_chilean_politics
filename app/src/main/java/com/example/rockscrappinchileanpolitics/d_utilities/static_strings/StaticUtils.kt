@@ -38,6 +38,7 @@ class StaticUtils {
 		
 		/*constantes consejales*/
 		const val URL_CONSEJALES_ACTUALES = "https://www.cdch.cl/concejales-de-chile.aspx"
+		const val URL_BASE_CONSEJALES_ACTUALES = "https://www.cdch.cl"
 		
 		/*comunas consejales actuales*/
 		const val URL_COMUNA_DETALLE = "https://www.cdch.cl/Comuna/"
