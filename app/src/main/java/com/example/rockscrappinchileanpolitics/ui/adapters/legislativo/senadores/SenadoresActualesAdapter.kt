@@ -28,9 +28,8 @@ class SenadoresActualesAdapter(private var list:MutableList<SenadorActualEntity>
 	
 	override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):BaseViewHolder<*> {
 		val binding = ItemSenadoresActualesBinding.inflate(LayoutInflater.from(context), parent, false)
-		val holder = MyOwnViewHolder(binding)
 		
-		return holder
+		return MyOwnViewHolder(binding)
 	}
 	
 	override fun onBindViewHolder(holder:BaseViewHolder<*>, position:Int) {

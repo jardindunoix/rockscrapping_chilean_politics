@@ -1,7 +1,7 @@
 package com.example.rockscrappinchileanpolitics.model.managers.header_home
 
 import androidx.lifecycle.MutableLiveData
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.header_home.HeaderHomeWebScrap
+import com.example.rockscrappinchileanpolitics.model.repositorio.RepositorioWebScrapCall
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.header_home.HeaderHomeEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +18,6 @@ class HeaderHomeWebScrapManager {
 	}
 	
 	private fun getAllBadges():MutableList<HeaderHomeEntity> {
-		return HeaderHomeWebScrap.doInBackground()
+		return RepositorioWebScrapCall.getGallery()
 	}
 }

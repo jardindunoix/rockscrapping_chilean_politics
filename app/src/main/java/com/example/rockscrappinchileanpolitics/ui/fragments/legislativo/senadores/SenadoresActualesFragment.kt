@@ -10,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentSenadoresActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.legislativo.senadores.SenadoresActualesAdapter
 import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerView
@@ -31,7 +30,7 @@ class SenadoresActualesFragment:Fragment() {
 		_binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
 		adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
-		binding.recyclerViewSenadoresActuales.initRecyclerView(
+		initRecyclerView(
 			binding.recyclerViewSenadoresActuales,
 			requireContext(), adapter
 		)

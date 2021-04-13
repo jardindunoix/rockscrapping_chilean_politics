@@ -10,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.databinding.FragmentPartidosPoliticosActualesBinding
 import com.example.rockscrappinchileanpolitics.ui.adapters.partidos_politicos.PartidosPoliticosAdapter
 import com.example.rockscrappinchileanpolitics.utilities.services.extension_functions.ExtensionFunctions.Companion.initRecyclerView
@@ -31,7 +30,7 @@ class PartidosPoliticosActualesFragment:Fragment() {
 	):View {
 		_binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
 		adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
-		binding.recyclerViewPartidosPoliticos.initRecyclerView(
+		initRecyclerView(
 			binding.recyclerViewPartidosPoliticos,
 			requireContext(), adapter
 		)

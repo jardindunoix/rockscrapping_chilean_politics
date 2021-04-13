@@ -41,7 +41,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		_binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
-		binding.recyclerViewConsejalesActuales.initRecyclerView(
+		initRecyclerView(
 			binding.recyclerViewConsejalesActuales,
 			requireContext(), adapter
 		)

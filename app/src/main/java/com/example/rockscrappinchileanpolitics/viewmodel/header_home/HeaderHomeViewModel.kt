@@ -15,7 +15,6 @@ class HeaderHomeViewModel(application:Application):AndroidViewModel(application)
 	init {
 		if (headerHomeList.value.isNullOrEmpty()) {
 			getHomeHeaderList()
-			
 		}
 	}
 	

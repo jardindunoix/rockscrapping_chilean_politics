@@ -1,6 +1,5 @@
 package com.example.rockscrappinchileanpolitics.model.repositorio
 
-import android.util.Log
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ConsejalActualDetalleEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.header_home.HeaderHomeEntity
@@ -8,15 +7,17 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legisl
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.legislativo.senadores.SenadorActualEntity
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.partidos_politicos.PartidoPoliticoEntity
 import com.example.rockscrappinchileanpolitics.utilities.services.static_strings.StaticUtils
+import com.example.rockscrappinchileanpolitics.utilities.services.top_functions.firstLetter
+import com.example.rockscrappinchileanpolitics.utilities.services.top_functions.isAllCapsUp
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 import java.util.stream.Collectors
 
-class RepositorioWebScrapCallss {
+class RepositorioWebScrapCall {
 	companion object {
 		
-		fun getHeaderBadges():MutableList<HeaderHomeEntity> {
+		fun getGallery():MutableList<HeaderHomeEntity> {
 			val headerBadgesList = mutableListOf<HeaderHomeEntity>()
 			val url = StaticUtils.HEADER_BADGES_URL
 			val document = Jsoup.connect(url).get()
@@ -25,10 +26,6 @@ class RepositorioWebScrapCallss {
 			for (badge in result) {
 				headerBadgesList.add(HeaderHomeEntity(webPictureSite = badge.toString()))
 			}
-			
-			
-			Log.e("DOCUMENTO LISTA ---->", headerBadgesList.toString())
-			
 			return headerBadgesList
 		}
 		
@@ -95,7 +92,6 @@ class RepositorioWebScrapCallss {
 					paginaWeb = "${StaticUtils.URL_COMUNA_DETALLE}${listComunasElementsPOST[floor]}"
 				)
 			)
-			
 			return comunasList
 		}
 		
@@ -139,14 +135,12 @@ class RepositorioWebScrapCallss {
 				val oldValueOne = "Sr. "
 				val oldValueTwo = "Sra. "
 				val newValue = ""
-				var nombreCorregido:String
-				var nombre:String
+				
 				for (f in imagesList) {
-					nombre = nameList[countName].replace(oldValueOne, newValue)
-					nombreCorregido = nombre.replace(oldValueTwo, newValue)
 					diputadosActualesList.add(
 						DiputadoActualEntity(
-							nombre = nombreCorregido,
+							nombre = nameList[countName].replace(oldValueOne, newValue)
+								.replace(oldValueTwo, newValue),
 							paginaWeb = "${StaticUtils.URL_DIPUTADOS_ACTUALES_ROOT}${StaticUtils.DIPUTADOS}${webpage[countAttr]}",
 							picture = "${StaticUtils.URL_DIPUTADOS_ACTUALES_ROOT}${f}"
 						)
@@ -167,55 +161,38 @@ class RepositorioWebScrapCallss {
 			val webpageList = divElement.select("a").eachAttr(StaticUtils.HREF_WEB_PAGE_SENADORES)
 			val nameList = divElement.select("img").eachAttr(StaticUtils.NAME_SENADORES_ALT_LIST)
 			val imagesList = divElement.select("img").eachAttr(StaticUtils.IMAGES_LIST_SRC)
-			var countAttr = 0
-			var countName = 0
-			var name:String
-			var webpage:String
-			var image:String
 			
-			for (f in imagesList) {
-				name = nameList[countName].toString()
-				webpage = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${webpageList[countAttr]}"
-				image = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${f}"
+			imagesList.withIndex().forEach { (index, f) ->
 				senadoresActualesList.add(
-					SenadorActualEntity(nombre = name, paginaWeb = webpage, picture = image)
+					SenadorActualEntity(nombre = nameList[index].toString(),
+						paginaWeb = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${webpageList[index]}",
+						picture = "${StaticUtils.URL_SENADORES_ACTUALES_ROOT}${f}")
 				)
-				++ countAttr
-				++ countName
 			}
 			return senadoresActualesList
 		}
 		
-		/*PARTIDOS POLITICOS*/
 		fun getPartidosPoliticos():MutableList<PartidoPoliticoEntity> {
 			val partidosActualesList = mutableListOf<PartidoPoliticoEntity>()
 			val urlOne = StaticUtils.URL_PARTIDOS_POLITICOS_1
 			val urlTwo = StaticUtils.URL_PARTIDOS_POLITICOS_2
 			val pagina1Document:Document = Jsoup.connect(urlOne).get()
 			val pagina2Document:Document = Jsoup.connect(urlTwo).get()
-			/*cambiar por fuente*/
-			val pictureSpecial =
-				"https://partidorepublicanodechile.cl/wp-content/uploads/2020/03/ESCUDO-PR-PROTECCION-WHITE.png"
-			val pictureSpecialTwo =
-				"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Partido_Comunista_de_Chile-2.svg/739px-Partido_Comunista_de_Chile-2.svg.png"
 			val excluyeFila = "Fecha constitución Partidos Políticos por región"
-			
-			/*****************************/
 			val element1 = pagina1Document.select(
 				"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
 			)
-				.eachText() as ArrayList
+				.eachText()
 			val element2 = pagina2Document.select(
 				"${StaticUtils.TD_PARTIDOS_POLITICOS_CLASS}.${StaticUtils.TH_TITULO_PARTIDOS_POLITICOS_CLASS}"
 			)
-				.eachText() as ArrayList
+				.eachText()
 			
 			for (r in element1) {
 				if (! r.equals(excluyeFila, true)) {
 					partidosActualesList.add(
 						PartidoPoliticoEntity(
 							nombre = r,
-							picture = pictureSpecial
 						)
 					)
 				}
@@ -225,36 +202,10 @@ class RepositorioWebScrapCallss {
 				partidosActualesList.add(
 					PartidoPoliticoEntity(
 						nombre = r,
-						picture = pictureSpecialTwo
 					)
 				)
 			}
 			return partidosActualesList
-		}
-		
-		/**************************************************************************************************/
-		/*METODOS*/
-		private fun isAllCapsUp(element:String?):Boolean {
-			val regex = """[abcdefghijklmnñopqrstuvwxyz]""".toRegex()
-			return regex.containsMatchIn(input = element.toString()).not()
-		}
-		
-		private fun firstLetter(word:String):Int {
-			val letters = word.trim().split("")
-			val letterOne = letters[1]
-			return letterToNumber(letterOne)
-		}
-		
-		private fun letterToNumber(letter:String):Int {
-			val oldValue = " "
-			val newValue = ""
-			val listChar = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".replace(oldValue, newValue).split("")
-			for ((i, char) in listChar.withIndex()) {
-				when (char == letter.trim()) {
-					true -> return i
-				}
-			}
-			return 0
 		}
 	}
 }

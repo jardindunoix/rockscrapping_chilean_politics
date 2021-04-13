@@ -5,5 +5,5 @@ import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comuna
 interface ListenerConsejalComunas {
 	
 	fun viewTouchedShort(position:Int, comunaObjeto:ComunaConsejalActualEntity)
-	fun viewTouchedLong(position:Int,comunaObjeto:ComunaConsejalActualEntity)
+	fun viewTouchedLong(position:Int, comunaObjeto:ComunaConsejalActualEntity)
 }

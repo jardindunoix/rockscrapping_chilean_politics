@@ -22,9 +22,7 @@ class PartidosPoliticosAdapter(
 		BaseViewHolder<PartidoPoliticoEntity>(binding.root) {
 		
 		override fun bind(item:PartidoPoliticoEntity) = with(binding) {
-			// Picasso.get().load(item.picture).into(ViewPartidoActual)
 			textViewNombrePartidoActual.text = item.nombre
-			//				textViewWebpageDiputadoActual.text = item.paginaWeb
 		}
 	}
 	

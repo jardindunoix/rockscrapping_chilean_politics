@@ -31,9 +31,8 @@ class ConsejalesActualesDetalleAdapter(
 	override fun onCreateViewHolder(parent:ViewGroup, viewType:Int):BaseViewHolder<*> {
 		val binding =
 			ItemConsejalesActualesDetalleBinding.inflate(LayoutInflater.from(context), parent, false)
-		val holder = MyOwnViewHolder(binding)
 		
-		return holder
+		return MyOwnViewHolder(binding)
 	}
 	
 	override fun onBindViewHolder(holder:BaseViewHolder<*>, position:Int) {

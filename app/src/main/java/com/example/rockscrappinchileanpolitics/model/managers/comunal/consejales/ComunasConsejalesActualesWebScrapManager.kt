@@ -1,7 +1,7 @@
 package com.example.rockscrappinchileanpolitics.model.managers.comunal.consejales
 
 import androidx.lifecycle.MutableLiveData
-import com.example.rockscrappinchileanpolitics.model.web_scrapping.comunal.consejales.ComunasConselajesActualesWebScrap
+import com.example.rockscrappinchileanpolitics.model.repositorio.RepositorioWebScrapCall
 import com.example.rockscrappinchileanpolitics.utilities.objects.entities.comunal.consejales.ComunaConsejalActualEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ class ComunasConsejalesActualesWebScrapManager {
 	}
 	
 	private fun getAllConsejalesActuales():MutableList<ComunaConsejalActualEntity> {
-		return ComunasConselajesActualesWebScrap.doInBackground()
+		return RepositorioWebScrapCall.getComunasConsejalesActuales()
 	}
 }
 

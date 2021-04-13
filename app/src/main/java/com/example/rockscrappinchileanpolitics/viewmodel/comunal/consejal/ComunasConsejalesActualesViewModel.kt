@@ -19,7 +19,6 @@ class ComunasConsejalesActualesViewModel(application: Application) : AndroidView
     init {
         if (comunasConsejalesActualesList.value.isNullOrEmpty()) {
             getConsejalesActualesList()
-
         }
     }
 

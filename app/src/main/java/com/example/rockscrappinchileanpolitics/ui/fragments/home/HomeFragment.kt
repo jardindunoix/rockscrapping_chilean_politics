@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.rockscrappinchileanpolitics.R
-import com.example.rockscrappinchileanpolitics.databinding.FragmentGalleryBinding
 import com.example.rockscrappinchileanpolitics.databinding.FragmentHomeBinding
 
 class HomeFragment:Fragment() {
