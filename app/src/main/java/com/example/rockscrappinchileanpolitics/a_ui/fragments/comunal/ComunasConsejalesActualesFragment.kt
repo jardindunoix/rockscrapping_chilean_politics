@@ -32,17 +32,23 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	private lateinit var model:ComunasConsejalesActualesViewModel
 	private lateinit var adapter:ComunasConsejalesActualesAdapter
 	private var bindingDialog:DialogConsejalesDetailBinding? = null
+	private lateinit var dialogo:Dialog
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
 		savedInstanceState:Bundle?):View {
 		_binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
 		initRecyclerView(binding.recyclerViewConsejalesActuales, requireContext(), adapter)
+		dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
+		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
+		dialogo.setContentView(view)
+		dialogo.setCancelable(false)
+		dialogo.show()
+		
 		model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
+			adapter.setItemInTheView(it)
 			if (it.isNotEmpty()) {
-				adapter.setItemInTheView(it)
-			} else {
-				binding.textView.text = getString(R.string.text_for_header_without_connection)
+				dialogo.dismiss()
 			}
 		})
 		return binding.root
