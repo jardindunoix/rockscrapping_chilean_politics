@@ -31,3 +31,10 @@ fun convertComunaForWebPage(comuna:String):String {
 	
 	return comuna.trim().replace(oldValue1, newValue1).replace(oldValue2, newValue2)
 }
+
+fun erasePartido(r:String):String {
+	val oldValue = "Partido"
+	val newValue = ""
+	
+	return r.replace(oldValue, newValue)
+}

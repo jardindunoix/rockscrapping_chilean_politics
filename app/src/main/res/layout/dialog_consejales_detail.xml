@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="@integer/config_navAnimTime"
             android:fontFamily="@font/abel_regular"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/text_size_28sp"
             tools:text="---------" />
 
     </LinearLayout>

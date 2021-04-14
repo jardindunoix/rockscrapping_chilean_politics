@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/abel_regular"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size_consejal_20dp"
+                android:textSize="@dimen/text_size_consejal_20sp"
                 tools:text="Nombre Chorro" />
 
             <TextView

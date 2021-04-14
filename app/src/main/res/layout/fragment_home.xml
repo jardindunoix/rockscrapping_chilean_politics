@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lib3"
     android:orientation="vertical"
     tools:context=".a_ui.fragments.home.HomeFragment">
 
@@ -35,7 +36,7 @@
                     android:text="@string/button_ir_a_diputados_actuales"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_consejal_20dp" />
+                    android:textSize="@dimen/text_size_consejal_20sp" />
 
                 <TextView
                     android:id="@+id/button_ir_a_sen_actuales"
@@ -46,7 +47,7 @@
                     android:text="@string/button_ir_a_senadores_actuales"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_consejal_20dp" />
+                    android:textSize="@dimen/text_size_consejal_20sp" />
 
                 <TextView
                     android:id="@+id/button_part_politicos"
@@ -57,7 +58,7 @@
                     android:text="@string/button_ir_a_partidos_politicos"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_consejal_20dp" />
+                    android:textSize="@dimen/text_size_consejal_20sp" />
 
                 <TextView
                     android:id="@+id/button_ir_a_consej_actuales"
@@ -68,7 +69,7 @@
                     android:text="@string/button_ir_a_consejales_actuales"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_consejal_20dp" />
+                    android:textSize="@dimen/text_size_consejal_20sp" />
 
                 <TextView
                     android:id="@+id/button_ir_a_gallery"
@@ -79,7 +80,7 @@
                     android:text="@string/button_ir_a_gallery"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_consejal_20dp" />
+                    android:textSize="@dimen/text_size_consejal_20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

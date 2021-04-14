@@ -6,8 +6,10 @@
     <dimen name="padding_normal_4dp">4dp</dimen>
     <dimen name="image_view_width">50dp</dimen>
     <dimen name="image_view_height">50dp</dimen>
-    <dimen name="text_size">28sp</dimen>
-    <dimen name="text_size_consejal_20dp">20sp</dimen>
+    <dimen name="text_size_28sp">28sp</dimen>
+    <dimen name="text_size_32sp">32sp</dimen>
+    <dimen name="text_size_25sp">25sp</dimen>
+    <dimen name="text_size_consejal_20sp">20sp</dimen>
     <dimen name="text_size_regio_consejal_15dp">15sp</dimen>
     <dimen name="size_zero">0dp</dimen>
     <dimen name="title_size">80dp</dimen>
@@ -15,5 +17,7 @@
     <dimen name="popup_height">600dp</dimen>
     <dimen name="margin_left_diputados_actuales">40dp</dimen>
     <dimen name="heigt_header_diputados_actuales">120dp</dimen>
+    <dimen name="heigt_header_partidos_politicos">90dp</dimen>
     <dimen name="margin_top_header">70dp</dimen>
+    <dimen name="margin_top_header_partidos_politicos">10dp</dimen>
 </resources>

@@ -3,6 +3,7 @@ package com.example.rockscrappinchileanpolitics.c_model.webscrap
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.*
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.convertComunaForWebPage
+import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.erasePartido
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.firstLetter
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.isAllCapsUp
 import org.jsoup.Jsoup
@@ -102,8 +103,9 @@ class WebScrapCall { companion object {
 		val nameList = h4Elements.stream().collect(Collectors.toList())
 		val webpage = articleElement.select("a").eachAttr(StaticUtils.HREF_DIP_ACT).stream()
 			.collect(Collectors.toList())
-		val imagesList = articleElement.select(StaticUtils.IMG_DIP_ACT).eachAttr(StaticUtils.SRC_DIP_ACT).stream()
-			.collect(Collectors.toList())
+		val imagesList =
+			articleElement.select(StaticUtils.IMG_DIP_ACT).eachAttr(StaticUtils.SRC_DIP_ACT)
+				.stream().collect(Collectors.toList())
 		var countAttr = 0
 		if (webpage.size / 3 == nameList.size) {
 			val oldValueOne = "Sr. "
@@ -126,8 +128,7 @@ class WebScrapCall { companion object {
 		val senadoresActualesList = mutableListOf<SenadorActualEntity>()
 		val url = StaticUtils.PPAL_URL_SEN_ACT
 		val document:Document = Jsoup.connect(url).get()
-		val divElement:Elements =
-			document.select("div.${StaticUtils.CLASS_SEN_ACT}")
+		val divElement:Elements = document.select("div.${StaticUtils.CLASS_SEN_ACT}")
 		val webpageList = divElement.select("a").eachAttr(StaticUtils.HREF_SEN_ACT)
 		val nameList = divElement.select("img").eachAttr(StaticUtils.ALT_SEN_ACT)
 		val imagesList = divElement.select("img").eachAttr(StaticUtils.SRC_SEN_ACT)
@@ -147,24 +148,24 @@ class WebScrapCall { companion object {
 		val pagina1Document:Document = Jsoup.connect(urlOne).get()
 		val pagina2Document:Document = Jsoup.connect(urlTwo).get()
 		val excluyeFila = "Fecha constitución Partidos Políticos por región"
-		val element1 = pagina1Document.select(
-			"${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
-			.eachText()
-		val element2 = pagina2Document.select(
-			"${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
-			.eachText()
+		val element1 =
+			pagina1Document.select("${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
+				.eachText()
+		val element2 =
+			pagina2Document.select("${StaticUtils.TD_PART_POL}.${StaticUtils.TH_TITULO_PART_POL}")
+				.eachText()
 		
 		for (r in element1) {
 			if (! r.equals(excluyeFila, true)) {
 				partidosActualesList.add(PartidoPoliticoEntity(
-					nombre = r,
+					nombre = erasePartido(r),
 				))
 			}
 		}
 		
 		for (r in element2) {
 			partidosActualesList.add(PartidoPoliticoEntity(
-				nombre = r,
+				nombre = erasePartido(r),
 			))
 		}
 		return partidosActualesList

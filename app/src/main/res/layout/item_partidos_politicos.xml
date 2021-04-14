@@ -22,10 +22,10 @@
             android:layout_marginStart="@dimen/margin_normal_8dp"
             android:layout_marginTop="@dimen/margin_normal_8dp"
             android:layout_marginEnd="@dimen/margin_normal_8dp"
-            android:fontFamily="@font/architect_daughter_regular"
+            android:fontFamily="@font/ubuntu_light"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_consejal_20dp"
+            android:textColor="@color/orange_super"
+            android:textSize="@dimen/text_size_25sp"
             tools:text="Nombre Chorro" />
 
         <TextView
@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="________________________"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

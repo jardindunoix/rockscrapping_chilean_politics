@@ -1,11 +1,13 @@
 package com.example.rockscrappinchileanpolitics.a_ui.fragments.comunal
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,16 +34,25 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	private lateinit var model:ComunasConsejalesActualesViewModel
 	private lateinit var adapter:ComunasConsejalesActualesAdapter
 	private var bindingDialog:DialogConsejalesDetailBinding? = null
-	
+	private lateinit var dialog:AlertDialog
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
 		savedInstanceState:Bundle?):View {
 		_binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
 		initRecyclerView(binding.recyclerViewConsejalesActuales, requireContext(), adapter)
+		val builder = AlertDialog.Builder(requireContext())
+		val dialogView = layoutInflater.inflate(R.layout.progress_dialog, null)
+		val message = dialogView.findViewById<TextView>(R.id.text_view_)
+		message.text = getText(R.string.progress_cargando)
+		builder.setView(dialogView)
+		builder.setCancelable(false)
+		dialog = builder.create()
+		dialog.show()
 		model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
 			if (it.isNotEmpty()) {
 				adapter.setItemInTheView(it)
+				dialog.dismiss()
 			} else {
 				binding.textView.text = getString(R.string.text_for_header_without_connection)
 			}
