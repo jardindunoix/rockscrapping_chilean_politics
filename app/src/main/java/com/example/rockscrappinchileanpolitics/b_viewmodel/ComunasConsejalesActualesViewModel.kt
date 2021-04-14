@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.ConsejalActualDetalleEntity
-import com.example.rockscrappinchileanpolitics.c_model.d_managers.comunal.consejales.ComunasConsejalesActualesWebScrapManager
-import com.example.rockscrappinchileanpolitics.c_model.d_managers.comunal.consejales.ConsejalesActualesDetalleWebScrapManager
+import com.example.rockscrappinchileanpolitics.c_model.d_managers.comunal.consejales.ComunasConsejalesActualesManager
+import com.example.rockscrappinchileanpolitics.c_model.d_managers.comunal.consejales.ConsejalesActualesDetalleManager
 import kotlinx.coroutines.launch
 
 class ComunasConsejalesActualesViewModel(application:Application):AndroidViewModel(application) {
@@ -23,14 +23,14 @@ class ComunasConsejalesActualesViewModel(application:Application):AndroidViewMod
 	
 	private fun getConsejalesActualesList() {
 		comunasConsejalesActualesList =
-			ComunasConsejalesActualesWebScrapManager().allComunasConsejales
+			ComunasConsejalesActualesManager().allComunasConsejales
 		viewModelScope.launch {
 			comunasConsejalesActualesList
 		}
 	}
 	
 	fun getConsejalesDetailUsingViewModel(comuna:String) {
-		detailConsejales = ConsejalesActualesDetalleWebScrapManager(comuna).allConsejales
+		detailConsejales = ConsejalesActualesDetalleManager(comuna).allConsejales
 		viewModelScope.launch {
 			detailConsejales
 		}

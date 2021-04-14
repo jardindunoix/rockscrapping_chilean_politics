@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.GalleryEntity
-import com.example.rockscrappinchileanpolitics.c_model.d_managers.header_home.GalleryWebScrapManager
+import com.example.rockscrappinchileanpolitics.c_model.d_managers.header_home.GalleryManager
 import kotlinx.coroutines.launch
 
 class GalleryViewModel(application:Application):AndroidViewModel(application) {
@@ -17,7 +17,7 @@ class GalleryViewModel(application:Application):AndroidViewModel(application) {
 	}
 	
 	private fun getHomeHeaderList() {
-		galleryList = GalleryWebScrapManager().allGalleryPictures
+		galleryList = GalleryManager().allGalleryPictures
 		viewModelScope.launch {
 			galleryList
 		}

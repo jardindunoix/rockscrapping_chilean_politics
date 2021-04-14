@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.SenadorActualEntity
-import com.example.rockscrappinchileanpolitics.c_model.d_managers.legislativo.senadores.SenadoresActualesWebScrapManager
+import com.example.rockscrappinchileanpolitics.c_model.d_managers.legislativo.senadores.SenadoresActualesManager
 import kotlinx.coroutines.launch
 
 class SenadoresActualesViewModel(application:Application):AndroidViewModel(application) {
@@ -17,7 +17,7 @@ class SenadoresActualesViewModel(application:Application):AndroidViewModel(appli
 	}
 	
 	private fun getSenadoresActualesList() {
-		senadoresActualesList = SenadoresActualesWebScrapManager().allSenadoresActuales
+		senadoresActualesList = SenadoresActualesManager().allSenadoresActuales
 		viewModelScope.launch {
 			senadoresActualesList
 		}

@@ -1,5 +1,6 @@
 package com.example.rockscrappinchileanpolitics.c_model.webscrap
 
+import android.util.Log
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.*
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.convertComunaForWebPage
@@ -75,6 +76,7 @@ class WebScrapCall { companion object {
 			paginaWeb = "${StaticUtils.URL_COM_DET}${
 				convertComunaForWebPage(listComunasElementsPOST[floor])
 			}"))
+		Log.e("LISTAAAAA ---->", comunasList.toString())
 		return comunasList
 	}
 	
