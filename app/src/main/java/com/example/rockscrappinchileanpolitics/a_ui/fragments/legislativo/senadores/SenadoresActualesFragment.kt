@@ -1,5 +1,6 @@
 package com.example.rockscrappinchileanpolitics.a_ui.fragments.legislativo.senadores
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,14 +25,15 @@ class SenadoresActualesFragment:Fragment() {
 	private lateinit var navController:NavController
 	private lateinit var model:SenadoresActualesViewModel
 	private lateinit var adapter:SenadoresActualesAdapter
-	private lateinit var dialogo:Dialog
+	
+	@SuppressLint("InflateParams")
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
 		savedInstanceState:Bundle?):View {
 		_binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
 		adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
 		initRecyclerView(binding.recyclerViewSenadoresActuales, requireContext(), adapter)
-		dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
+		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
 		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)

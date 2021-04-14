@@ -15,4 +15,5 @@
     <string name="text_gallery">Galería</string>
     <string name="progress_cargando">Cargando datos…</string>
     <string name="text_for_header_without_connection">No tienes conexión\nIntenta nuevamente, por favor.</string>
+    <string name="search_view_buscar_comuna">Buscar comuna</string>
 </resources>

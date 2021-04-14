@@ -25,7 +25,6 @@ class PartidosPoliticosActualesFragment:Fragment() {
 	private lateinit var navController:NavController
 	private lateinit var model:PartidosPoliticosViewModel
 	private lateinit var adapter:PartidosPoliticosAdapter
-	private lateinit var dialogo:Dialog
 	
 	@SuppressLint("InflateParams")
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
@@ -33,7 +32,7 @@ class PartidosPoliticosActualesFragment:Fragment() {
 		_binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
 		adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
 		initRecyclerView(binding.recyclerViewPartidosPoliticos, requireContext(), adapter)
-		dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
+		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
 		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)

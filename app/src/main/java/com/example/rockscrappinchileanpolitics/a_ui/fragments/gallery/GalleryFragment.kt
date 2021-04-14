@@ -1,5 +1,6 @@
 package com.example.rockscrappinchileanpolitics.a_ui.fragments.gallery
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,11 +22,12 @@ class GalleryFragment:Fragment() {
 	private lateinit var model:GalleryViewModel
 	private lateinit var navController:NavController
 	private val list = mutableListOf<CarouselItem>()
-	private lateinit var dialogo:Dialog
+	
+	@SuppressLint("InflateParams")
 	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
 		savedInstanceState:Bundle?):View {
 		_binding = FragmentGalleryBinding.inflate(layoutInflater)
-		dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
+		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
 		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)

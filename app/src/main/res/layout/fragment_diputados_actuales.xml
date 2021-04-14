@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linear_layout__"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/heigt_header_diputados_actuales"
+        android:layout_height="@dimen/heigt_header_diputados_actuales_120dp"
         android:layout_marginBottom="@dimen/padding_normal_4dp"
         android:gravity="center"
         android:orientation="vertical"

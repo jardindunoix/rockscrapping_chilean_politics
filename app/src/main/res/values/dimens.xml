@@ -16,7 +16,8 @@
     <dimen name="popup_width">380dp</dimen>
     <dimen name="popup_height">600dp</dimen>
     <dimen name="margin_left_diputados_actuales">40dp</dimen>
-    <dimen name="heigt_header_diputados_actuales">120dp</dimen>
+    <dimen name="heigt_header_diputados_actuales_120dp">120dp</dimen>
+    <dimen name="heigt_header_comunas_consejales_actuales_80dp">80dp</dimen>
     <dimen name="heigt_header_partidos_politicos">90dp</dimen>
     <dimen name="margin_top_header">70dp</dimen>
     <dimen name="margin_top_header_partidos_politicos">10dp</dimen>
