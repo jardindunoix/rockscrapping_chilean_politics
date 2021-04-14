@@ -35,8 +35,8 @@ class WebScrapCall { companion object {
 		val listComunasElementsPRE = document.select("div.col-md-12").select("a").eachText()
 		val listRegiones = document.select("div.text-center").select("h3").eachText()
 		val listComunasElementsPOST = mutableListOf<String>()
-		val listWebEndPoint = document.select("div.col-md-10").select("a").eachAttr("href")
-		
+		/*trae la lista de ends points*/
+		// val listWebEndPoint = document.select("div.col-md-10").select("a").eachAttr("href")
 		for (comu in listComunasElementsPRE) {
 			if (comu != listComunasElementsPRE[0] && comu.isNotEmpty() && isAllCapsUp(comu)) {
 				listComunasElementsPOST.add(comu)
@@ -63,7 +63,9 @@ class WebScrapCall { companion object {
 					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
 						region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
 							.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
-						paginaWeb = "${StaticUtils.URL_COM_DET}${listComunasElementsPOST[i]}"))
+						paginaWeb = "${StaticUtils.URL_COM_DET}${
+							convertComunaForWebPage(listComunasElementsPOST[i])
+						}"))
 					++ indiceRegiones
 				}
 			}
