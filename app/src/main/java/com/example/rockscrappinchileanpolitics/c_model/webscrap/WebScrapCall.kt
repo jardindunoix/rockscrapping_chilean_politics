@@ -1,6 +1,5 @@
 package com.example.rockscrappinchileanpolitics.c_model.webscrap
 
-import android.util.Log
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.*
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
 import com.example.rockscrappinchileanpolitics.d_utilities.top_functions.convertComunaForWebPage
@@ -36,6 +35,7 @@ class WebScrapCall { companion object {
 		val listComunasElementsPRE = document.select("div.col-md-12").select("a").eachText()
 		val listRegiones = document.select("div.text-center").select("h3").eachText()
 		val listComunasElementsPOST = mutableListOf<String>()
+		val listWebEndPoint = document.select("div.col-md-10").select("a").eachAttr("href")
 		
 		for (comu in listComunasElementsPRE) {
 			if (comu != listComunasElementsPRE[0] && comu.isNotEmpty() && isAllCapsUp(comu)) {
@@ -43,13 +43,12 @@ class WebScrapCall { companion object {
 			}
 		}
 		val floor = listComunasElementsPOST.size - 1
-		
+		var indiceRegiones = 0
 		for ((i, _) in listComunasElementsPOST.withIndex()) {
 			val oldValueOne = "Región"
 			val oldValueTwo = "DE"
 			val oldValueThree = "L "
 			val newValue = ""
-			var indiceRegiones = 0
 			if ((i + 1) <= floor) {
 				val a = firstLetter(listComunasElementsPOST[i])
 				val b = firstLetter(listComunasElementsPOST[(i + 1)])
@@ -76,7 +75,6 @@ class WebScrapCall { companion object {
 			paginaWeb = "${StaticUtils.URL_COM_DET}${
 				convertComunaForWebPage(listComunasElementsPOST[floor])
 			}"))
-		Log.e("LISTAAAAA ---->", comunasList.toString())
 		return comunasList
 	}
 	
