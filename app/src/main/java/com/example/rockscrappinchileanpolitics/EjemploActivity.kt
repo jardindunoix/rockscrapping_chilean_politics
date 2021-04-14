@@ -32,7 +32,7 @@ class MainActivity_:AppCompatActivity(), RecyclerAdapter.RecyclerItemClick, Sear
 		val manager = LinearLayoutManager(this)
 		rvLista !!.layoutManager = manager
 		items = getItems()
-		adapter = RecyclerAdapter(items, this)
+		adapter = RecyclerAdapter(items as MutableList<ItemList>, this)
 		rvLista !!.adapter = adapter
 	}
 	
@@ -73,7 +73,7 @@ class MainActivity_:AppCompatActivity(), RecyclerAdapter.RecyclerItemClick, Sear
 		return itemLists
 	}
 	
-	fun itemClick(item:ItemList?) {
+	override fun itemClick(item:ItemList?) {
 		val intent = Intent(this, DetailActivity::class.java)
 		intent.putExtra("itemDetail", item)
 		startActivity(intent)
