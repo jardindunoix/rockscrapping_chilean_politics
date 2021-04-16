@@ -22,8 +22,7 @@ class ComunasConsejalesActualesViewModel(application:Application):AndroidViewMod
 	}
 	
 	private fun getConsejalesActualesList() {
-		comunasConsejalesActualesList =
-			ComunasConsejalesActualesManager().allComunasConsejales
+		comunasConsejalesActualesList = ComunasConsejalesActualesManager().allComunasConsejales
 		viewModelScope.launch {
 			comunasConsejalesActualesList
 		}

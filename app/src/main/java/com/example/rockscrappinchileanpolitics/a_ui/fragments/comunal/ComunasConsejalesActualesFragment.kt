@@ -17,6 +17,7 @@ import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
 import com.example.rockscrappinchileanpolitics.b_viewmodel.ComunasConsejalesActualesViewModel
+import com.example.rockscrappinchileanpolitics.b_viewmodel.NetworkViewModel
 import com.example.rockscrappinchileanpolitics.c_model.b_entities.ComunaConsejalActualEntity
 import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.d_utilities.interfaces_listeners.ListenerConsejalComunas
@@ -31,14 +32,17 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	private val binding get() = _binding !!
 	private lateinit var navController:NavController
 	private lateinit var model:ComunasConsejalesActualesViewModel
+	private lateinit var modelNetwork:NetworkViewModel
 	private lateinit var adapter:ComunasConsejalesActualesAdapter
 	private var bindingDialog:DialogConsejalesDetailBinding? = null
 	
 	@SuppressLint("InflateParams")
-	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
-		savedInstanceState:Bundle?):View {
+	override fun onCreateView(
+		inflater:LayoutInflater, container:ViewGroup?, savedInstanceState:Bundle?
+	):View {
 		_binding = FragmentComunasConsejalesActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(ComunasConsejalesActualesViewModel::class.java)
+		modelNetwork = ViewModelProvider(this).get(NetworkViewModel::class.java)
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
 		initRecyclerView(binding.recyclerViewConsejalesActuales, requireContext(), adapter)
 		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
@@ -46,10 +50,16 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()
-		
-		model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
-			adapter.setItemInTheView(it)
-			if (it.isNotEmpty()) {
+		modelNetwork.networkStatus.observe(viewLifecycleOwner, { net ->
+			if (net == true) {
+				model.comunasConsejalesActualesList.observe(viewLifecycleOwner, {
+					adapter.setItemInTheView(it)
+					if (it.isNotEmpty()) {
+						dialogo.dismiss()
+					}
+				})
+			} else {
+				binding.textView.text = getString(R.string.message_sin_conexion)
 				dialogo.dismiss()
 			}
 		})
@@ -63,8 +73,9 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 	}
 	
 	override fun viewTouchedShort(position:Int, comunaObjeto:ComunaConsejalActualEntity) {
-		Toast.makeText(requireContext(), "Consejales de \n\r${comunaObjeto.nombre}",
-			Toast.LENGTH_LONG).show()
+		Toast.makeText(
+			requireContext(), "Consejales de \n\r${comunaObjeto.nombre}", Toast.LENGTH_LONG
+		).show()
 		displayDetailDialog(comunaObjeto.nombre)
 	}
 	

@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
+import com.example.rockscrappinchileanpolitics.b_viewmodel.NetworkViewModel
 import com.example.rockscrappinchileanpolitics.b_viewmodel.PartidosPoliticosViewModel
 import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
@@ -24,11 +25,13 @@ class PartidosPoliticosActualesFragment:Fragment() {
 	private val binding get() = _binding !!
 	private lateinit var navController:NavController
 	private lateinit var model:PartidosPoliticosViewModel
+	private lateinit var modelNetwork:NetworkViewModel
 	private lateinit var adapter:PartidosPoliticosAdapter
 	
 	@SuppressLint("InflateParams")
-	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
-		savedInstanceState:Bundle?):View {
+	override fun onCreateView(
+		inflater:LayoutInflater, container:ViewGroup?, savedInstanceState:Bundle?
+	):View {
 		_binding = FragmentPartidosPoliticosActualesBinding.inflate(layoutInflater)
 		adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
 		initRecyclerView(binding.recyclerViewPartidosPoliticos, requireContext(), adapter)
@@ -37,11 +40,18 @@ class PartidosPoliticosActualesFragment:Fragment() {
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()
-		
 		model = ViewModelProvider(this).get(PartidosPoliticosViewModel::class.java)
-		model.partidosActualesList.observe(viewLifecycleOwner, {
-			adapter.setItemInTheView(it)
-			if (it.isNotEmpty()) {
+		modelNetwork = ViewModelProvider(this).get(NetworkViewModel::class.java)
+		modelNetwork.networkStatus.observe(viewLifecycleOwner, { net ->
+			if (net == true) {
+				model.partidosActualesList.observe(viewLifecycleOwner, {
+					adapter.setItemInTheView(it)
+					if (it.isNotEmpty()) {
+						dialogo.dismiss()
+					}
+				})
+			} else {
+				binding.textView.text = getString(R.string.message_sin_conexion)
 				dialogo.dismiss()
 			}
 		})

@@ -9,18 +9,23 @@ import android.os.Build
 object NetworkHelper {
 	
 	fun isNetworkConnected(context:Context):Boolean {
-		var result = false
+		// var result = false
+		// (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).apply {
+		// 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+		// 		result = checkNetworkConnection(this, this.activeNetwork)
+		// 	} else {
+		// 		val networks = this.allNetworks
+		// 		for (net in networks) {
+		// 			if (checkNetworkConnection(this, net)) {
+		// 				result = true
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// return result
+		var result:Boolean
 		(context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).apply {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-				result = checkNetworkConnection(this, this.activeNetwork)
-			} else {
-				val networks = this.allNetworks
-				for (net in networks) {
-					if (checkNetworkConnection(this, net)) {
-						result = true
-					}
-				}
-			}
+			result = checkNetworkConnection(this, this.activeNetwork)
 		}
 		return result
 	}
