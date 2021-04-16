@@ -1,6 +1,6 @@
 package com.example.rockscrappinchileanpolitics
 
-import android.os.Build
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +12,8 @@ import java.util.*
 import java.util.stream.Collectors
 import kotlin.collections.ArrayList
 
-class RecyclerAdapter(private val items:MutableList<ItemList>, itemClick:RecyclerItemClick):
-	RecyclerView.Adapter<RecyclerHolder>() {
+class RecyclerAdapter(private val items:MutableList<ItemList>,
+	private var itemClick:RecyclerItemClick):RecyclerView.Adapter<RecyclerHolder>() {
 	
 	private val originalItems:MutableList<ItemList>
 	
@@ -31,15 +31,14 @@ class RecyclerAdapter(private val items:MutableList<ItemList>, itemClick:Recycle
 		holder.tvDescripcion.text = item.descripcion
 		holder.itemView.setOnClickListener {
 			itemClick(item)
-		}
-		/*holder.itemView.setOnClickListener(new View.OnClickListener() {
+	
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
                 intent.putExtra("itemDetail", item);
                 holder.itemView.getContext().startActivity(intent);
             }
-        });*/
+        });
 	}
 	
 	override fun getItemCount():Int {
@@ -68,13 +67,13 @@ class RecyclerAdapter(private val items:MutableList<ItemList>, itemClick:Recycle
 		
 	}
 	
-	interface RecyclerItemClick {
-		
-		fun itemClick(item:ItemList?)
-	}
-	
 	init {
 		originalItems = ArrayList()
 		originalItems.addAll(items)
 	}
+}
+
+interface RecyclerItemClick {
+	
+	fun itemClick(item:ItemList?)
 }

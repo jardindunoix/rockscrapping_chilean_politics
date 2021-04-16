@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class MainActivity_:AppCompatActivity(), RecyclerAdapter.RecyclerItemClick, SearchView
+class MainActivityYY:AppCompatActivity(),RecyclerItemClick, SearchView
 .OnQueryTextListener {
 	
 	private var rvLista:RecyclerView? = null

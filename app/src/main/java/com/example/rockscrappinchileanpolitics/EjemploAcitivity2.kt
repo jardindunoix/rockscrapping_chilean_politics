@@ -27,8 +27,8 @@ class DetailActivity:AppCompatActivity() {
 	
 	private fun initValues() {
 		itemDetail = intent.extras !!.getSerializable("itemDetail") as ItemList?
-		imgItemDetail !!.setImageResource(itemDetail.getImgResource())
-		tvTituloDetail.setText(itemDetail.getTitulo())
-		tvDescripcionDetail.setText(itemDetail.getDescripcion())
+		imgItemDetail !!.setImageResource(itemDetail !!.imgResource)
+		tvTituloDetail !!.text = itemDetail !!.titulo
+		tvDescripcionDetail !!.text = itemDetail !!.descripcion
 	}
 }
