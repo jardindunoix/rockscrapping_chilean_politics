@@ -16,4 +16,6 @@
     <string name="progress_cargando">Cargando datos…</string>
     <string name="text_for_header_without_connection">No tienes conexión\nIntenta nuevamente, por favor.</string>
     <string name="search_view_buscar_comuna">Buscar comuna</string>
+    <string name="message_sin_conexion">No hay conexión</string>
+    <string name="message_con_conexion">Buena conexión</string>
 </resources>

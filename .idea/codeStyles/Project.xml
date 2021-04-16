@@ -33,15 +33,8 @@
       <option name="SPACE_AFTER_TYPE_COLON" value="false" />
       <option name="SPACE_BEFORE_EXTEND_COLON" value="false" />
       <option name="SPACE_AFTER_EXTEND_COLON" value="false" />
-      <option name="CONTINUATION_INDENT_IN_PARAMETER_LISTS" value="false" />
-      <option name="CONTINUATION_INDENT_IN_ARGUMENT_LISTS" value="false" />
-      <option name="CONTINUATION_INDENT_FOR_EXPRESSION_BODIES" value="false" />
-      <option name="CONTINUATION_INDENT_FOR_CHAINED_CALLS" value="false" />
-      <option name="CONTINUATION_INDENT_IN_SUPERTYPE_LISTS" value="false" />
-      <option name="CONTINUATION_INDENT_IN_IF_CONDITIONS" value="false" />
-      <option name="CONTINUATION_INDENT_IN_ELVIS" value="false" />
       <option name="BLANK_LINES_AROUND_BLOCK_WHEN_BRANCHES" value="1" />
-      <option name="WRAP_EXPRESSION_BODY_FUNCTIONS" value="1" />
+      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="EditorConfig">
       <option name="SPACE_BEFORE_COMMA" value="true" />
@@ -236,6 +229,7 @@
       </arrangement>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
+      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
       <option name="RIGHT_MARGIN" value="100" />
       <option name="LINE_COMMENT_AT_FIRST_COLUMN" value="false" />
       <option name="LINE_COMMENT_ADD_SPACE" value="true" />
@@ -247,11 +241,6 @@
       <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
       <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="SPACE_AROUND_UNARY_OPERATOR" value="true" />
-      <option name="CALL_PARAMETERS_WRAP" value="1" />
-      <option name="METHOD_PARAMETERS_WRAP" value="1" />
-      <option name="EXTENDS_LIST_WRAP" value="1" />
-      <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
-      <option name="ASSIGNMENT_WRAP" value="1" />
       <option name="PARAMETER_ANNOTATION_WRAP" value="2" />
       <option name="VARIABLE_ANNOTATION_WRAP" value="2" />
       <option name="ENUM_CONSTANTS_WRAP" value="2" />
