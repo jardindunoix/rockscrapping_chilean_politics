@@ -9,21 +9,6 @@
     tools:context=".a_ui.fragments.comunal.ComunasConsejalesActualesFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view_comuna_consejal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            app:iconifiedByDefault="false"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="@string/search_view_buscar_comuna" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linear_layout__"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heigt_header_comunas_consejales_actuales_80dp"

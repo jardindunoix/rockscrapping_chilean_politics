@@ -11,5 +11,6 @@
     <color name="orange">#E8BD7C</color>
     <color name="orange_strong">#ffa500</color>
     <color name="orange_super">#FF8C00</color>
+    <color name="transparente">#000000</color>
     <color name="grey">#BCB9B6</color>
 </resources>

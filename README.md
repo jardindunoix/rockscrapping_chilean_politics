@@ -1,6 +1,6 @@
 "# rockscrappin chilean politics" 
 
-#Main idea
+#Idea Principal
 ---------
 
 ##Hacer un mapa de la politica chilen al dia de hoy.
