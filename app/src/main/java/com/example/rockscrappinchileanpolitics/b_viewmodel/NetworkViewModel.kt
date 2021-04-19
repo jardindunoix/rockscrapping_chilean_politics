@@ -4,11 +4,12 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.rockscrappinchileanpolitics.c_model.d_managers.NetworkHelperManager
-import kotlinx.coroutines.launch
+import com.example.rockscrappinchileanpolitics.d_utilities.ConnectionLiveData
+import kotlinx.coroutines.withContext
 
-class NetworkViewModel(application:Application):AndroidViewModel(application)  {
+class NetworkViewModel(application:Application):AndroidViewModel(application) {
+	
 	var networkStatus = MutableLiveData<Boolean>()
 	
 	init {
@@ -16,9 +17,7 @@ class NetworkViewModel(application:Application):AndroidViewModel(application)  {
 	}
 	
 	private fun getNetwokStatus(context:Context) {
-		networkStatus.value = NetworkHelperManager.getNetworkStatus(context)
-		viewModelScope.launch {
-			networkStatus
-		}
+		// val netStat = NetworkHelperManager(context)
+		// networkStatus.value = netStat.getNetworkStatusReceiver(context)
 	}
 }
