@@ -1,4 +1,4 @@
-package com.example.rockscrappinchileanpolitics.a_ui.fragments.home
+package com.example.rockscrappinchileanpolitics.a_ui.fragments.a__home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,11 +28,9 @@ class HomeFragment:Fragment() {
 		buttonIrADipActuales.setOnClickListener {
 			navController.navigate(R.id.action_homeFragment_to_diputadosActualesFragment)
 		}
-		
 		buttonIrASenActuales.setOnClickListener {
 			navController.navigate(R.id.action_homeFragment_to_senadoresActualesFragment)
 		}
-		
 		buttonPartPoliticos.setOnClickListener {
 			navController.navigate(R.id.action_homeFragment_to_partidosActualesFragment)
 		}

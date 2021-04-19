@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/lib3"
     android:orientation="vertical"
-    tools:context=".a_ui.fragments.home.HomeFragment">
+    tools:context=".a_ui.fragments.a__home.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
