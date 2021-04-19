@@ -13,7 +13,7 @@ object DoesNetworkHaveInternet {
 		return try {
 			Log.e(TAG, "PINGING -----> especial.")
 			val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
-			val url = "${StaticUtils.BASE_URL_DIP_ACT}${StaticUtils.END_POINT_DIP_ACT}"
+			val url = StaticUtils.GALLERY_URL
 			socket.connect(InetSocketAddress(url, 53), 1500)
 			socket.close()
 			Log.e(TAG, "PING success.")

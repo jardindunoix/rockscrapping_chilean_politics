@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.rockscrappinchileanpolitics.R
-import com.example.rockscrappinchileanpolitics.b_viewmodel.NetworkViewModel
 import com.example.rockscrappinchileanpolitics.b_viewmodel.SenadoresActualesViewModel
 import com.example.rockscrappinchileanpolitics.d_utilities.extension_functions.ExtensionFunctions.Companion.initRecyclerView
 import com.example.rockscrappinchileanpolitics.d_utilities.static_strings.StaticUtils
@@ -25,7 +24,6 @@ class SenadoresActualesFragment:Fragment() {
 	private val binding get() = _binding !!
 	private lateinit var navController:NavController
 	private lateinit var model:SenadoresActualesViewModel
-	private lateinit var modelNetwork:NetworkViewModel
 	private lateinit var adapter:SenadoresActualesAdapter
 	
 	@SuppressLint("InflateParams")
@@ -34,7 +32,6 @@ class SenadoresActualesFragment:Fragment() {
 	):View {
 		_binding = FragmentSenadoresActualesBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(SenadoresActualesViewModel::class.java)
-		modelNetwork = ViewModelProvider(this).get(NetworkViewModel::class.java)
 		adapter = SenadoresActualesAdapter(mutableListOf(), requireContext())
 		initRecyclerView(binding.recyclerViewSenadoresActuales, requireContext(), adapter)
 		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
@@ -42,17 +39,13 @@ class SenadoresActualesFragment:Fragment() {
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()
-		modelNetwork.networkStatus.observe(viewLifecycleOwner, { net ->
-			if (net == true) {
-				model.senadoresActualesList.observe(viewLifecycleOwner, {
-					adapter.setItemInTheView(it)
-					if (it.isNotEmpty()) {
-						dialogo.dismiss()
-					}
-				})
-			} else {
-				binding.textView.text = getString(R.string.message_sin_conexion)
+		model.senadoresActualesList.observe(viewLifecycleOwner, {
+			adapter.setItemInTheView(it)
+			if (it.isNotEmpty()) {
 				dialogo.dismiss()
+				// } else {
+				// 	binding.textView.text = getString(R.string.message_sin_conexion)
+				// 	dialogo.dismiss()
 			}
 		})
 		return binding.root

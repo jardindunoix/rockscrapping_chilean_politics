@@ -3,6 +3,7 @@ package com.example.rockscrappinchileanpolitics.a_ui.fragments.gallery
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +22,11 @@ class GalleryFragment:Fragment() {
 	private var _binding:FragmentGalleryBinding? = null
 	private val binding get() = _binding !!
 	private lateinit var model:GalleryViewModel
-	private lateinit var modelNetwork:NetworkViewModel
+	private lateinit var netModel:NetworkViewModel
 	private lateinit var navController:NavController
 	private val list = mutableListOf<CarouselItem>()
 	
+	// private val netStat = ConnectionLiveData(requireActivity())
 	@SuppressLint("InflateParams")
 	override fun onCreateView(
 		inflater:LayoutInflater, container:ViewGroup?, savedInstanceState:Bundle?
@@ -35,23 +37,27 @@ class GalleryFragment:Fragment() {
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()
+		netModel = ViewModelProvider(this).get(NetworkViewModel::class.java)
+		
+		
 		model = ViewModelProvider(this).get(GalleryViewModel::class.java)
-		modelNetwork = ViewModelProvider(this).get(NetworkViewModel::class.java)
-		modelNetwork.networkStatus.observe(viewLifecycleOwner, { net ->
-			if (net == true) {
-				model.galleryList.observe(viewLifecycleOwner, {
-					for ((i, _) in it.withIndex()) {
-						list.add(CarouselItem(it[i].webPictureSite))
-					}
-					binding.carousel.addData(list)
-					if (it.isNotEmpty()) {
-						dialogo.dismiss()
-					}
-				})
-			} else {
-				binding.textView.text = getString(R.string.message_sin_conexion)
-				binding.carousel.visibility = View.INVISIBLE
+		netModel.networkStatus !!.observe(viewLifecycleOwner, {
+			when (it) {
+				true -> Log.e("CONNECTION TRUE ---->", it.toString())
+				false -> Log.e("CONNECTION FALSE ---->", it.toString())
+			}
+		})
+		model.galleryList.observe(viewLifecycleOwner, {
+			for ((i, _) in it.withIndex()) {
+				list.add(CarouselItem(it[i].webPictureSite))
+			}
+			binding.carousel.addData(list)
+			if (it.isNotEmpty()) {
 				dialogo.dismiss()
+				// } else {
+				// 	binding.textView.text = getString(R.string.message_sin_conexion)
+				// 	binding.carousel.visibility = View.INVISIBLE
+				// 	dialogo.dismiss()
 			}
 		})
 		return binding.root

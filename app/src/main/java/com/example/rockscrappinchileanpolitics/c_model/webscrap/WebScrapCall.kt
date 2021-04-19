@@ -53,30 +53,42 @@ class WebScrapCall { companion object {
 				val a = firstLetter(listComunasElementsPOST[i])
 				val b = firstLetter(listComunasElementsPOST[(i + 1)])
 				if (a <= b) {
-					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
-						region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
-							.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
-						paginaWeb = "${StaticUtils.URL_COM_DET}${
-							convertComunaForWebPage(listComunasElementsPOST[i])
-						}"))
+					comunasList.add(
+						ComunaConsejalActualEntity(
+							nombre = listComunasElementsPOST[i],
+							region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
+								.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
+							paginaWeb = "${StaticUtils.URL_COM_DET}${
+								convertComunaForWebPage(listComunasElementsPOST[i])
+							}"
+						)
+					)
 				} else {
-					comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[i],
-						region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
-							.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
-						paginaWeb = "${StaticUtils.URL_COM_DET}${
-							convertComunaForWebPage(listComunasElementsPOST[i])
-						}"))
+					comunasList.add(
+						ComunaConsejalActualEntity(
+							nombre = listComunasElementsPOST[i],
+							region = listRegiones[indiceRegiones].replace(oldValueOne, newValue)
+								.replace(oldValueTwo, newValue).replace(oldValueThree, newValue),
+							paginaWeb = "${StaticUtils.URL_COM_DET}${
+								convertComunaForWebPage(listComunasElementsPOST[i])
+							}"
+						)
+					)
 					++ indiceRegiones
 				}
 			}
 		}
 		val oldValueOne = "Región DE"
 		val newValue = ""
-		comunasList.add(ComunaConsejalActualEntity(nombre = listComunasElementsPOST[floor],
-			region = listRegiones[listRegiones.size - 1].replace(oldValueOne, newValue),
-			paginaWeb = "${StaticUtils.URL_COM_DET}${
-				convertComunaForWebPage(listComunasElementsPOST[floor])
-			}"))
+		comunasList.add(
+			ComunaConsejalActualEntity(
+				nombre = listComunasElementsPOST[floor],
+				region = listRegiones[listRegiones.size - 1].replace(oldValueOne, newValue),
+				paginaWeb = "${StaticUtils.URL_COM_DET}${
+					convertComunaForWebPage(listComunasElementsPOST[floor])
+				}"
+			)
+		)
 		return comunasList
 	}
 	
@@ -88,9 +100,13 @@ class WebScrapCall { companion object {
 		val listPictureConsejales = document.select("img").eachAttr("src")
 		// var counter = 1
 		for ((i, element) in listComunasElements.withIndex()) {
-			consejalesList.add(ConsejalActualDetalleEntity(nombre = element, picture = "${
-				StaticUtils.BASE_URL_CONS_ACT
-			}${listPictureConsejales[i + 1]}"))
+			consejalesList.add(
+				ConsejalActualDetalleEntity(
+					nombre = element, picture = "${
+						StaticUtils.BASE_URL_CONS_ACT
+					}${listPictureConsejales[i + 1]}"
+				)
+			)
 		}
 		return consejalesList
 	}
@@ -115,11 +131,14 @@ class WebScrapCall { companion object {
 			val newValue = ""
 			
 			for ((i, f) in imagesList.withIndex()) {
-				diputadosActualesList.add(DiputadoActualEntity(
-					nombre = nameList[i].replace(oldValueOne, newValue)
-						.replace(oldValueTwo, newValue),
-					paginaWeb = "${StaticUtils.BASE_URL_DIP_ACT}${StaticUtils.DIPUTADOS_DIP_ACT}${webpage[countAttr]}",
-					picture = "${StaticUtils.BASE_URL_DIP_ACT}${f}"))
+				diputadosActualesList.add(
+					DiputadoActualEntity(
+						nombre = nameList[i].replace(oldValueOne, newValue)
+							.replace(oldValueTwo, newValue),
+						paginaWeb = "${StaticUtils.BASE_URL_DIP_ACT}${StaticUtils.DIPUTADOS_DIP_ACT}${webpage[countAttr]}",
+						picture = "${StaticUtils.BASE_URL_DIP_ACT}${f}"
+					)
+				)
 				countAttr += 3
 			}
 		}
@@ -136,9 +155,13 @@ class WebScrapCall { companion object {
 		val imagesList = divElement.select("img").eachAttr(StaticUtils.SRC_SEN_ACT)
 		
 		imagesList.withIndex().forEach { (index, f) ->
-			senadoresActualesList.add(SenadorActualEntity(nombre = nameList[index].toString(),
-				paginaWeb = "${StaticUtils.BASE_URL_SEN_ACT}${webpageList[index]}",
-				picture = "${StaticUtils.BASE_URL_SEN_ACT}${f}"))
+			senadoresActualesList.add(
+				SenadorActualEntity(
+					nombre = nameList[index].toString(),
+					paginaWeb = "${StaticUtils.BASE_URL_SEN_ACT}${webpageList[index]}",
+					picture = "${StaticUtils.BASE_URL_SEN_ACT}${f}"
+				)
+			)
 		}
 		return senadoresActualesList
 	}
@@ -159,16 +182,20 @@ class WebScrapCall { companion object {
 		
 		for (r in element1) {
 			if (! r.equals(excluyeFila, true)) {
-				partidosActualesList.add(PartidoPoliticoEntity(
-					nombre = erasePartido(r),
-				))
+				partidosActualesList.add(
+					PartidoPoliticoEntity(
+						nombre = erasePartido(r),
+					)
+				)
 			}
 		}
 		
 		for (r in element2) {
-			partidosActualesList.add(PartidoPoliticoEntity(
-				nombre = erasePartido(r),
-			))
+			partidosActualesList.add(
+				PartidoPoliticoEntity(
+					nombre = erasePartido(r),
+				)
+			)
 		}
 		return partidosActualesList
 	}

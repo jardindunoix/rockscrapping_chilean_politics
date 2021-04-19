@@ -19,16 +19,6 @@ class HomeFragment:Fragment() {
 		inflater:LayoutInflater, container:ViewGroup?, savedInstanceState:Bundle?
 	):View {
 		_binding = FragmentHomeBinding.inflate(layoutInflater)
-		// val snackbar
-		// if (NetworkHelper.isNetworkConnected(requireContext())) {
-		// 	Toast.makeText(
-		// 		requireContext(), getString(R.string.message_con_conexion), Toast.LENGTH_LONG
-		// 	).show()
-		// } else {
-		// 	Toast.makeText(
-		// 		requireContext(), getString(R.string.message_sin_conexion), Toast.LENGTH_LONG
-		// 	).show()
-		// }
 		return binding.root
 	}
 	
