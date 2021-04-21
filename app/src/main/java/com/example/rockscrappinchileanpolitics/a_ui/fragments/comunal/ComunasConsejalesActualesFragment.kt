@@ -43,7 +43,7 @@ class ComunasConsejalesActualesFragment:Fragment(), ListenerConsejalComunas {
 		adapter = ComunasConsejalesActualesAdapter(mutableListOf(), requireContext(), this, this)
 		initRecyclerView(binding.recyclerViewConsejalesActuales, requireContext(), adapter)
 		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
-		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
+		val view = this.layoutInflater.inflate(R.layout.progress_bar, null)
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()

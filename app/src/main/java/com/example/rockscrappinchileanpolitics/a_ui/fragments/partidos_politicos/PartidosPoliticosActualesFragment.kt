@@ -34,7 +34,7 @@ class PartidosPoliticosActualesFragment:Fragment() {
 		adapter = PartidosPoliticosAdapter(mutableListOf(), requireContext())
 		initRecyclerView(binding.recyclerViewPartidosPoliticos, requireContext(), adapter)
 		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
-		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
+		val view = this.layoutInflater.inflate(R.layout.progress_bar, null)
 		dialogo.setContentView(view)
 		dialogo.setCancelable(false)
 		dialogo.show()

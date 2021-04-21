@@ -27,46 +27,45 @@ class GalleryFragment:Fragment() {
 	private lateinit var connectionLiveData:ConnectionLiveData
 	
 	@SuppressLint("InflateParams")
-	override fun onCreateView(
-		inflater:LayoutInflater, container:ViewGroup?, savedInstanceState:Bundle?
-	):View {
+	override fun onCreateView(inflater:LayoutInflater, container:ViewGroup?,
+		savedInstanceState:Bundle?):View {
 		_binding = FragmentGalleryBinding.inflate(layoutInflater)
 		model = ViewModelProvider(this).get(GalleryViewModel::class.java)
 		val dialogo = Dialog(requireContext(), R.style.Theme_PlayCore_Transparent)
-		val view = this.layoutInflater.inflate(R.layout.fullscreen_progress_bar, null)
+		val view = this.layoutInflater.inflate(R.layout.progress_bar, null)
 		dialogo.setContentView(view)
-		dialogo.setCancelable(false)
+		dialogo.setCancelable(true)
+		dialogo.setCanceledOnTouchOutside(true)
 		dialogo.show()
-		
+		binding.textView.text = getString(R.string.message_sin_conexion)
+		binding.carousel.visibility = View.INVISIBLE
 		connectionLiveData = ConnectionLiveData(requireContext())
-		connectionLiveData.observe(viewLifecycleOwner, { isNetAvailable ->
-			when (isNetAvailable) {
-				false -> {
-					Toast.makeText(requireContext(), "FALSE", Toast.LENGTH_SHORT).show()
-					binding.textView.text = getString(R.string.message_sin_conexion)
-					binding.carousel.visibility = View.INVISIBLE
-					dialogo.dismiss()
-				}
-				
-				else -> {
-					Toast.makeText(
-						requireContext(), "TRUE", Toast.LENGTH_SHORT
-					).show()
-					model.galleryList.observe(viewLifecycleOwner, {
-						for ((i, _) in it.withIndex()) {
-							list.add(CarouselItem(it[i].webPictureSite))
+		model.galleryList.observe(viewLifecycleOwner, { galleryList ->
+			connectionLiveData.observe(viewLifecycleOwner, { isNetAvailable ->
+				when (isNetAvailable) {
+					true -> {
+						dialogo.dismiss()
+						Toast.makeText(requireContext(), getString(R.string.progress_cargando),
+							Toast.LENGTH_SHORT).show()
+						for ((i, _) in galleryList.withIndex()) {
+							list.add(CarouselItem(galleryList[i].webPictureSite))
 						}
 						binding.textView.text = getString(R.string.text_gallery)
 						binding.carousel.visibility = View.VISIBLE
 						binding.carousel.addData(list)
-						if (it.isNotEmpty()) {
-							dialogo.dismiss()
-						}
-					})
+					}
+					
+					false -> {
+						Toast.makeText(requireContext(), getString(R.string.message_sin_conexion),
+							Toast.LENGTH_SHORT).show()
+						binding.textView.text = getString(R.string.message_sin_conexion)
+						binding.carousel.visibility = View.INVISIBLE
+						dialogo.dismiss()
+						list.clear()
+					}
 				}
-			}
+			})
 		})
-		
 		return binding.root
 	}
 	
